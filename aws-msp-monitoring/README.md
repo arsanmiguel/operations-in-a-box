@@ -2,7 +2,7 @@
 
 This repository provides a reference monitoring and observability stack for AWS MSPs, designed to demonstrate a practical baseline aligned with AWS MSP Program expectations. While specifically intended for AWS partners operating MSPs, customers, system integrators (SIs), independent software vendors (ISVs), and distributors are more than welcome to use this as well. It is intended as a starting point—not an AWS fully managed or supported production solution.
 
-Use this project to understand architecture patterns, accelerate experimentation, and build your own compliant monitoring implementation. Have fun!
+Use this project to understand architecture patterns, accelerate experimentation, and build your own compliant monitoring implementation.
 
 ---
 

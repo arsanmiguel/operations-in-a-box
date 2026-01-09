@@ -6,6 +6,18 @@ This repository provides a reference monitoring and observability stack for AWS 
 
 Use this project to understand architecture patterns, accelerate experimentation, and build your own compliant monitoring implementation. Have fun!
 
+---
+
+## 📖 **What You Get**
+
+✅ Enterprise-style monitoring stack (Prometheus, Grafana, API, Pushgateway)  
+✅ Security patterns and hardening examples (authentication and encryption)  
+✅ **45 plugins across 12 categories** (complete ecosystem coverage)  
+✅ **Complete dashboard tutorial** (step-by-step beginner to advanced)  
+✅ **API integration examples** (Python, JavaScript, curl)  
+✅ **Demo data generator** (realistic metrics for testing)  
+✅ **Comprehensive documentation** (6 detailed guides)  
+
 =================================================================
 
 
@@ -36,19 +48,6 @@ Use this project to understand architecture patterns, accelerate experimentation
 - **Grafana Dashboard:** http://localhost:3000
 - **Login:** admin / (password in CREDENTIALS.md)
 - **Start monitoring!**
-
----
-
-## 📖 **What You Get**
-
-
-✅ Enterprise-style monitoring stack (Prometheus, Grafana, API, Pushgateway)  
-✅ Security patterns and hardening examples (authentication and encryption)  
-✅ **45 plugins across 12 categories** (complete ecosystem coverage)  
-✅ **Complete dashboard tutorial** (step-by-step beginner to advanced)  
-✅ **API integration examples** (Python, JavaScript, curl)  
-✅ **Demo data generator** (realistic metrics for testing)  
-✅ **Comprehensive documentation** (6 detailed guides)  
 
 ---
 

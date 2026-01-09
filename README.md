@@ -407,4 +407,6 @@ pip install -r requirements.txt
 
 > **Note:** Disk space recommendations assume maximum logging and retention policies. Actual usage may be lower with optimized retention settings.
 
-> **Note:** This project is not an official AWS product and does not by itself confer AWS MSP Program compliance. Partners are responsible for validating their own implementations against current AWS MSP Program requirements.
+---
+
+**Important:** This project is not an official AWS product and does not by itself confer AWS MSP Program compliance. Partners are responsible for validating their own implementations against current AWS MSP Program requirements.

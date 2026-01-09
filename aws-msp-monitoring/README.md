@@ -342,7 +342,7 @@ pip install -r requirements.txt
 3. **Partner deployment:** `AWS_MSP_PARTNER_GUIDE.md`
 
 ### **Contact Support**
-- **GitHub Issues:** [Report bugs and feature requests](https://github.com/aws-msp/monitoring-stack/issues)
+- **GitLab Issues:** [Report bugs and feature requests](https://gitlab.aws.dev/adrianrs/managed-services-operations-in-a-box/-/issues)
 
 ## Prerequisites
 

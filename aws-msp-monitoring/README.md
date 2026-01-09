@@ -91,7 +91,7 @@ python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack instal
 #### **Available Plugin Categories:**
 - **🚀 Performance & Scale** - Federation, HA, Auto-scaling (3 plugins)
 - **🛡️ Advanced Security** - SAML/OAuth, Certificates, Network segmentation (3 plugins)
-- **☁️ Cloud Integration** - AWS CloudWatch, Auto-Discovery, Cost optimization, MontyCloud (4 plugins)
+- **☁️ Cloud Integration** - AWS CloudWatch, AWS CloudTrail, AWS Config, Auto-Discovery, Cost optimization, MontyCloud (6 plugins)
 - **🔒 Security Partner Integration** - CrowdStrike, Palo Alto, Alert Logic (3 plugins)
 - **📊 Monitoring Partner Integration** - Splunk, Sumo Logic, Datadog (3 plugins)
 - **🎫 CMDB/ITSM Integration** - ServiceNow, BMC Helix, Jira Service Management (3 plugins)
@@ -103,7 +103,7 @@ python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack instal
 - **🔧 DevOps Automation** - AWS CloudFormation, Terraform, Infrastructure as Code, CI/CD, GitOps (5 plugins)
 
 #### **Popular Plugin Packs:**
-- **AWS Integration Pack** - CloudWatch + Auto-Discovery + Cost Optimization + MontyCloud
+- **AWS Integration Pack** - AWS CloudWatch + AWS CloudTrail + AWS Config + Auto-Discovery + Cost Optimization + MontyCloud
 - **Security Enhancement Pack** - SAML Auth + Certificate Auth
 - **Security Partner Pack** - CrowdStrike + Palo Alto + Alert Logic
 - **Monitoring Partner Pack** - Splunk + Sumo Logic + Datadog
@@ -123,6 +123,8 @@ python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack instal
 
 # Add essential AWS integration
 python3 aws_msp_plugin_manager.py install aws-cloudwatch
+python3 aws_msp_plugin_manager.py install aws-cloudtrail
+python3 aws_msp_plugin_manager.py install aws-config
 python3 aws_msp_plugin_manager.py install montycloud
 ```
 

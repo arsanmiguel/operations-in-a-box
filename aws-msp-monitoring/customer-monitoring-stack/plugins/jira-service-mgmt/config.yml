@@ -1,0 +1,4 @@
+description: Configuration for jira-service-mgmt plugin
+enabled: true
+name: Jira Service Mgmt
+version: 1.0.0

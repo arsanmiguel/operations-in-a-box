@@ -1,0 +1,4 @@
+description: Configuration for freshworks plugin
+enabled: true
+name: Freshworks
+version: 1.0.0

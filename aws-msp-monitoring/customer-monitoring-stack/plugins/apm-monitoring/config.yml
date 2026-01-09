@@ -1,0 +1,4 @@
+description: Configuration for apm-monitoring plugin
+enabled: true
+name: Apm Monitoring
+version: 1.0.0

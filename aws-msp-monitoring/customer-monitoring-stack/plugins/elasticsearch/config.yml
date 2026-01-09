@@ -1,0 +1,4 @@
+description: Configuration for elasticsearch plugin
+enabled: true
+name: Elasticsearch
+version: 1.0.0

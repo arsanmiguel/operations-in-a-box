@@ -1,0 +1,4 @@
+description: Configuration for auto-scaling plugin
+enabled: true
+name: Auto Scaling
+version: 1.0.0

@@ -1,0 +1,4 @@
+description: Configuration for duo-security plugin
+enabled: true
+name: Duo Security
+version: 1.0.0

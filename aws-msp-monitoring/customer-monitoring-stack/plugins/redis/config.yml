@@ -1,0 +1,4 @@
+description: Configuration for redis plugin
+enabled: true
+name: Redis
+version: 1.0.0

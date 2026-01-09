@@ -1,0 +1,30 @@
+networks:
+  default:
+    external: false
+services:
+  bmc_helix:
+    container_name: bmc_helix
+    environment:
+    - SERVICE_NAME=${SERVICE_NAME}
+    - SERVICE_ENABLED=${SERVICE_ENABLED}
+    healthcheck:
+      interval: 60s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - wget
+      - --no-verbose
+      - --tries=1
+      - --spider
+      - http://localhost:9209/health
+      timeout: 10s
+    image: alpine:latest
+    networks:
+    - default
+    ports:
+    - 9209:9209
+    restart: unless-stopped
+    volumes:
+    - ./bmc-helix-config.yml:/config/config.yml:ro
+    - ./logs:/var/log:rw

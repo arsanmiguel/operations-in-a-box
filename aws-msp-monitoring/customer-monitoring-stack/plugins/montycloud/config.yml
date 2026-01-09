@@ -1,0 +1,4 @@
+description: Configuration for montycloud plugin
+enabled: true
+name: Montycloud
+version: 1.0.0

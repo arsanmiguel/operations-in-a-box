@@ -1,0 +1,4 @@
+description: Configuration for cicd-monitoring plugin
+enabled: true
+name: Cicd Monitoring
+version: 1.0.0

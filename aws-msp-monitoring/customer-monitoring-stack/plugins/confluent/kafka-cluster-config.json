@@ -1,0 +1,5 @@
+{
+  "name": "Confluent Kafka Platform",
+  "version": "1.0.0",
+  "enabled": true
+}

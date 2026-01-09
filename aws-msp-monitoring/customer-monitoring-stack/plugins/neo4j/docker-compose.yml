@@ -1,0 +1,30 @@
+networks:
+  default:
+    external: false
+services:
+  neo4j:
+    container_name: neo4j
+    environment:
+    - SERVICE_NAME=${SERVICE_NAME}
+    - SERVICE_ENABLED=${SERVICE_ENABLED}
+    healthcheck:
+      interval: 60s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - wget
+      - --no-verbose
+      - --tries=1
+      - --spider
+      - http://localhost:9205/health
+      timeout: 10s
+    image: alpine:latest
+    networks:
+    - default
+    ports:
+    - 9205:9205
+    restart: unless-stopped
+    volumes:
+    - ./neo4j-config.yml:/config/config.yml:ro
+    - ./logs:/var/log:rw

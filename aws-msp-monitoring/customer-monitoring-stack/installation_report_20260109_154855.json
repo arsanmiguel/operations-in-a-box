@@ -1,0 +1,27 @@
+{
+  "installation_metadata": {
+    "timestamp": "2026-01-09T15:48:55.200092",
+    "installer_version": "2.0.0",
+    "install_directory": "/Users/adrianrs/localrepo/monitoring-quick-start/aws-msp-monitoring/customer-monitoring-stack/customer-monitoring-stack",
+    "system_info": {
+      "platform": "Darwin",
+      "platform_version": "Darwin Kernel Version 24.6.0: Wed Nov  5 21:32:38 PST 2025; root:xnu-11417.140.69.705.2~1/RELEASE_ARM64_T6031",
+      "python_version": "3.14.2"
+    }
+  },
+  "credentials": {
+    "grafana_url": "http://localhost:3000",
+    "grafana_username": "admin",
+    "grafana_password": "dWOrJpkx9cX28yQeNkJNPA",
+    "api_url": "http://localhost:8080",
+    "api_key": "eSrEB85UONWS5ytxtXxT0G88BWFSh9ZVZM-AyhUgtyA"
+  },
+  "services": {
+    "prometheus": "http://localhost:9090",
+    "grafana": "http://localhost:3000",
+    "pushgateway": "http://localhost:9091",
+    "api": "http://localhost:8080"
+  },
+  "errors": [],
+  "installation_status": "SUCCESS"
+}

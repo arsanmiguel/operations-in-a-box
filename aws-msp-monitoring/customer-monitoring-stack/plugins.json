@@ -1,0 +1,237 @@
+{
+  "aws-cloudwatch": {
+    "name": "AWS CloudWatch Integration",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "aws-cloudtrail": {
+    "name": "AWS CloudTrail Integration",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "aws-config": {
+    "name": "AWS Config Integration",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "prometheus-federation": {
+    "name": "Prometheus Federation",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "grafana-ha": {
+    "name": "Grafana High Availability",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "auto-scaling": {
+    "name": "Auto-Scaling Monitor",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "saml-auth": {
+    "name": "SAML/OAuth Authentication",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "cert-auth": {
+    "name": "Certificate Authentication",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "network-security": {
+    "name": "Network Segmentation",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "aws-discovery": {
+    "name": "AWS Auto-Discovery",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "cost-optimization": {
+    "name": "Cost Optimization Monitor",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "montycloud": {
+    "name": "MontyCloud Governance",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "crowdstrike-falcon": {
+    "name": "CrowdStrike Falcon EDR",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "palo-alto-prisma": {
+    "name": "Palo Alto Prisma Cloud",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "alertlogic": {
+    "name": "Alert Logic Security",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "splunk-enterprise": {
+    "name": "Splunk Enterprise",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "sumologic": {
+    "name": "Sumo Logic",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "datadog": {
+    "name": "Datadog APM",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "servicenow": {
+    "name": "ServiceNow ITSM",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "bmc-helix": {
+    "name": "BMC Helix ITSM",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "jira-service-mgmt": {
+    "name": "Atlassian Jira Service Management",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "aws-support": {
+    "name": "AWS Support Case Integration",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "zendesk": {
+    "name": "Zendesk Support",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "freshworks": {
+    "name": "Freshworks Suite",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "linear": {
+    "name": "Linear Issue Tracking",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "duo-security": {
+    "name": "Duo Security MFA",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "okta": {
+    "name": "Okta Identity Platform",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "redis": {
+    "name": "Redis Data Store",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "elasticsearch": {
+    "name": "Elasticsearch Data Platform",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "databricks": {
+    "name": "Databricks Analytics",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "snowflake": {
+    "name": "Snowflake Data Warehouse",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "mongodb": {
+    "name": "MongoDB Database",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "confluent": {
+    "name": "Confluent Kafka Platform",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "influxdb": {
+    "name": "InfluxDB Time Series",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "clickhouse": {
+    "name": "ClickHouse Analytics",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "neo4j": {
+    "name": "Neo4j Graph Database",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "anomaly-detection": {
+    "name": "AI Anomaly Detection",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "predictive-alerts": {
+    "name": "Predictive Alerting",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "auto-remediation": {
+    "name": "Auto-Remediation",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "business-intelligence": {
+    "name": "Business Intelligence",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "log-aggregation": {
+    "name": "Log Aggregation (ELK)",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "apm-monitoring": {
+    "name": "Application Performance Monitoring",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "aws-cloudformation": {
+    "name": "AWS CloudFormation",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "terraform": {
+    "name": "Terraform Infrastructure",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "infrastructure-as-code": {
+    "name": "Infrastructure as Code",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "cicd-monitoring": {
+    "name": "CI/CD Pipeline Monitoring",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "gitops-deployment": {
+    "name": "GitOps Deployment",
+    "version": "1.0.0",
+    "installed_at": "2026-01-07T16:43:00Z"
+  }
+}

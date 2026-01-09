@@ -1,0 +1,32 @@
+networks:
+  default:
+    external: false
+services:
+  prometheus_federation:
+    container_name: prometheus_federation
+    environment:
+    - PROMETHEUS_FEDERATION_TARGETS=${PROMETHEUS_FEDERATION_TARGETS}
+    - PROMETHEUS_RETENTION_TIME=${PROMETHEUS_RETENTION_TIME}
+    - PROMETHEUS_STORAGE_PATH=${PROMETHEUS_STORAGE_PATH}
+    - PROMETHEUS_WEB_EXTERNAL_URL=${PROMETHEUS_WEB_EXTERNAL_URL}
+    healthcheck:
+      interval: 60s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - wget
+      - --no-verbose
+      - --tries=1
+      - --spider
+      - http://localhost:9109/health
+      timeout: 10s
+    image: prom/prometheus:latest
+    networks:
+    - default
+    ports:
+    - 9109:9109
+    restart: unless-stopped
+    volumes:
+    - ./prometheus-federation-config.yml:/config/config.yml:ro
+    - ./logs:/var/log:rw

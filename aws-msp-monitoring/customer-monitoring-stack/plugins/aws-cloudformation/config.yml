@@ -1,0 +1,4 @@
+description: Configuration for aws-cloudformation plugin
+enabled: true
+name: Aws Cloudformation
+version: 1.0.0

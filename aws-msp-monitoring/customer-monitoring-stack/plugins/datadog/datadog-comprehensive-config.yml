@@ -1,0 +1,178 @@
+# Datadog Integration Configuration
+# Configure Datadog agent and monitoring
+
+# Datadog Agent Configuration
+datadog:
+  api_key: ${DATADOG_API_KEY}
+  app_key: ${DATADOG_APP_KEY}
+  site: ${DATADOG_SITE:-datadoghq.com}  # or datadoghq.eu for EU
+  
+  # Agent Configuration
+  agent:
+    hostname: ${DD_HOSTNAME}
+    tags:
+      - "env:${ENVIRONMENT:-production}"
+      - "service:monitoring-stack"
+      - "version:1.0.0"
+    
+    # Log Collection
+    logs_enabled: true
+    log_level: "INFO"
+    
+    # APM Configuration
+    apm_enabled: true
+    apm_non_local_traffic: true
+    
+    # Process Monitoring
+    process_agent_enabled: true
+    
+    # Network Monitoring
+    network_monitoring_enabled: true
+
+# Integrations to Enable
+integrations:
+  docker:
+    enabled: true
+    collect_container_size: true
+    collect_images_stats: true
+    collect_image_size: true
+    
+  prometheus:
+    enabled: true
+    prometheus_url: "http://prometheus:9090"
+    namespace: "monitoring"
+    metrics:
+      - "prometheus_*"
+      - "up"
+      - "http_requests_total"
+      
+  kubernetes:
+    enabled: false  # Enable if running on K8s
+    collect_events: true
+    leader_election: true
+    
+  system:
+    enabled: true
+    collect_disk_usage: true
+    collect_network_stats: true
+
+# Custom Metrics
+custom_metrics:
+  business_metrics:
+    - metric_name: "monitoring.stack.health"
+      metric_type: "gauge"
+      tags: ["component:prometheus", "component:grafana"]
+      
+    - metric_name: "monitoring.plugins.active"
+      metric_type: "count"
+      tags: ["plugin_type:aws", "plugin_type:security"]
+
+# Dashboards Configuration
+dashboards:
+  infrastructure_overview:
+    title: "Infrastructure Overview"
+    widgets:
+      - type: "timeseries"
+        title: "CPU Usage"
+        metrics: ["system.cpu.user", "system.cpu.system"]
+        
+      - type: "query_value"
+        title: "Memory Usage"
+        metrics: ["system.mem.pct_usable"]
+        
+  application_performance:
+    title: "Application Performance"
+    widgets:
+      - type: "timeseries"
+        title: "Response Time"
+        metrics: ["http.response_time"]
+        
+      - type: "toplist"
+        title: "Top Errors"
+        metrics: ["http.errors"]
+
+# Alerting Configuration
+monitors:
+  high_cpu_usage:
+    name: "High CPU Usage"
+    type: "metric alert"
+    query: "avg(last_5m):avg:system.cpu.user{*} > 80"
+    message: "CPU usage is above 80% on {{host.name}}"
+    tags: ["team:infrastructure"]
+    
+  memory_usage:
+    name: "High Memory Usage"
+    type: "metric alert"
+    query: "avg(last_5m):avg:system.mem.pct_usable{*} < 20"
+    message: "Memory usage is above 80% on {{host.name}}"
+    
+  prometheus_down:
+    name: "Prometheus Down"
+    type: "service check"
+    query: '"prometheus".up.over("*").last(2).count_by_status()'
+    message: "Prometheus is down on {{host.name}}"
+    tags: ["service:prometheus", "severity:critical"]
+
+# Log Processing
+logs:
+  sources:
+    prometheus:
+      source: "prometheus"
+      service: "prometheus"
+      log_processing_rules:
+        - type: "exclude_at_match"
+          name: "exclude_debug"
+          pattern: "level=debug"
+          
+    grafana:
+      source: "grafana"
+      service: "grafana"
+      log_processing_rules:
+        - type: "include_at_match"
+          name: "include_errors"
+          pattern: "level=error"
+          
+    application:
+      source: "application"
+      service: "monitoring-stack"
+      multiline:
+        new_log_start_with_date: true
+
+# Synthetic Tests
+synthetics:
+  api_tests:
+    prometheus_health:
+      url: "http://localhost:9090/-/healthy"
+      method: "GET"
+      expected_status_code: 200
+      frequency: 300  # 5 minutes
+      
+    grafana_health:
+      url: "http://localhost:3000/api/health"
+      method: "GET"
+      expected_status_code: 200
+      frequency: 300
+      
+  browser_tests:
+    grafana_login:
+      url: "http://localhost:3000/login"
+      frequency: 900  # 15 minutes
+      steps:
+        - type: "click"
+          element: "#login-button"
+        - type: "type"
+          element: "#username"
+          text: "admin"
+
+# Metrics Collection
+metrics:
+  port: 9141
+  path: "/metrics"
+  
+  # Custom metrics to expose
+  custom_metrics:
+    - "datadog_agent_running"
+    - "datadog_metrics_sent_total"
+    - "datadog_logs_sent_total"
+    - "datadog_api_requests_total"
+    - "datadog_api_errors_total"

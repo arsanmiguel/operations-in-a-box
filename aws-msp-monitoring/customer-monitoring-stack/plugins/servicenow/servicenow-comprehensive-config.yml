@@ -1,0 +1,90 @@
+# ServiceNow Integration Configuration
+# Configure your ServiceNow instance connection and monitoring
+
+# ServiceNow Instance Configuration
+servicenow:
+  instance_url: ${SERVICENOW_INSTANCE_URL}  # e.g., https://your-instance.service-now.com
+  username: ${SERVICENOW_USERNAME}
+  password: ${SERVICENOW_PASSWORD}
+  # Alternative: Use OAuth
+  # client_id: ${SERVICENOW_CLIENT_ID}
+  # client_secret: ${SERVICENOW_CLIENT_SECRET}
+  
+  # API Configuration
+  api_version: "v1"
+  timeout_seconds: 30
+  retry_attempts: 3
+  
+  # Tables to Monitor
+  tables:
+    incidents:
+      table: "incident"
+      fields: ["number", "state", "priority", "category", "assigned_to", "opened_at", "resolved_at"]
+      filters: "active=true"
+      
+    change_requests:
+      table: "change_request"
+      fields: ["number", "state", "type", "risk", "start_date", "end_date"]
+      filters: "active=true"
+      
+    problems:
+      table: "problem"
+      fields: ["number", "state", "priority", "category", "opened_at"]
+      filters: "active=true"
+      
+    service_catalog:
+      table: "sc_request"
+      fields: ["number", "state", "requested_for", "opened_at"]
+      filters: "active=true"
+
+# Metrics Configuration
+metrics:
+  port: 9142
+  path: "/metrics"
+  poll_interval_seconds: 300  # Poll ServiceNow every 5 minutes
+  
+  # Custom metrics to track
+  track_metrics:
+    - "servicenow_incidents_total"
+    - "servicenow_incidents_by_priority"
+    - "servicenow_incidents_by_state"
+    - "servicenow_change_requests_total"
+    - "servicenow_problems_total"
+    - "servicenow_api_response_time"
+    - "servicenow_api_errors_total"
+
+# Alerting Configuration
+alerts:
+  high_priority_incidents_threshold: 5
+  critical_incidents_threshold: 1
+  change_requests_pending_threshold: 10
+  api_error_threshold: 3
+
+# Field Mappings
+field_mappings:
+  incident_states:
+    "1": "New"
+    "2": "In Progress"
+    "3": "On Hold"
+    "6": "Resolved"
+    "7": "Closed"
+    
+  incident_priorities:
+    "1": "Critical"
+    "2": "High"
+    "3": "Moderate"
+    "4": "Low"
+    "5": "Planning"
+    
+  change_states:
+    "-5": "Canceled"
+    "-4": "Skipped"
+    "-3": "Closed Incomplete"
+    "-2": "Closed Successful"
+    "-1": "Closed"
+    "1": "New"
+    "2": "Assess"
+    "3": "Authorize"
+    "4": "Scheduled"
+    "5": "Implement"
+    "6": "Review"

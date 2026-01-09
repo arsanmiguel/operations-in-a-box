@@ -113,6 +113,26 @@ class PluginManager:
                 "size_mb": 10,
                 "complexity": "beginner"
             },
+            "aws-cloudtrail": {
+                "name": "AWS CloudTrail Integration",
+                "category": "Cloud Integration",
+                "description": "AWS CloudTrail log analysis and security monitoring",
+                "dependencies": ["base"],
+                "docker_services": ["cloudtrail-exporter"],
+                "config_files": ["cloudtrail-config.yml", "trail-rules.json"],
+                "size_mb": 12,
+                "complexity": "intermediate"
+            },
+            "aws-config": {
+                "name": "AWS Config Integration", 
+                "category": "Cloud Integration",
+                "description": "AWS Config compliance and configuration monitoring",
+                "dependencies": ["base"],
+                "docker_services": ["config-exporter"],
+                "config_files": ["config-rules.yml", "compliance-checks.json"],
+                "size_mb": 14,
+                "complexity": "intermediate"
+            },
             "aws-discovery": {
                 "name": "AWS Auto-Discovery",
                 "category": "Cloud Integration", 
@@ -584,7 +604,7 @@ class PluginManager:
                 'image': self._get_default_image(service),
                 'container_name': service,
                 'restart': 'unless-stopped',
-                'networks': ['monitoring']
+                'networks': ['default']  # Use default network instead of monitoring
             }
         
         compose_file = plugin_dir / "docker-compose.yml"
@@ -612,7 +632,7 @@ services:
     container_name: {service}
     restart: unless-stopped
     networks:
-      - monitoring
+      - default
 """
         
         compose_file = plugin_dir / "docker-compose.yml"
@@ -870,6 +890,8 @@ services:
             'network-monitor': 'alpine:latest',
             'vpn-gateway': 'alpine:latest',
             'cloudwatch-exporter': 'prom/cloudwatch-exporter:latest',
+            'cloudtrail-exporter': 'alpine:latest',  # Custom CloudTrail log processor
+            'config-exporter': 'alpine:latest',      # Custom Config compliance checker
             'aws-discovery': 'alpine:latest',
             'cost-analyzer': 'alpine:latest',
             'montycloud-connector': 'montycloud/governance-connector:latest',

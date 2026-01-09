@@ -1,0 +1,4 @@
+description: Configuration for predictive-alerts plugin
+enabled: true
+name: Predictive Alerts
+version: 1.0.0

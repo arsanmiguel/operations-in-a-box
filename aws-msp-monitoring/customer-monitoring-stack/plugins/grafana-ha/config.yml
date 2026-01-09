@@ -1,0 +1,4 @@
+description: Configuration for grafana-ha plugin
+enabled: true
+name: Grafana Ha
+version: 1.0.0

@@ -1,0 +1,7 @@
+flask>=3.0.0
+flask-limiter>=3.8.0
+werkzeug>=3.0.0
+requests>=2.32.0
+prometheus-client>=0.21.0
+cryptography>=42.0.0
+certifi>=2024.8.30

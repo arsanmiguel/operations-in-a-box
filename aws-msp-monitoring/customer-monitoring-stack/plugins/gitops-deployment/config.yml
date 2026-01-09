@@ -1,0 +1,4 @@
+description: Configuration for gitops-deployment plugin
+enabled: true
+name: Gitops Deployment
+version: 1.0.0

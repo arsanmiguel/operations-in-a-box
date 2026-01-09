@@ -1,0 +1,4 @@
+description: Configuration for servicenow plugin
+enabled: true
+name: Servicenow
+version: 1.0.0

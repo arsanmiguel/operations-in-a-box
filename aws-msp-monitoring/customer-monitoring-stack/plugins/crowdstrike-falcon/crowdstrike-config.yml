@@ -1,0 +1,3 @@
+enabled: true
+name: CrowdStrike Falcon EDR
+version: 1.0.0

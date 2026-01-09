@@ -1,0 +1,3 @@
+enabled: true
+name: Prometheus Federation
+version: 1.0.0

@@ -1,0 +1,4 @@
+description: Configuration for neo4j plugin
+enabled: true
+name: Neo4J
+version: 1.0.0

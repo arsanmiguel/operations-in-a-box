@@ -1,0 +1,125 @@
+# Splunk Enterprise Integration Configuration
+# Configure Splunk connection and log forwarding
+
+# Splunk Instance Configuration
+splunk:
+  host: ${SPLUNK_HOST:-localhost}
+  port: ${SPLUNK_PORT:-8089}
+  username: ${SPLUNK_USERNAME:-admin}
+  password: ${SPLUNK_PASSWORD}
+  
+  # HTTP Event Collector (HEC) Configuration
+  hec:
+    enabled: true
+    token: ${SPLUNK_HEC_TOKEN}
+    port: ${SPLUNK_HEC_PORT:-8088}
+    ssl_verify: false
+    
+  # Search Configuration
+  search:
+    app: "search"
+    earliest_time: "-1h"
+    latest_time: "now"
+    max_results: 1000
+
+# Log Sources to Forward
+log_sources:
+  prometheus_logs:
+    source_type: "prometheus"
+    index: "monitoring"
+    path: "/var/log/prometheus/*.log"
+    
+  grafana_logs:
+    source_type: "grafana"
+    index: "monitoring"
+    path: "/var/log/grafana/*.log"
+    
+  application_logs:
+    source_type: "application"
+    index: "main"
+    path: "/var/log/app/*.log"
+    
+  system_logs:
+    source_type: "syslog"
+    index: "main"
+    path: "/var/log/syslog"
+
+# Splunk Searches and Alerts
+searches:
+  error_detection:
+    search: 'index=* level=ERROR OR level=FATAL'
+    cron_schedule: "*/5 * * * *"
+    alert_threshold: 10
+    
+  performance_monitoring:
+    search: 'index=monitoring source="prometheus" | stats avg(response_time) by host'
+    cron_schedule: "*/15 * * * *"
+    
+  security_events:
+    search: 'index=* (failed OR unauthorized OR denied) | stats count by src_ip'
+    cron_schedule: "*/10 * * * *"
+    alert_threshold: 5
+
+# Metrics Configuration
+metrics:
+  port: 9139
+  path: "/metrics"
+  poll_interval_seconds: 300
+  
+  # Splunk metrics to track
+  track_metrics:
+    - "splunk_events_indexed_total"
+    - "splunk_search_jobs_total"
+    - "splunk_license_usage_mb"
+    - "splunk_indexer_throughput"
+    - "splunk_search_head_load"
+    - "splunk_forwarder_connections"
+    - "splunk_api_response_time"
+    - "splunk_errors_total"
+
+# Dashboards to Create
+dashboards:
+  infrastructure_monitoring:
+    title: "Infrastructure Monitoring"
+    searches:
+      - "index=monitoring | timechart span=5m count by host"
+      - "index=monitoring source=prometheus | stats latest(cpu_usage) by host"
+      
+  security_overview:
+    title: "Security Overview"
+    searches:
+      - "index=* (authentication OR login) | stats count by result"
+      - "index=* source=firewall | stats count by action"
+
+# Data Models
+data_models:
+  infrastructure:
+    objects:
+      - name: "servers"
+        fields: ["host", "cpu_usage", "memory_usage", "disk_usage"]
+      - name: "applications"
+        fields: ["app_name", "response_time", "error_rate"]
+        
+  security:
+    objects:
+      - name: "authentication"
+        fields: ["user", "src_ip", "result", "timestamp"]
+      - name: "network"
+        fields: ["src_ip", "dest_ip", "port", "protocol", "action"]
+
+# Alerting Configuration
+alerts:
+  high_error_rate:
+    search: 'index=* level=ERROR | stats count'
+    threshold: 100
+    severity: "high"
+    
+  license_usage:
+    search: '| rest /services/licenser/usage | eval usage_pct=round((used/quota)*100,2)'
+    threshold: 80
+    severity: "medium"
+    
+  indexer_performance:
+    search: '| rest /services/server/info | eval indexing_rate=round(indexing_rate,2)'
+    threshold: 1000
+    severity: "low"

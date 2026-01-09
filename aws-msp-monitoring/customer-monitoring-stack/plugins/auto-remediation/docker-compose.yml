@@ -1,0 +1,30 @@
+networks:
+  default:
+    external: false
+services:
+  auto_remediation:
+    container_name: auto_remediation
+    environment:
+    - SERVICE_NAME=${SERVICE_NAME}
+    - SERVICE_ENABLED=${SERVICE_ENABLED}
+    healthcheck:
+      interval: 60s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - wget
+      - --no-verbose
+      - --tries=1
+      - --spider
+      - http://localhost:9216/health
+      timeout: 10s
+    image: alpine:latest
+    networks:
+    - default
+    ports:
+    - 9216:9216
+    restart: unless-stopped
+    volumes:
+    - ./auto-remediation-config.yml:/config/config.yml:ro
+    - ./logs:/var/log:rw

@@ -1,0 +1,104 @@
+# AWS CloudTrail Configuration
+# This configuration defines CloudTrail log processing and security monitoring
+
+# AWS Configuration
+aws_region: ${AWS_REGION:-us-east-1}
+
+# CloudTrail S3 Configuration
+cloudtrail:
+  s3_bucket: ${CLOUDTRAIL_S3_BUCKET}
+  s3_prefix: ${CLOUDTRAIL_S3_PREFIX:-AWSLogs}
+  
+  # Processing Configuration
+  poll_interval_seconds: 300  # Check for new logs every 5 minutes
+  batch_size: 100             # Process logs in batches
+  
+  # Security Event Filters
+  security_events:
+    # Authentication Events
+    - event_name: "ConsoleLogin"
+      severity: "info"
+      description: "AWS Console login attempt"
+      
+    - event_name: "AssumeRole"
+      severity: "info" 
+      description: "IAM role assumption"
+      
+    - event_name: "CreateUser"
+      severity: "warning"
+      description: "New IAM user created"
+      
+    - event_name: "DeleteUser"
+      severity: "warning"
+      description: "IAM user deleted"
+      
+    - event_name: "AttachUserPolicy"
+      severity: "warning"
+      description: "Policy attached to user"
+      
+    - event_name: "DetachUserPolicy"
+      severity: "warning"
+      description: "Policy detached from user"
+      
+    # Resource Changes
+    - event_name: "RunInstances"
+      severity: "info"
+      description: "EC2 instance launched"
+      
+    - event_name: "TerminateInstances"
+      severity: "warning"
+      description: "EC2 instance terminated"
+      
+    - event_name: "CreateSecurityGroup"
+      severity: "warning"
+      description: "Security group created"
+      
+    - event_name: "DeleteSecurityGroup"
+      severity: "warning"
+      description: "Security group deleted"
+      
+    - event_name: "AuthorizeSecurityGroupIngress"
+      severity: "warning"
+      description: "Security group rule added"
+      
+    # High-Risk Events
+    - event_name: "CreateAccessKey"
+      severity: "critical"
+      description: "New access key created"
+      
+    - event_name: "DeleteAccessKey"
+      severity: "critical"
+      description: "Access key deleted"
+      
+    - event_name: "PutBucketPolicy"
+      severity: "critical"
+      description: "S3 bucket policy modified"
+      
+    - event_name: "DeleteBucket"
+      severity: "critical"
+      description: "S3 bucket deleted"
+
+# Metrics Configuration
+metrics:
+  port: 9107
+  path: "/metrics"
+  
+  # Custom metrics to track
+  track_metrics:
+    - "cloudtrail_events_total"
+    - "cloudtrail_security_events_total"
+    - "cloudtrail_failed_logins_total"
+    - "cloudtrail_root_usage_total"
+    - "cloudtrail_api_calls_total"
+    - "cloudtrail_errors_total"
+
+# Alerting Thresholds
+alerts:
+  failed_logins_threshold: 5      # Alert after 5 failed logins
+  root_usage_threshold: 1         # Alert on any root account usage
+  high_risk_events_threshold: 3   # Alert after 3 high-risk events
+  
+# Log Retention
+retention:
+  processed_logs_days: 30         # Keep processed log metadata for 30 days
+  metrics_retention_days: 90      # Keep metrics for 90 days

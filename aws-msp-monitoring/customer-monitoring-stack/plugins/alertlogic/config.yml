@@ -1,0 +1,4 @@
+description: Configuration for alertlogic plugin
+enabled: true
+name: Alertlogic
+version: 1.0.0

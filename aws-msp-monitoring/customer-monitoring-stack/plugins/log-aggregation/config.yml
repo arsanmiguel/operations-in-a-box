@@ -1,0 +1,4 @@
+description: Configuration for log-aggregation plugin
+enabled: true
+name: Log Aggregation
+version: 1.0.0

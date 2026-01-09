@@ -1,0 +1,4 @@
+description: Configuration for snowflake plugin
+enabled: true
+name: Snowflake
+version: 1.0.0

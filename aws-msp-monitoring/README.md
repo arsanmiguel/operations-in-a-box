@@ -4,7 +4,7 @@ Thousands of AWS MSP partners have asked "how do I get started with monitoring a
 
 While specifically intended for AWS partners operating MSPs, customers, system integrators (SIs), independent software vendors (ISVs), and distributors are welcome to use this as well.
 
-This is a starting point—not an AWS fully managed or supported production solution. Use this project to understand architecture patterns, accelerate experimentation, and build your own compliant monitoring implementation.
+**Note:** This is a starting point—not an AWS fully managed or supported production solution. Use this project to understand architecture patterns, accelerate experimentation, and build your own compliant monitoring implementation.
 
 ---
 

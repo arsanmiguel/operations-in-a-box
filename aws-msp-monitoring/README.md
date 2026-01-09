@@ -228,6 +228,8 @@ python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack list -
 - `install-plugins.sh` - Interactive plugin installer
 - `install.sh` - Unix installer
 - `install.bat` - Windows installer
+- `uninstall.sh` - Unix uninstaller
+- `uninstall.bat` - Windows uninstaller
 - `enhance-all-plugins.py` - Plugin validation and enhancement system
 - `enhance-all-templates.py` - Comprehensive template generator
 - `AWS_MSP_DASHBOARD_WALKTHROUGH.md` - Complete dashboard guide

@@ -55,6 +55,32 @@ While specifically intended for AWS partners operating MSPs, customers, system i
 
 ---
 
+## 🗑️ **Uninstalling**
+
+To completely remove the monitoring stack and free up ~6GB of disk space:
+
+#### **Windows Users:**
+- **Double-click** `uninstall.bat`
+
+#### **macOS/Linux Users:**
+- **Run:** `./uninstall.sh`
+
+---
+
+## 🗑️ **Uninstalling**
+
+To completely remove the monitoring stack and free up ~6GB of disk space:
+
+#### **Windows Users:**
+- **Double-click** `uninstall.bat`
+
+#### **macOS/Linux Users:**
+- **Run:** `./uninstall.sh`
+
+This removes all containers, images, volumes, and networks. You can then safely delete the folder.
+
+---
+
 ## 🎯 **Next Steps After Installation**
 
 ### **For Beginners:**

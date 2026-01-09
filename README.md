@@ -74,10 +74,9 @@ Use this project to understand architecture patterns, accelerate experimentation
 ## 🔌 Plugin System (Extensible by Design)
 The monitoring stack supports a modular plugin system covering performance, security, cloud integration, ITSM, data platforms, and AI/ML use cases. Plugins are optional and can be added incrementally based on MSP needs.
 
-### **Extend Your Monitoring Stack**
-After installing the base monitoring stack, add powerful plugins:
+<details>
+<summary><strong>🚀 Quick Plugin Installation</strong></summary>
 
-#### **Quick Plugin Installation:**
 ```bash
 # Option 1: Interactive command-line installer
 ./install-plugins.sh
@@ -89,8 +88,11 @@ python3 aws_msp_plugin_web_gui.py
 # Option 3: Direct command-line
 python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack install aws-cloudwatch
 ```
+</details>
 
-#### **Available Plugin Categories:**
+<details>
+<summary><strong>📋 Available Plugin Categories (45+ plugins across 12 categories)</strong></summary>
+
 - **🚀 Performance & Scale** - Federation, HA, Auto-scaling (3 plugins)
 - **🛡️ Advanced Security** - SAML/OAuth, Certificates, Network segmentation (3 plugins)
 - **☁️ Cloud Integration** - AWS CloudWatch, AWS CloudTrail, AWS Config, Auto-Discovery, Cost optimization, MontyCloud (6 plugins)
@@ -103,8 +105,11 @@ python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack instal
 - **🤖 AI/ML Features** - Anomaly detection, Predictive alerts, Auto-remediation (3 plugins)
 - **📈 Advanced Analytics** - Business intelligence, ELK stack, APM monitoring (3 plugins)
 - **🔧 DevOps Automation** - AWS CloudFormation, Terraform, Infrastructure as Code, CI/CD, GitOps (5 plugins)
+</details>
 
-#### **Popular Plugin Packs:**
+<details>
+<summary><strong>📦 Popular Plugin Packs</strong></summary>
+
 - **AWS Integration Pack** - AWS CloudWatch + AWS CloudTrail + AWS Config + Auto-Discovery + Cost Optimization + MontyCloud
 - **Security Enhancement Pack** - SAML Auth + Certificate Auth
 - **Security Partner Pack** - CrowdStrike + Palo Alto + Alert Logic
@@ -115,8 +120,11 @@ python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack instal
 - **Data Platform Pack** - Redis + Elasticsearch + Databricks + Snowflake + MongoDB + Confluent + InfluxDB + ClickHouse + Neo4j
 - **Analytics Pack** - BI + Log Aggregation + APM
 - **AI/ML Pack** - Anomaly Detection + Predictive Alerts
+- **Enterprise Scale Pack** - Federation + HA + Auto-Scaling
+</details>
 
-#### **Getting Started Examples:**
+<details>
+<summary><strong>💡 Getting Started Examples</strong></summary>
 
 **Basic AWS MSP Setup:**
 ```bash
@@ -145,6 +153,7 @@ python3 aws_msp_plugin_manager.py install aws-cloudformation
 python3 aws_msp_plugin_manager.py install terraform
 python3 aws_msp_plugin_manager.py install cicd-monitoring
 ```
+
 **Data Platform MSP:**
 ```bash
 # Install data platform monitoring
@@ -168,9 +177,11 @@ python3 aws_msp_plugin_manager.py install servicenow
 python3 aws_msp_plugin_manager.py install splunk-enterprise
 python3 aws_msp_plugin_manager.py install anomaly-detection
 ```
-- **Enterprise Scale Pack** - Federation + HA + Auto-Scaling
+</details>
 
-#### **Plugin Management:**
+<details>
+<summary><strong>🔧 Plugin Management Commands</strong></summary>
+
 ```bash
 # List all available plugins
 python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack list
@@ -181,6 +192,7 @@ python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack info a
 # View installed plugins
 python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack list --installed
 ```
+</details>
 
 ---
 
@@ -204,9 +216,10 @@ python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack list -
 
 ## Support
 
-### **Quick Troubleshooting Steps**
+<details>
+<summary><strong>🔧 Quick Troubleshooting Steps</strong></summary>
 
-#### **1. Verify Prerequisites**
+### **1. Verify Prerequisites**
 ```bash
 # Check Docker is running
 docker --version
@@ -221,7 +234,7 @@ df -h .            # macOS/Linux
 dir               # Windows
 ```
 
-#### **2. Service Status Checks**
+### **2. Service Status Checks**
 ```bash
 # Check all containers are running
 docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
@@ -237,7 +250,7 @@ curl -f http://localhost:3000/api/health  # Grafana
 curl -f http://localhost:9090/-/healthy  # Prometheus
 ```
 
-#### **3. Network & Port Troubleshooting**
+### **3. Network & Port Troubleshooting**
 ```bash
 # Verify ports are accessible
 netstat -an | grep :3000   # Grafana
@@ -250,7 +263,7 @@ curl -I http://localhost:3000
 curl -I http://localhost:9090
 ```
 
-#### **4. System Resource Checks**
+### **4. System Resource Checks**
 ```bash
 # Check memory usage (need 8GB+ available)
 free -h           # Linux
@@ -262,7 +275,7 @@ top -n 1          # Linux/macOS
 wmic cpu get loadpercentage  # Windows
 ```
 
-#### **5. Plugin-Specific Issues**
+### **5. Plugin-Specific Issues**
 ```bash
 # List installed plugins
 python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack list --installed
@@ -275,7 +288,7 @@ python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack uninst
 python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack install <plugin-name>
 ```
 
-#### **6. Log Collection for Support**
+### **6. Log Collection for Support**
 ```bash
 # Collect all container logs
 mkdir support-logs
@@ -291,7 +304,7 @@ uname -a > support-logs/system-info.log  # Unix
 systeminfo > support-logs/system-info.log  # Windows
 ```
 
-#### **7. Common Error Solutions**
+### **7. Common Error Solutions**
 
 **"Port already in use" errors:**
 ```bash
@@ -339,11 +352,15 @@ source monitoring-env/bin/activate  # Unix
 monitoring-env\Scripts\activate     # Windows
 pip install -r requirements.txt
 ```
+</details>
 
-### **Additional Resources**
+<details>
+<summary><strong>📚 Additional Resources</strong></summary>
+
 1. **Detailed troubleshooting:** `AWS_MSP_DASHBOARD_WALKTHROUGH.md`
 2. **Security issues:** `AWS_MSP_SECURITY_GUIDE.md`
 3. **Partner deployment:** `AWS_MSP_PARTNER_GUIDE.md`
+</details>
 
 ### **Contact Support**
 - **GitLab Issues:** [Report bugs and feature requests](https://gitlab.aws.dev/adrianrs/managed-services-operations-in-a-box/-/issues)

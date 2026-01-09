@@ -14,13 +14,13 @@ While specifically intended for AWS partners operating MSPs, customers, system i
 
 ✅ **Fill-in-the-blanks templates** - no coding required for any plugin  
 ✅ Enterprise-style monitoring stack (Prometheus, Grafana, API, Pushgateway)  
-✅ Security patterns and hardening examples (authentication and encryption)  
 ✅ 47 production-ready plugins with comprehensive configuration templates  
+✅ Interactive setup scripts for guided plugin configuration  
 ✅ Complete dashboard tutorial (step-by-step beginner to advanced)  
 ✅ API integration examples (Python, JavaScript, curl)  
+✅ Security patterns and hardening examples (authentication and encryption)  
 ✅ Demo data generator (realistic metrics for testing)  
 ✅ Comprehensive documentation (6 detailed guides)  
-✅ Interactive setup scripts for guided plugin configuration  
 
 =================================================================
 

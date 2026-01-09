@@ -405,7 +405,7 @@ pip install -r requirements.txt
 - **Medium MSP (15-30 plugins)**: 8 CPU, 16GB RAM, 50GB disk  
 - **Enterprise MSP (30+ plugins)**: 16+ CPU, 32GB+ RAM, 100GB+ disk
 
-*Disk space recommendations assume maximum logging and retention policies. Actual usage may be lower with optimized retention settings.*
+<div align="center"><em>Disk space recommendations assume maximum logging and retention policies. Actual usage may be lower with optimized retention settings.</em></div>
 
 ---
 

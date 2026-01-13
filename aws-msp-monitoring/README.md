@@ -388,7 +388,7 @@ pip install -r requirements.txt
 </details>
 
 ### **Contact Support**
-- **GitLab Issues:** [Report bugs and feature requests](https://gitlab.aws.dev/adrianrs/managed-services-operations-in-a-box/-/issues)
+- **Report bugs and feature requests:** [adrianrs@amazon.com](mailto:adrianrs@amazon.com)
 
 ## Prerequisites
 

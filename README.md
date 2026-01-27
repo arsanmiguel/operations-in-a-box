@@ -4,7 +4,7 @@
 
 Thousands of AWS MSP partners have asked "how do I get started with monitoring and operations tooling?" This repository addresses that common challenge by providing a reference monitoring and observability stack designed to demonstrate a practical baseline aligned with AWS MSP Program expectations.
 
-While specifically intended for AWS partners operating MSPs, customers, system integrators (SIs), independent software vendors (ISVs), and distributors are welcome to use this as well.
+Originally built for AWS MSP partners, this stack is now used by customers, system integrators (SIs), ISVs, and enterprises for production monitoring and operations. The "MSP" name reflects its multi-tenant, production-grade design - not a limitation on who can use it.
 
 **Note:** This is a starting point—not an AWS fully managed or supported production solution. Use this project to understand architecture patterns, accelerate experimentation, and build your own compliant monitoring implementation.
 

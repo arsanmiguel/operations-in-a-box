@@ -14,7 +14,7 @@ While specifically intended for AWS partners operating MSPs, customers, system i
 
 ✅ **Fill-in-the-blanks templates** - no coding required for any plugin  
 ✅ Enterprise-style monitoring stack (Prometheus, Grafana, API, Pushgateway)  
-✅ 47 production-ready plugins with comprehensive configuration templates  
+✅ 49 production-ready plugins with comprehensive configuration templates  
 ✅ Interactive setup scripts for guided plugin configuration  
 ✅ Complete dashboard tutorial (step-by-step beginner to advanced)  
 ✅ API integration examples (Python, JavaScript, curl)  
@@ -87,7 +87,7 @@ To completely remove the monitoring stack and free up ~6GB of disk space:
 ---
 
 ## 🔌 Plugin System (Extensible by Design)
-The monitoring stack supports a modular plugin system covering performance, security, cloud integration, ITSM, data platforms, and AI/ML use cases. **All 47 plugins come with production-ready configuration templates** - just fill in your credentials and start monitoring!
+The monitoring stack supports a modular plugin system covering performance, security, cloud integration, ITSM, data platforms, and AI/ML use cases. **All 49 plugins come with production-ready configuration templates** - just fill in your credentials and start monitoring!
 
 <details>
 <summary><strong>🚀 Quick Plugin Installation</strong></summary>
@@ -113,11 +113,11 @@ python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack instal
 </details>
 
 <details>
-<summary><strong>📋 Available Plugin Categories (47 plugins across 12 categories)</strong></summary>
+<summary><strong>📋 Available Plugin Categories (49 plugins across 12 categories)</strong></summary>
 
 - **🚀 Performance & Scale** - Federation, HA, Auto-scaling (3 plugins)
 - **🛡️ Advanced Security** - SAML/OAuth, Certificates, Network segmentation (3 plugins)
-- **☁️ Cloud Integration** - AWS CloudWatch, AWS CloudTrail, AWS Config, Auto-Discovery, Cost optimization, MontyCloud (6 plugins)
+- **☁️ Cloud Integration** - AWS CloudWatch, AWS CloudTrail, AWS Config, AWS VPC Flow Logs, AWS Reachability Analyzer, Auto-Discovery, Cost optimization, MontyCloud (8 plugins)
 - **🔒 Security Partner Integration** - CrowdStrike, Palo Alto, Alert Logic (3 plugins)
 - **📊 Monitoring Partner Integration** - Splunk, Sumo Logic, Datadog (3 plugins)
 - **🎫 CMDB/ITSM Integration** - ServiceNow, BMC Helix, Jira Service Management (3 plugins)
@@ -132,7 +132,7 @@ python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack instal
 <details>
 <summary><strong>📦 Popular Plugin Packs</strong></summary>
 
-- **AWS Integration Pack** - AWS CloudWatch + AWS CloudTrail + AWS Config + Auto-Discovery + Cost Optimization + MontyCloud
+- **AWS Integration Pack** - AWS CloudWatch + AWS CloudTrail + AWS Config + AWS VPC Flow Logs + AWS Reachability Analyzer + Auto-Discovery + Cost Optimization + MontyCloud
 - **Security Enhancement Pack** - SAML Auth + Certificate Auth
 - **Security Partner Pack** - CrowdStrike + Palo Alto + Alert Logic
 - **Monitoring Partner Pack** - Splunk + Sumo Logic + Datadog
@@ -224,7 +224,7 @@ python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack list -
 - `aws_msp_monitoring_stack.py` - Core installer with PyYAML auto-install
 - `aws_msp_universal_installer.py` - Cross-platform installer (Windows/macOS/Linux)
 - `aws_msp_security_validator.py` - Security validation
-- `aws_msp_plugin_manager.py` - Plugin system (47 plugins across 12 categories)
+- `aws_msp_plugin_manager.py` - Plugin system (49 plugins across 12 categories)
 - `aws_msp_plugin_web_gui.py` - Web-based plugin management interface
 - `install-plugins.sh` - Interactive plugin installer
 - `install.sh` - Unix installer

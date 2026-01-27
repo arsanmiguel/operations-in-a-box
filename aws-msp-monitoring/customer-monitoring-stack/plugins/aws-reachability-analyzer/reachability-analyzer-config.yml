@@ -1,0 +1,38 @@
+# Reachability Analyzer Configuration
+service:
+  name: aws-reachability-analyzer
+  port: 9216
+  enabled: true
+
+aws:
+  region: us-east-1
+  
+checks:
+  interval: 300
+  alert_on_failure: true
+  auto_cleanup: true
+  
+  # Define reachability checks
+  paths:
+    - name: web-to-db
+      source: i-1234567890abcdef0
+      destination: i-0987654321fedcba0
+      protocol: tcp
+      port: 3306
+      enabled: true
+      
+    - name: instance-to-internet
+      source: i-1234567890abcdef0
+      destination: igw-12345678
+      protocol: tcp
+      port: 443
+      enabled: true
+  
+metrics:
+  enabled: true
+  port: 9216
+  path: /metrics
+  
+logging:
+  level: INFO
+  format: json

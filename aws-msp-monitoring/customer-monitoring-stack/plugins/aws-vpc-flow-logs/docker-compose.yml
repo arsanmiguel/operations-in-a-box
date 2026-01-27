@@ -1,0 +1,33 @@
+networks:
+  default:
+    external: false
+services:
+  aws_vpc_flow_logs:
+    container_name: aws_vpc_flow_logs
+    environment:
+    - SERVICE_NAME=${SERVICE_NAME}
+    - SERVICE_ENABLED=${SERVICE_ENABLED}
+    - AWS_REGION=${AWS_REGION}
+    - LOG_GROUP_NAME=${LOG_GROUP_NAME}
+    - FLOW_LOG_FORMAT=${FLOW_LOG_FORMAT}
+    healthcheck:
+      interval: 60s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - wget
+      - --no-verbose
+      - --tries=1
+      - --spider
+      - http://localhost:9215/health
+      timeout: 10s
+    image: alpine:latest
+    networks:
+    - default
+    ports:
+    - 9215:9215
+    restart: unless-stopped
+    volumes:
+    - ./vpc-flow-logs-config.yml:/config/config.yml:ro
+    - ./logs:/var/log:rw

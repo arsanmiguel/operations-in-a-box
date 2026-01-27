@@ -233,5 +233,15 @@
     "name": "GitOps Deployment",
     "version": "1.0.0",
     "installed_at": "2026-01-07T16:43:00Z"
+  },
+  "aws-vpc-flow-logs": {
+    "name": "AWS VPC Flow Logs Integration",
+    "version": "1.0.0",
+    "installed_at": "2026-01-27T17:06:00Z"
+  },
+  "aws-reachability-analyzer": {
+    "name": "AWS Reachability Analyzer Integration",
+    "version": "1.0.0",
+    "installed_at": "2026-01-27T17:06:00Z"
   }
 }

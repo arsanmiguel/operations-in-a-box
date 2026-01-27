@@ -217,6 +217,40 @@ python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack list -
 
 ---
 
+## 🤖 Agentic AI Integration
+
+The monitoring stack includes an optional Bedrock-powered alert triage agent that adds intelligent routing and analysis to your existing infrastructure. No changes to your plugins required.
+
+**What it does:**
+- Receives Prometheus alerts and analyzes context using Claude (Bedrock)
+- Determines root cause, severity, and optimal routing strategy
+- Routes to multiple systems simultaneously (AWS Support + ServiceNow + Jira, etc.)
+- Triggers auto-remediation when appropriate
+- Uses your existing plugin APIs - zero modifications needed
+
+**Key features:**
+- ~200 lines of Python that sits between AlertManager and your plugins
+- Multi-system routing based on alert context and severity
+- Intelligent decisions (e.g., AWS resource issues → AWS Support + ServiceNow)
+- Auto-remediation for known issues with high confidence
+- <h3><u><i><b>~$3/month for 1,000 alerts</b></i></u></h3>
+
+**Quick start:**
+```bash
+# Install dependencies
+pip install boto3 requests flask
+
+# Configure AlertManager webhook
+# See ALERT_TRIAGE_AGENT.md for details
+
+# Run the agent
+python3 alert_triage_agent.py
+```
+
+**Documentation:** See `ALERT_TRIAGE_AGENT.md` for complete setup instructions, configuration examples, and deployment options.
+
+---
+
 ## Package Contents
 
 - `aws-msp-monitoring-installer.sh` - Main installer (Unix)
@@ -225,6 +259,8 @@ python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack list -
 - `aws_msp_security_validator.py` - Security validation
 - `aws_msp_plugin_manager.py` - Plugin system (49 plugins across 12 categories)
 - `aws_msp_plugin_web_gui.py` - Web-based plugin management interface
+- `alert_triage_agent.py` - Bedrock-powered intelligent alert routing (optional)
+- `ALERT_TRIAGE_AGENT.md` - Agentic AI integration documentation
 - `install-plugins.sh` - Interactive plugin installer
 - `install.sh` - Unix installer
 - `install.bat` - Windows installer

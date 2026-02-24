@@ -425,7 +425,7 @@ pip install -r requirements.txt
 </details>
 
 ### **Contact Support**
-- **Report bugs and feature requests:** [adrianrs@amazon.com](mailto:adrianrs@amazon.com)
+- **Report bugs and feature requests:** [adrianr.sanmiguel@gmail.com](mailto:adrianr.sanmiguel@gmail.com)
 
 ## Prerequisites
 

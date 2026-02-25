@@ -219,7 +219,7 @@ def serve_template():
 </head>
 <body>
     <div class="header">
-        <h1>🔌 AWS MSP Plugin Manager</h1>
+        <h1>AWS MSP Plugin Manager</h1>
         <p>Extend your monitoring stack with powerful plugins</p>
     </div>
 
@@ -246,27 +246,27 @@ def serve_template():
         </div>
 
         <div class="packs-section">
-            <h2>🎯 Popular Plugin Packs</h2>
+            <h2>Popular Plugin Packs</h2>
             <p style="margin-bottom: 1rem; color: #666;">Quick install pre-configured plugin combinations</p>
             <div class="pack-grid">
                 <div class="pack-card" onclick="installPack('aws-integration')">
-                    <div class="pack-title">☁️ AWS Integration Pack</div>
+                    <div class="pack-title">AWS Integration Pack</div>
                     <div class="pack-plugins">CloudWatch + Auto-Discovery + Cost Optimization</div>
                 </div>
                 <div class="pack-card" onclick="installPack('security-enhancement')">
-                    <div class="pack-title">🛡️ Security Enhancement Pack</div>
+                    <div class="pack-title">Security Enhancement Pack</div>
                     <div class="pack-plugins">SAML Auth + Certificate Auth</div>
                 </div>
                 <div class="pack-card" onclick="installPack('analytics')">
-                    <div class="pack-title">📊 Analytics Pack</div>
+                    <div class="pack-title">Analytics Pack</div>
                     <div class="pack-plugins">Business Intelligence + ELK + APM</div>
                 </div>
                 <div class="pack-card" onclick="installPack('ai-ml')">
-                    <div class="pack-title">🤖 AI/ML Pack</div>
+                    <div class="pack-title">AI/ML Pack</div>
                     <div class="pack-plugins">Anomaly Detection + Predictive Alerts</div>
                 </div>
                 <div class="pack-card" onclick="installPack('devops')">
-                    <div class="pack-title">🔧 DevOps Pack</div>
+                    <div class="pack-title">DevOps Pack</div>
                     <div class="pack-plugins">CI/CD + GitOps + Infrastructure as Code</div>
                 </div>
                 <div class="pack-card" onclick="installPack('enterprise-scale')">
@@ -278,12 +278,12 @@ def serve_template():
 
         <div class="tabs">
             <button class="tab active" onclick="showCategory('all')">All Plugins</button>
-            <button class="tab" onclick="showCategory('Performance & Scale')">🚀 Performance</button>
-            <button class="tab" onclick="showCategory('Advanced Security')">🛡️ Security</button>
-            <button class="tab" onclick="showCategory('Cloud Integration')">☁️ Cloud</button>
-            <button class="tab" onclick="showCategory('AI/ML Features')">🤖 AI/ML</button>
-            <button class="tab" onclick="showCategory('Advanced Analytics')">📊 Analytics</button>
-            <button class="tab" onclick="showCategory('DevOps Automation')">🔧 DevOps</button>
+            <button class="tab" onclick="showCategory('Performance & Scale')">Performance</button>
+            <button class="tab" onclick="showCategory('Advanced Security')">Security</button>
+            <button class="tab" onclick="showCategory('Cloud Integration')">Cloud</button>
+            <button class="tab" onclick="showCategory('AI/ML Features')">AI/ML</button>
+            <button class="tab" onclick="showCategory('Advanced Analytics')">Analytics</button>
+            <button class="tab" onclick="showCategory('DevOps Automation')">DevOps</button>
         </div>
 
         <div id="plugins-container" class="plugin-grid">
@@ -422,8 +422,8 @@ def serve_template():
                         </div>
                         <div class="plugin-description">${plugin.description}</div>
                         <div class="plugin-meta">
-                            <span>📦 ${plugin.size_mb}MB</span>
-                            <span>🎯 ${plugin.complexity}</span>
+                            <span>${plugin.size_mb}MB</span>
+                            <span>${plugin.complexity}</span>
                             <span>🔗 ${plugin.dependencies.join(', ')}</span>
                         </div>
                         <div class="plugin-actions">
@@ -450,7 +450,7 @@ def serve_template():
                 
                 let deps = plugin.missing_dependencies.length > 0 
                     ? `⚠️ Missing: ${plugin.missing_dependencies.join(', ')}`
-                    : '✅ All dependencies satisfied';
+                    : 'All dependencies satisfied';
                 
                 alert(`Plugin: ${plugin.name}\\n\\nDescription: ${plugin.description}\\n\\nSize: ${plugin.size_mb}MB\\nComplexity: ${plugin.complexity}\\nServices: ${plugin.docker_services.join(', ')}\\n\\nDependencies: ${deps}`);
             } catch (error) {
@@ -468,13 +468,13 @@ def serve_template():
 if __name__ == '__main__':
     # Check if we're in the right directory
     if not Path('customer-monitoring-stack').exists() and not Path('docker-compose.yml').exists():
-        print("❌ Please run this from your monitoring stack directory")
+        print("Please run this from your monitoring stack directory")
         print("Expected: customer-monitoring-stack/ directory or docker-compose.yml file")
         exit(1)
     
     print("🌐 Starting Plugin Manager Web Interface...")
     print("📱 Access at: http://localhost:5000")
-    print("🔌 Manage plugins through your browser!")
+    print("Manage plugins through your browser!")
     print("")
     
     app.run(host='0.0.0.0', port=5000, debug=False)

@@ -4,15 +4,15 @@ This plugin provides AWS VPC Reachability Analyzer integration for the monitorin
 
 ## Features
 
-- ✅ **Production-ready configuration** with comprehensive templates
-- ✅ **Environment-based configuration** via .env files
-- ✅ **Health monitoring** with built-in health checks
-- ✅ **Metrics export** to Prometheus format
-- ✅ **Interactive setup** with guided configuration
-- ✅ **Automated path analysis** - Verify network connectivity between resources
-- ✅ **Configuration validation** - Detect misconfigurations in security groups, NACLs, route tables
-- ✅ **Continuous monitoring** - Schedule recurring reachability checks
-- ✅ **Alert integration** - Notify on connectivity failures
+- **Production-ready configuration** with comprehensive templates
+- **Environment-based configuration** via .env files
+- **Health monitoring** with built-in health checks
+- **Metrics export** to Prometheus format
+- **Interactive setup** with guided configuration
+- **Automated path analysis** - Verify network connectivity between resources
+- **Configuration validation** - Detect misconfigurations in security groups, NACLs, route tables
+- **Continuous monitoring** - Schedule recurring reachability checks
+- **Alert integration** - Notify on connectivity failures
 
 ## Quick Start
 

@@ -105,14 +105,14 @@ class PluginEnhancer:
             ], capture_output=True, text=True)
             
             if result.returncode == 0:
-                print(f"✅ Installed: {plugin_name}")
+                print(f"Installed: {plugin_name}")
                 return True
             else:
-                print(f"❌ Failed to install: {plugin_name}")
+                print(f"Failed to install: {plugin_name}")
                 print(f"   Error: {result.stderr}")
                 return False
         except Exception as e:
-            print(f"❌ Exception installing {plugin_name}: {e}")
+            print(f"Exception installing {plugin_name}: {e}")
             return False
     
     def enhance_plugin(self, plugin_name):
@@ -131,11 +131,11 @@ class PluginEnhancer:
             # Add README
             self.add_readme(plugin_dir, plugin_name)
             
-            print(f"🔧 Enhanced: {plugin_name}")
+            print(f"Enhanced: {plugin_name}")
             return True
             
         except Exception as e:
-            print(f"❌ Failed to enhance {plugin_name}: {e}")
+            print(f"Failed to enhance {plugin_name}: {e}")
             return False
     
     def fix_docker_compose(self, plugin_dir, plugin_name):
@@ -250,7 +250,7 @@ class PluginEnhancer:
     
     def run_full_validation(self):
         """Run complete validation and enhancement"""
-        print("🔌 Starting comprehensive plugin validation...")
+        print("Starting comprehensive plugin validation...")
         print("=" * 60)
         
         plugins = self.get_all_plugins()
@@ -270,7 +270,7 @@ class PluginEnhancer:
                     
                     # Validate plugin
                     if self.validate_plugin(plugin):
-                        print(f"✅ Validated: {plugin}")
+                        print(f"Validated: {plugin}")
                     else:
                         print(f"⚠️  Validation issues: {plugin}")
                 else:
@@ -283,18 +283,18 @@ class PluginEnhancer:
     def print_summary(self):
         """Print validation summary"""
         print("\n" + "=" * 60)
-        print("📊 VALIDATION SUMMARY")
+        print("VALIDATION SUMMARY")
         print("=" * 60)
-        print(f"✅ Successfully installed: {len(self.results['success'])}")
-        print(f"🔧 Enhanced: {len(self.results['enhanced'])}")
-        print(f"❌ Failed: {len(self.results['failed'])}")
+        print(f"Successfully installed: {len(self.results['success'])}")
+        print(f"Enhanced: {len(self.results['enhanced'])}")
+        print(f"Failed: {len(self.results['failed'])}")
         
         if self.results['failed']:
-            print(f"\n❌ Failed plugins:")
+            print(f"\nFailed plugins:")
             for plugin in self.results['failed']:
                 print(f"  - {plugin}")
         
-        print(f"\n✅ Port assignments:")
+        print(f"\nPort assignments:")
         for service, port in sorted(self.service_ports.items()):
             print(f"  - {service}: {port}")
 

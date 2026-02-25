@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # Palo-Alto-Prisma Plugin Setup Script
-echo "🔧 Palo-Alto-Prisma Plugin Configuration"
+echo "Palo-Alto-Prisma Plugin Configuration"
 echo "=================================================="
 
 # Check if .env file exists
 ENV_FILE=".env"
 if [ ! -f "$ENV_FILE" ]; then
     cp .env.template "$ENV_FILE"
-    echo "✅ Created .env file from template"
+    echo "Created .env file from template"
 fi
 
 echo ""

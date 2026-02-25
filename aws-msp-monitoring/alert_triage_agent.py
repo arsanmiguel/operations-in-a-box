@@ -328,23 +328,23 @@ def handle_prometheus_alert(alert_webhook_data):
     }
     
     # Analyze with Bedrock
-    print(f"🤖 Analyzing alert: {alert_data['alert_name']}")
+    print(f"Analyzing alert: {alert_data['alert_name']}")
     analysis = agent.analyze_alert(alert_data)
     
-    print(f"📊 Analysis complete:")
+    print(f"Analysis complete:")
     print(f"  Root cause: {analysis['root_cause']}")
     print(f"  Severity: {analysis['severity']}")
     print(f"  Targets: {', '.join(analysis['targets'])}")
     print(f"  Auto-remediate: {analysis['auto_remediate']}")
     
     # Route to appropriate systems
-    print(f"🚀 Routing alert to {len(analysis['targets'])} system(s)...")
+    print(f"Routing alert to {len(analysis['targets'])} system(s)...")
     results = agent.route_alert(alert_data, analysis)
     
     # Print results
     for result in results:
-        status_emoji = "✅" if result['status'] == 'success' else "❌"
-        print(f"{status_emoji} {result['target']}: {result['status']}")
+        status_str = "OK" if result['status'] == 'success' else "FAIL"
+        print(f"{status_str} {result['target']}: {result['status']}")
         if result['status'] == 'success' and 'ticket_id' in result:
             print(f"   Ticket ID: {result.get('ticket_id') or result.get('case_id') or result.get('event_id')}")
     
@@ -371,4 +371,4 @@ if __name__ == '__main__':
     }
     
     result = handle_prometheus_alert(example_alert)
-    print(f"\n✨ Alert triage complete!")
+    print(f"\nAlert triage complete!")

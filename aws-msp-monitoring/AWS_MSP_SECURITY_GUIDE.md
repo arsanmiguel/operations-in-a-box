@@ -1,11 +1,11 @@
 # AWS MSP Enterprise Security Documentation
 # Monitoring Stack - Security Implementation Guide
 
-## 🛡️ Executive Summary
+## Executive Summary
 
 This document provides comprehensive security implementation details for the enterprise-style Prometheus monitoring stack. The solution transforms a vulnerable system (0/100 security score) into a hardened, compliance-ready platform (85+/100 security score) suitable for production deployment in regulated environments.
 
-## 🔒 Security Architecture Overview
+## Security Architecture Overview
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -296,7 +296,7 @@ def validate_password(password):
     return True, "Password meets requirements"
 ```
 
-## 🔒 Container Security Implementation
+## Container Security Implementation
 
 ### Non-Root User Configuration
 
@@ -548,7 +548,7 @@ def add_security_headers(response):
     return response
 ```
 
-## 🛡️ Input Validation & Sanitization
+## Input Validation & Sanitization
 
 ### Comprehensive Input Validation
 
@@ -782,7 +782,7 @@ chmod 600 .env
 cp .env ".env.backup.$(date +%Y%m%d_%H%M%S)"
 chmod 600 .env.backup.*
 
-echo "✅ Secure environment configuration created"
+echo "Secure environment configuration created"
 echo "🔑 API Key: $(grep API_KEY .env | cut -d'=' -f2)"
 echo "🔐 Grafana Password: $(grep GRAFANA_ADMIN_PASSWORD .env | cut -d'=' -f2)"
 ```
@@ -1511,7 +1511,7 @@ class GDPRDataManager:
         return request_record, result
 ```
 
-## 🚀 Production Deployment Guide
+## Production Deployment Guide
 
 ### TLS/SSL Configuration
 
@@ -1766,7 +1766,7 @@ echo "⏸️  Stopping services..."
 docker compose stop
 
 # Create backup
-echo "📦 Creating backup archive..."
+echo "Creating backup archive..."
 tar -czf "$BACKUP_DIR/$BACKUP_FILE" \
     --exclude='*.log' \
     --exclude='tmp/*' \
@@ -1785,7 +1785,7 @@ rm "$BACKUP_DIR/$BACKUP_FILE"
 
 # Upload to S3 (if configured)
 if [ -n "$S3_BUCKET" ]; then
-    echo "☁️  Uploading to S3..."
+    echo "Uploading to S3..."
     aws s3 cp "$BACKUP_DIR/$ENCRYPTED_BACKUP" "s3://$S3_BUCKET/monitoring-backups/"
 fi
 
@@ -1798,12 +1798,12 @@ echo "🧹 Cleaning up old backups..."
 find "$BACKUP_DIR" -name "monitoring_backup_*.tar.gz.enc" -mtime +$RETENTION_DAYS -delete
 
 # Verify backup integrity
-echo "✅ Verifying backup integrity..."
+echo "Verifying backup integrity..."
 if openssl enc -aes-256-cbc -d -in "$BACKUP_DIR/$ENCRYPTED_BACKUP" \
     -pass file:"$ENCRYPTION_KEY_FILE" | tar -tzf - > /dev/null; then
-    echo "✅ Backup completed successfully: $ENCRYPTED_BACKUP"
+    echo "Backup completed successfully: $ENCRYPTED_BACKUP"
 else
-    echo "❌ Backup verification failed!"
+    echo "Backup verification failed!"
     exit 1
 fi
 
@@ -1811,12 +1811,12 @@ fi
 echo "$(date): Backup completed successfully: $ENCRYPTED_BACKUP" >> /var/log/monitoring-backup.log
 ```
 
-## 📋 Security Checklist
+## Security Checklist
 
 ### Pre-Deployment Security Checklist
 
 ```markdown
-## 🔒 Security Pre-Deployment Checklist
+## Security Pre-Deployment Checklist
 
 ### Authentication & Authorization
 - [ ] API keys generated with cryptographically secure random generator
@@ -1884,4 +1884,4 @@ echo "$(date): Backup completed successfully: $ENCRYPTED_BACKUP" >> /var/log/mon
 
 ---
 
-**🛡️ This comprehensive security guide provides enterprise-style security implementation for the Prometheus monitoring stack. All code examples are production-ready and follow industry best practices for security, compliance, and operational excellence.**
+**This comprehensive security guide provides enterprise-style security implementation for the Prometheus monitoring stack. All code examples are production-ready and follow industry best practices for security, compliance, and operational excellence.**

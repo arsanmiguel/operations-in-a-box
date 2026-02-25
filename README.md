@@ -5,9 +5,9 @@
 
 Thousands of AWS MSP partners have asked "how do I get started with monitoring and operations tooling?" This repository addresses that common challenge by providing a reference monitoring and observability stack designed to demonstrate a practical baseline aligned with AWS MSP Program expectations.
 
-Originally built for AWS MSP partners, this stack is now used by customers, system integrators (SIs), ISVs, and enterprises for production monitoring and operations. The "MSP" name reflects its multi-tenant, production-grade design—not a limitation on who can use it.
+Originally built for AWS MSP partners, this stack is now used by customers, system integrators (SIs), ISVs, and enterprises for production monitoring and operations. The "MSP" name reflects its multi-tenant, production-grade design, not a limitation on who can use it.
 
-Note: This is a starting point—not an AWS fully managed or supported production solution. Use this project to understand architecture patterns, accelerate experimentation, and build your own compliant monitoring implementation.
+Note: This is a starting point, not an AWS fully managed or supported production solution. Use this project to understand architecture patterns, accelerate experimentation, and build your own compliant monitoring implementation.
 
 What you get:
 - Fill-in-the-blanks templates (no coding required for plugins)
@@ -38,11 +38,11 @@ Contents
 - OS: Windows 10+, macOS 10.14+, or Linux (Ubuntu 18.04+, CentOS 7+)
 - CPU: 4 cores minimum, 8 recommended (16+ for enterprise)
 - RAM: 8GB minimum, 16GB recommended (32GB+ for 30+ plugins)
-- Disk: 20GB free (base ~5GB, plugins ~100MB each, retention 10–15GB)
+- Disk: 20GB free (base ~5GB, plugins ~100MB each, retention 10-15GB)
 - Network: Internet for initial setup
 - Python: 3.7+ (PyYAML and requests auto-installed)
 
-Scaling guidelines: Small (1–15 plugins) 4 CPU / 8GB / 20GB disk; Medium (15–30) 8 CPU / 16GB / 50GB; Enterprise (30+) 16+ CPU / 32GB+ / 100GB+.
+Scaling guidelines: Small (1-15 plugins) 4 CPU / 8GB / 20GB disk; Medium (15-30) 8 CPU / 16GB / 50GB; Enterprise (30+) 16+ CPU / 32GB+ / 100GB+.
 
 ---
 
@@ -70,7 +70,7 @@ macOS/Linux: Open Terminal, `cd path/to/aws-msp-monitoring`, run `./install.sh`.
 <a id="uninstalling"></a>
 ## Uninstalling
 
-To remove the monitoring stack and free ~6GB: Windows—double-click `uninstall.bat`. macOS/Linux—run `./uninstall.sh`.
+To remove the monitoring stack and free ~6GB: Windows: double-click `uninstall.bat`. macOS/Linux: run `./uninstall.sh`.
 
 ---
 
@@ -88,7 +88,7 @@ For MSP partners: `AWS_MSP_PARTNER_GUIDE.md`, `AWS_MSP_SECURITY_ANALYSIS.md`, an
 <a id="plugin-system"></a>
 ## Plugin System
 
-The monitoring stack supports a modular plugin system (performance, security, cloud, ITSM, data platforms, AI/ML). All 49 plugins include production-ready configuration templates—fill in credentials and start monitoring.
+The monitoring stack supports a modular plugin system (performance, security, cloud, ITSM, data platforms, AI/ML). All 49 plugins include production-ready configuration templates; fill in credentials and start monitoring.
 
 <details>
 <summary><strong>Quick Plugin Installation</strong></summary>
@@ -217,6 +217,11 @@ python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack list -
 <a id="agentic-ai-integration"></a>
 ## Agentic AI Integration
 
+<details>
+<summary><strong>Optional Bedrock-powered alert triage</strong></summary>
+
+### Agentic AI Integration
+
 Optional Bedrock-powered alert triage agent for intelligent routing and analysis. No plugin changes required.
 
 What it does: receives Prometheus alerts, analyzes context with Claude (Bedrock), determines root cause and severity, routes to multiple systems (AWS Support, ServiceNow, Jira, etc.), triggers auto-remediation when appropriate. Uses your existing plugin APIs.
@@ -237,10 +242,15 @@ python3 alert_triage_agent.py
 
 Documentation: See `ALERT_TRIAGE_AGENT.md` for full setup, configuration examples, and deployment options.
 
+</details>
+
 ---
 
 <a id="package-contents"></a>
 ## Package Contents
+
+<details>
+<summary><strong>Everything included</strong></summary>
 
 - `aws-msp-monitoring-installer.sh` - Main installer (Unix)
 - `aws_msp_monitoring_stack.py` - Core installer with PyYAML auto-install
@@ -263,6 +273,10 @@ Documentation: See `ALERT_TRIAGE_AGENT.md` for full setup, configuration example
 - `AWS_MSP_SECURITY_GUIDE.md` - Security documentation
 - `AWS_MSP_SECURITY_ANALYSIS.md` - Security analysis
 - `aws_msp_demo_data_generator.py` - Demo data generator (fixed metric names)
+
+</details>
+
+---
 
 <a id="support"></a>
 ## Support
@@ -376,7 +390,7 @@ chmod +x install-plugins.sh
 sudo chown -R $USER:$USER customer-monitoring-stack/
 
 # Run as administrator (Windows)
-# Right-click install.bat → "Run as administrator"
+# Right-click install.bat -> "Run as administrator"
 ```
 
 "Docker not found" errors:

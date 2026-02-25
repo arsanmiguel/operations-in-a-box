@@ -1,22 +1,22 @@
 # AWS MSP Dashboard Creation Walkthrough
 
-## 🎯 Complete Beginner's Guide to Building Monitoring Dashboards
+## Complete Beginner's Guide to Building Monitoring Dashboards
 
 This guide assumes **zero prior experience** with monitoring or dashboards. Follow these exact steps to create professional monitoring dashboards for your customers.
 
 ---
 
-## 📋 Prerequisites
+## Prerequisites
 
-✅ **Monitoring stack deployed** using `./aws-msp-monitoring-installer.sh`  
-✅ **Grafana running** at http://localhost:3000  
-✅ **Login credentials** from `CREDENTIALS.md` file  
-✅ **Optional: Plugins installed** for enhanced functionality (see Plugin Guide below)
-✅ **Python dependencies** auto-installed (PyYAML, requests) during setup  
+- **Monitoring stack deployed** using `./aws-msp-monitoring-installer.sh`
+- **Grafana running** at http://localhost:3000
+- **Login credentials** from `CREDENTIALS.md` file
+- **Optional: Plugins installed** for enhanced functionality (see Plugin Guide below)
+- **Python dependencies** auto-installed (PyYAML, requests) during setup  
 
 ---
 
-## 🚀 Part 1: Getting Started (5 minutes)
+## Part 1: Getting Started (5 minutes)
 
 ### Step 1: Access Grafana
 1. **Open your web browser**
@@ -26,16 +26,16 @@ This guide assumes **zero prior experience** with monitoring or dashboards. Foll
    - Password: (from your `CREDENTIALS.md` file)
 
 ### Step 2: Navigate to Dashboards
-1. **Click the menu icon** (☰) in the top-left corner
+1. **Click the menu icon** (hamburger menu) in the top-left corner
 2. **Click "Dashboards"** in the left sidebar
 3. **Click "New"** button (blue button, top-right)
 4. **Select "New Dashboard"**
 
-🎉 **You're now in the dashboard editor!**
+**You're now in the dashboard editor!**
 
 ---
 
-## 📊 Part 2: Create Your First Dashboard (10 minutes)
+## Part 2: Create Your First Dashboard (10 minutes)
 
 ### Step 3: Add Your First Panel (CPU Monitoring)
 
@@ -52,21 +52,21 @@ This guide assumes **zero prior experience** with monitoring or dashboards. Foll
 2. **Press Enter** or click "Run queries"
 3. **You should see a line graph appear!**
 
-> 💡 **Tip**: If no data appears, wait 30 seconds for metrics to populate, then refresh the panel.
+> **Tip**: If no data appears, wait 30 seconds for metrics to populate, then refresh the panel.
 
 #### 3.3 Customize the Panel
 1. **Panel title**: Click the panel title and change it to "CPU Usage"
-2. **Y-axis label**: In the right panel, find "Axes" → "Left Y" → "Label" → type "Percentage"
+2. **Y-axis label**: In the right panel, find "Axes" -> "Left Y" -> "Label" -> type "Percentage"
 3. **Unit**: Set "Unit" to "Percent (0-100)"
 4. **Color**: Choose your preferred color scheme
 
-**🎯 Expected Result**: You now have a live CPU usage graph!
+**Expected Result**: You now have a live CPU usage graph!
 3. **You should see a graph appear!**
 
 #### 3.3 Customize the Panel
 1. **Panel title:** Click "Panel Title" at the top, change to: `CPU Utilization`
 2. **Panel type:** On the right sidebar, ensure "Time series" is selected
-3. **Units:** In right sidebar, find "Standard options" → "Unit" → Select "Percent (0-100)"
+3. **Units:** In right sidebar, find "Standard options" -> "Unit" -> Select "Percent (0-100)"
 4. **Color thresholds:** 
    - Find "Thresholds" in right sidebar
    - Click "Add threshold"
@@ -75,11 +75,11 @@ This guide assumes **zero prior experience** with monitoring or dashboards. Foll
 #### 3.4 Save the Panel
 1. **Click "Apply"** (top-right blue button)
 
-🎉 **Your first CPU monitoring panel is complete!**
+**Your first CPU monitoring panel is complete!**
 
 ---
 
-## 💾 Part 3: Add Disk I/O Monitoring (10 minutes)
+## Part 3: Add Disk I/O Monitoring (10 minutes)
 
 ### Step 4: Add Second Panel
 
@@ -103,8 +103,8 @@ This guide assumes **zero prior experience** with monitoring or dashboards. Foll
 
 #### 4.3 Customize Disk I/O Panel
 1. **Panel title:** Change to `Disk I/O Activity`
-2. **Units:** Right sidebar → "Unit" → "Data rate" → "megabytes/sec"
-3. **Legend:** In right sidebar, find "Legend" → "Display mode" → "Table"
+2. **Units:** Right sidebar -> "Unit" -> "Data rate" -> "megabytes/sec"
+3. **Legend:** In right sidebar, find "Legend" -> "Display mode" -> "Table"
 4. **Panel size:** Drag the bottom-right corner to make it wider
 
 #### 4.4 Save the Panel
@@ -112,7 +112,7 @@ This guide assumes **zero prior experience** with monitoring or dashboards. Foll
 
 ---
 
-## 🚨 Part 4: Create High CPU Alert Panel (5 minutes)
+## Part 4: Create High CPU Alert Panel (5 minutes)
 
 ### Step 5: Add Alert Panel
 
@@ -128,33 +128,33 @@ This guide assumes **zero prior experience** with monitoring or dashboards. Foll
 2. **Press Enter**
 
 #### 5.3 Customize Alert Panel
-1. **Panel title:** `🚨 HIGH CPU ALERT`
-2. **Visualization type:** Right sidebar → Change to "Stat"
-3. **Color mode:** Right sidebar → "Color mode" → "Background"
+1. **Panel title:** `HIGH CPU ALERT`
+2. **Visualization type:** Right sidebar -> Change to "Stat"
+3. **Color mode:** Right sidebar -> "Color mode" -> "Background"
 4. **Thresholds:** 
    - Green (null), Red (1)
-5. **Text size:** Right sidebar → "Text size" → "Large"
+5. **Text size:** Right sidebar -> "Text size" -> "Large"
 
 #### 5.4 Save Alert Panel
 1. **Click "Apply"**
 
 ---
 
-## 💾 Part 5: Save Your Dashboard (2 minutes)
+## Part 5: Save Your Dashboard (2 minutes)
 
 ### Step 6: Save Everything
 
 #### 6.1 Save Dashboard
-1. **Click the save icon** (💾) in the top toolbar
+1. **Click the save icon** in the top toolbar
 2. **Dashboard name:** `Customer Infrastructure Monitoring`
 3. **Description:** `CPU, Disk I/O, and Alert monitoring for customer systems`
 4. **Click "Save"**
 
-🎉 **Your complete monitoring dashboard is saved!**
+**Your complete monitoring dashboard is saved!**
 
 ---
 
-## 📈 Part 6: Generate Test Data (5 minutes)
+## Part 6: Generate Test Data (5 minutes)
 
 ### Step 7: Populate with Data
 
@@ -172,12 +172,12 @@ This guide assumes **zero prior experience** with monitoring or dashboards. Foll
 
 #### 7.2 View Live Data
 1. **Go back to Grafana**
-2. **Refresh your dashboard** (🔄 icon)
+2. **Refresh your dashboard** (refresh icon)
 3. **You should see live data in all panels!**
 
 ---
 
-## 🎨 Part 7: Advanced Customization (Optional)
+## Part 7: Advanced Customization (Optional)
 
 ### Step 8: Make It Look Professional
 
@@ -194,20 +194,20 @@ This guide assumes **zero prior experience** with monitoring or dashboards. Foll
 2. **Auto-refresh:** Set to "5s" for live updates
 
 #### 8.3 Add Dashboard Description
-1. **Click dashboard settings** (⚙️ gear icon)
+1. **Click dashboard settings** (gear icon)
 2. **Add description:** Brief explanation for your customer
 3. **Save changes**
 
 ---
 
-## 🔧 Part 8: Common Customizations
+## Part 8: Common Customizations
 
 ### Adding More Metrics
 
 #### Network Monitoring
 **Query:** `network_in_gbps` and `network_out_gbps`  
 **Panel type:** Time series  
-**Units:** Data rate → gigabytes/sec  
+**Units:** Data rate -> gigabytes/sec  
 
 #### Memory Usage
 **Query:** `memory_utilization_percent`  
@@ -223,21 +223,21 @@ This guide assumes **zero prior experience** with monitoring or dashboards. Foll
 ### Creating Alerts
 
 #### High CPU Alert
-1. **Panel menu** (⋯) → "Edit"
-2. **Alert tab** → "Create Alert"
+1. **Panel menu** (three dots) -> "Edit"
+2. **Alert tab** -> "Create Alert"
 3. **Condition:** `cpu_utilization_percent > 85`
 4. **Notification:** Set up email/Slack integration
 
 ---
 
-## 🎯 Part 9: Customer Handoff Checklist
+## Part 9: Customer Handoff Checklist
 
 ### What to Provide Your Customer
 
 #### 9.1 Access Information
-- ✅ **Grafana URL:** http://localhost:3000
-- ✅ **Login credentials** (from CREDENTIALS.md)
-- ✅ **Dashboard link** (copy from browser)
+- **Grafana URL:** http://localhost:3000
+- **Login credentials** (from CREDENTIALS.md)
+- **Dashboard link** (copy from browser)
 
 #### 9.2 Basic Training (5 minutes)
 1. **Show them how to:**
@@ -247,13 +247,13 @@ This guide assumes **zero prior experience** with monitoring or dashboards. Foll
    - Read the metrics
 
 #### 9.3 Documentation
-- ✅ **Screenshot** of the completed dashboard
-- ✅ **Brief explanation** of each panel
-- ✅ **Contact info** for support
+- **Screenshot** of the completed dashboard
+- **Brief explanation** of each panel
+- **Contact info** for support
 
 ---
 
-## 🆘 Troubleshooting Guide
+## Troubleshooting Guide
 
 ### No Data Showing?
 1. **Check time range** - Set to "Last 1 hour"
@@ -278,7 +278,7 @@ This guide assumes **zero prior experience** with monitoring or dashboards. Foll
 
 ---
 
-## 🎓 Next Steps for Advanced Users
+## Next Steps for Advanced Users
 
 ### Level 2: Advanced Dashboards
 - **Multi-server monitoring** (grouping by server)
@@ -294,7 +294,7 @@ This guide assumes **zero prior experience** with monitoring or dashboards. Foll
 
 ---
 
-## 📞 Support
+## Support
 
 ### Getting Help
 - **Documentation:** Check other AWS MSP guide files
@@ -308,7 +308,7 @@ This guide assumes **zero prior experience** with monitoring or dashboards. Foll
 
 ---
 
-## ✅ Success Checklist
+## Success Checklist
 
 By the end of this walkthrough, you should have:
 
@@ -323,7 +323,7 @@ By the end of this walkthrough, you should have:
 - [ ] **Set up auto-refresh** for live monitoring
 - [ ] **Documented access info** for customer handoff
 
-🎉 **Congratulations! You've built a professional monitoring dashboard from scratch!**
+**Congratulations! You've built a professional monitoring dashboard from scratch!**
 
 ---
 
@@ -331,7 +331,7 @@ By the end of this walkthrough, you should have:
 
 ---
 
-## 🔌 Part 10: Connect External Applications (API Integration)
+## Part 10: Connect External Applications (API Integration)
 
 ### Step 9: Understanding the Metrics API
 
@@ -389,9 +389,9 @@ def send_metric(app_name, metric_name, value):
     response = requests.post(API_URL, headers=headers, json=data)
     
     if response.status_code == 200:
-        print(f"✅ Metric sent: {metric_name} = {value}")
+        print(f"Metric sent: {metric_name} = {value}")
     else:
-        print(f"❌ Error: {response.status_code}")
+        print(f"Error: {response.status_code}")
 
 # Example usage in your application
 send_metric("web-app", "page_views", 150)
@@ -420,9 +420,9 @@ async function sendMetric(appName, metricName, value) {
             }
         });
         
-        console.log(`✅ Metric sent: ${metricName} = ${value}`);
+        console.log(`Metric sent: ${metricName} = ${value}`);
     } catch (error) {
-        console.error(`❌ Error: ${error.response?.status || error.message}`);
+        console.error(`Error: ${error.response?.status || error.message}`);
     }
 }
 
@@ -462,12 +462,12 @@ public class MetricsClient {
                 HttpResponse.BodyHandlers.ofString());
             
             if (response.statusCode() == 200) {
-                System.out.println("✅ Metric sent: " + metricName + " = " + value);
+                System.out.println("Metric sent: " + metricName + " = " + value);
             } else {
-                System.out.println("❌ Error: " + response.statusCode());
+                System.out.println("Error: " + response.statusCode());
             }
         } catch (Exception e) {
-            System.out.println("❌ Error: " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         }
     }
     
@@ -616,16 +616,16 @@ def send_metrics_batch(metrics_list):
 #### 13.3 Metric Naming Conventions
 ```
 # Good metric names (clear and consistent)
-✅ system_cpu_usage
-✅ system_memory_usage  
-✅ system_response_time
-✅ system_error_rate
+- system_cpu_usage
+- system_memory_usage
+- system_response_time
+- system_error_rate
 
 # Avoid these patterns
-❌ cpu (unclear units)
-❌ mem_use (abbreviations)
-❌ time (too generic)
-❌ errors (no time context)
+- cpu (unclear units)
+- mem_use (abbreviations)
+- time (too generic)
+- errors (no time context)
 ```
 
 ### Step 14: Testing Your Integration
@@ -665,19 +665,19 @@ for _ in range(3):
 
 ---
 
-## 🔌 Part 14: Plugin System Integration
+## Part 14: Plugin System Integration
 
 ### Step 15: Understanding the Plugin Architecture
 
 The AWS MSP monitoring stack includes a powerful plugin system with **18 plugins across 6 categories**. Plugins extend your monitoring capabilities without modifying the core stack.
 
 #### 15.1 Plugin Categories Available
-- **🚀 Performance & Scale** (3 plugins) - Federation, HA, Auto-scaling
-- **🛡️ Advanced Security** (3 plugins) - SAML/OAuth, Certificates, Network segmentation  
-- **☁️ Cloud Integration** (3 plugins) - AWS CloudWatch, Auto-Discovery, Cost optimization
-- **🤖 AI/ML Features** (3 plugins) - Anomaly detection, Predictive alerts, Auto-remediation
-- **📊 Advanced Analytics** (3 plugins) - Business Intelligence, ELK stack, APM monitoring
-- **🔧 DevOps Automation** (3 plugins) - Infrastructure as Code, CI/CD, GitOps
+- **Performance & Scale** (3 plugins) - Federation, HA, Auto-scaling
+- **Advanced Security** (3 plugins) - SAML/OAuth, Certificates, Network segmentation
+- **Cloud Integration** (3 plugins) - AWS CloudWatch, Auto-Discovery, Cost optimization
+- **AI/ML Features** (3 plugins) - Anomaly detection, Predictive alerts, Auto-remediation
+- **Advanced Analytics** (3 plugins) - Business Intelligence, ELK stack, APM monitoring
+- **DevOps Automation** (3 plugins) - Infrastructure as Code, CI/CD, GitOps
 
 #### 15.2 Installing Plugins (3 Methods)
 
@@ -955,17 +955,17 @@ customer-monitoring-stack/
 
 ---
 
-## 🎓 Conclusion: From Basic to Enterprise Monitoring
+## Conclusion: From Basic to Enterprise Monitoring
 
 You've now learned:
 
-### ✅ **Basic Skills**
+### Basic Skills
 - Creating dashboards and panels
 - Writing Prometheus queries
 - Setting up alerts
 - API integration
 
-## 📊 Part 12: Data Platform Integration (15 minutes)
+## Part 12: Data Platform Integration (15 minutes)
 
 ### Step 12.1: Install Data Platform Plugins
 
@@ -1048,21 +1048,21 @@ curl -X POST http://localhost:9090/api/v1/rules \
   }'
 ```
 
-### ✅ **What You've Learned**
+### What You've Learned
 
-### ✅ **Advanced Skills**  
+### Advanced Skills  
 - Plugin system architecture
 - Multi-service monitoring
 - AI-powered anomaly detection
 - Business intelligence integration
 
-### ✅ **Enterprise Skills**
+### Enterprise Skills
 - Security monitoring
 - Cost optimization
 - Predictive analytics
 - Auto-remediation
 
-### 🚀 **Next Steps**
+### Next Steps
 1. **Start Simple**: Deploy base stack, create basic CPU/memory dashboards
 2. **Add Plugins**: Install AWS CloudWatch plugin for cloud integration
 3. **Enhance Security**: Add SAML authentication and certificate monitoring

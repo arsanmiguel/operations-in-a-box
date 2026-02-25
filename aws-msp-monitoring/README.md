@@ -4,28 +4,28 @@ Thousands of AWS MSP partners have asked "how do I get started with monitoring a
 
 Originally built for AWS MSP partners, this stack is now used by customers, system integrators (SIs), ISVs, and enterprises for production monitoring and operations. The "MSP" name reflects its multi-tenant, production-grade design - not a limitation on who can use it.
 
-**Note:** This is a starting point—not an AWS fully managed or supported production solution. Use this project to understand architecture patterns, accelerate experimentation, and build your own compliant monitoring implementation.
+**Note:** This is a starting point, not an AWS fully managed or supported production solution. Use this project to understand architecture patterns, accelerate experimentation, and build your own compliant monitoring implementation.
 
 ---
 
-## 📖 **What You Get**
+## What You Get
 
-✅ **Fill-in-the-blanks templates** - no coding required for any plugin  
-✅ Enterprise-style monitoring stack (Prometheus, Grafana, API, Pushgateway)  
-✅ 49 production-ready plugins with comprehensive configuration templates  
-✅ Interactive setup scripts for guided plugin configuration  
-✅ Complete dashboard tutorial (step-by-step beginner to advanced)  
-✅ API integration examples (Python, JavaScript, curl)  
-✅ Security patterns and hardening examples (authentication and encryption)  
-✅ Demo data generator (realistic metrics for testing)  
-✅ Comprehensive documentation (6 detailed guides)  
+- **Fill-in-the-blanks templates** - no coding required for any plugin
+- Enterprise-style monitoring stack (Prometheus, Grafana, API, Pushgateway)
+- 49 production-ready plugins with comprehensive configuration templates
+- Interactive setup scripts for guided plugin configuration
+- Complete dashboard tutorial (step-by-step beginner to advanced)
+- API integration examples (Python, JavaScript, curl)
+- Security patterns and hardening examples (authentication and encryption)
+- Demo data generator (realistic metrics for testing)
+- Comprehensive documentation (6 detailed guides)
 
 =================================================================
 
 
 # AWS MSP Monitoring Stack - Universal Installer
 
-## 🚀 **GETTING STARTED** (2 minutes)
+## GETTING STARTED (2 minutes)
 
 ### **Step 1: Extract the Package**
 1. Download `AWS_MSP_Monitoring_Stack_Universal_Installer.zip`
@@ -53,20 +53,19 @@ Originally built for AWS MSP partners, this stack is now used by customers, syst
 
 ---
 
-## 📖 **What You Get**
+## What You Get (continued)
 
-
-✅ Enterprise-style monitoring stack (Prometheus, Grafana, API, Pushgateway)  
-✅ Security patterns and hardening examples (authentication and encryption)  
-✅ **49 plugins across 12 categories** (complete ecosystem coverage)  
-✅ **Complete dashboard tutorial** (step-by-step beginner to advanced)  
-✅ **API integration examples** (Python, JavaScript, curl)  
-✅ **Demo data generator** (realistic metrics for testing)  
-✅ **Comprehensive documentation** (6 detailed guides)  
+- Enterprise-style monitoring stack (Prometheus, Grafana, API, Pushgateway)
+- Security patterns and hardening examples (authentication and encryption)
+- **49 plugins across 12 categories** (complete ecosystem coverage)
+- **Complete dashboard tutorial** (step-by-step beginner to advanced)
+- **API integration examples** (Python, JavaScript, curl)
+- **Demo data generator** (realistic metrics for testing)
+- **Comprehensive documentation** (6 detailed guides)
 
 ---
 
-## 🎯 **Next Steps After Installation**
+## Next Steps After Installation
 
 ### **For Beginners:**
 1. **Read:** `AWS_MSP_DASHBOARD_WALKTHROUGH.md` - Complete tutorial
@@ -85,11 +84,11 @@ Originally built for AWS MSP partners, this stack is now used by customers, syst
 
 ---
 
-## 🔌 Plugin System (Extensible by Design)
+## Plugin System (Extensible by Design)
 The monitoring stack supports a modular plugin system covering performance, security, cloud integration, ITSM, data platforms, and AI/ML use cases. **All 49 plugins come with production-ready configuration templates** - just fill in your credentials and start monitoring!
 
 <details>
-<summary><strong>🚀 Quick Plugin Installation</strong></summary>
+<summary><strong>Quick Plugin Installation</strong></summary>
 
 ```bash
 # Option 1: Interactive command-line installer
@@ -104,32 +103,32 @@ python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack instal
 ```
 
 **What you get automatically:**
-- ✅ **Comprehensive `.env.template`** with all required variables
-- ✅ **Production-ready `docker-compose.yml`** with health checks
-- ✅ **Service-specific configuration files** with advanced options
-- ✅ **Interactive setup script** for guided configuration
-- ✅ **Complete documentation** with examples and troubleshooting
+- **Comprehensive `.env.template`** with all required variables
+- **Production-ready `docker-compose.yml`** with health checks
+- **Service-specific configuration files** with advanced options
+- **Interactive setup script** for guided configuration
+- **Complete documentation** with examples and troubleshooting
 </details>
 
 <details>
-<summary><strong>📋 Available Plugin Categories (49 plugins across 12 categories)</strong></summary>
+<summary><strong>Available Plugin Categories (49 plugins across 12 categories)</strong></summary>
 
-- **🚀 Performance & Scale** - Federation, HA, Auto-scaling (3 plugins)
-- **🛡️ Advanced Security** - SAML/OAuth, Certificates, Network segmentation (3 plugins)
-- **☁️ Cloud Integration** - AWS CloudWatch, AWS CloudTrail, AWS Config, AWS VPC Flow Logs, AWS Reachability Analyzer, Auto-Discovery, Cost optimization, MontyCloud (8 plugins)
-- **🔒 Security Partner Integration** - CrowdStrike, Palo Alto, Alert Logic (3 plugins)
-- **📊 Monitoring Partner Integration** - Splunk, Sumo Logic, Datadog (3 plugins)
-- **🎫 CMDB/ITSM Integration** - ServiceNow, BMC Helix, Jira Service Management (3 plugins)
-- **🎟️ Ticketing Platform Integration** - AWS Support, Zendesk, Freshworks, Linear (4 plugins)
-- **🆔 Identity Management Integration** - Duo Security, Okta (2 plugins)
-- **💾 Data Platform Integration** - Redis, Elasticsearch, Databricks, Snowflake, MongoDB, Confluent, InfluxDB, ClickHouse, Neo4j (9 plugins)
-- **🤖 AI/ML Features** - Anomaly detection, Predictive alerts, Auto-remediation (3 plugins)
-- **📈 Advanced Analytics** - Business intelligence, ELK stack, APM monitoring (3 plugins)
-- **🔧 DevOps Automation** - AWS CloudFormation, Terraform, Infrastructure as Code, CI/CD, GitOps (5 plugins)
+- **Performance & Scale** - Federation, HA, Auto-scaling (3 plugins)
+- **Advanced Security** - SAML/OAuth, Certificates, Network segmentation (3 plugins)
+- **Cloud Integration** - AWS CloudWatch, AWS CloudTrail, AWS Config, AWS VPC Flow Logs, AWS Reachability Analyzer, Auto-Discovery, Cost optimization, MontyCloud (8 plugins)
+- **Security Partner Integration** - CrowdStrike, Palo Alto, Alert Logic (3 plugins)
+- **Monitoring Partner Integration** - Splunk, Sumo Logic, Datadog (3 plugins)
+- **CMDB/ITSM Integration** - ServiceNow, BMC Helix, Jira Service Management (3 plugins)
+- **Ticketing Platform Integration** - AWS Support, Zendesk, Freshworks, Linear (4 plugins)
+- **Identity Management Integration** - Duo Security, Okta (2 plugins)
+- **Data Platform Integration** - Redis, Elasticsearch, Databricks, Snowflake, MongoDB, Confluent, InfluxDB, ClickHouse, Neo4j (9 plugins)
+- **AI/ML Features** - Anomaly detection, Predictive alerts, Auto-remediation (3 plugins)
+- **Advanced Analytics** - Business intelligence, ELK stack, APM monitoring (3 plugins)
+- **DevOps Automation** - AWS CloudFormation, Terraform, Infrastructure as Code, CI/CD, GitOps (5 plugins)
 </details>
 
 <details>
-<summary><strong>📦 Popular Plugin Packs</strong></summary>
+<summary><strong>Popular Plugin Packs</strong></summary>
 
 - **AWS Integration Pack** - AWS CloudWatch + AWS CloudTrail + AWS Config + AWS VPC Flow Logs + AWS Reachability Analyzer + Auto-Discovery + Cost Optimization + MontyCloud
 - **Security Enhancement Pack** - SAML Auth + Certificate Auth
@@ -145,7 +144,7 @@ python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack instal
 </details>
 
 <details>
-<summary><strong>💡 Getting Started Examples</strong></summary>
+<summary><strong>Getting Started Examples</strong></summary>
 
 **Basic AWS MSP Setup:**
 ```bash
@@ -201,7 +200,7 @@ python3 aws_msp_plugin_manager.py install anomaly-detection
 </details>
 
 <details>
-<summary><strong>🔧 Plugin Management Commands</strong></summary>
+<summary><strong>Plugin Management Commands</strong></summary>
 
 ```bash
 # List all available plugins
@@ -217,7 +216,7 @@ python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack list -
 
 ---
 
-## 🤖 Agentic AI Integration
+## Agentic AI Integration
 
 The monitoring stack includes an optional Bedrock-powered alert triage agent that adds intelligent routing and analysis to your existing infrastructure. No changes to your plugins required.
 
@@ -231,7 +230,7 @@ The monitoring stack includes an optional Bedrock-powered alert triage agent tha
 **Key features:**
 - ~200 lines of Python that sits between AlertManager and your plugins
 - Multi-system routing based on alert context and severity
-- Intelligent decisions (e.g., AWS resource issues → AWS Support + ServiceNow)
+- Intelligent decisions (e.g., AWS resource issues -> AWS Support + ServiceNow)
 - Auto-remediation for known issues with high confidence
 - <h3><u><i><b>~$3/month for 1,000 alerts</b></i></u></h3>
 
@@ -278,7 +277,7 @@ python3 alert_triage_agent.py
 ## Support
 
 <details>
-<summary><strong>🔧 Quick Troubleshooting Steps</strong></summary>
+<summary><strong>Quick Troubleshooting Steps</strong></summary>
 
 ### **1. Verify Prerequisites**
 ```bash
@@ -386,7 +385,7 @@ chmod +x install-plugins.sh
 sudo chown -R $USER:$USER customer-monitoring-stack/
 
 # Run as administrator (Windows)
-# Right-click install.bat → "Run as administrator"
+# Right-click install.bat -> "Run as administrator"
 ```
 
 **"Docker not found" errors:**
@@ -416,7 +415,7 @@ pip install -r requirements.txt
 </details>
 
 <details>
-<summary><strong>📚 Additional Resources</strong></summary>
+<summary><strong>Additional Resources</strong></summary>
 
 1. **Detailed troubleshooting:** `AWS_MSP_DASHBOARD_WALKTHROUGH.md`
 2. **Security issues:** `AWS_MSP_SECURITY_GUIDE.md`

@@ -550,17 +550,17 @@ class PluginManager:
         """Install a plugin"""
         plugin = self.available_plugins.get(plugin_id)
         if not plugin:
-            print(f"❌ Plugin '{plugin_id}' not found")
+            print(f"Plugin '{plugin_id}' not found")
             return False
         
-        print(f"🔌 Installing plugin: {plugin['name']}")
-        print(f"📦 Size: {plugin['size_mb']}MB")
-        print(f"🎯 Complexity: {plugin['complexity']}")
+        print(f"Installing plugin: {plugin['name']}")
+        print(f"Size: {plugin['size_mb']}MB")
+        print(f"Complexity: {plugin['complexity']}")
         
         # Check dependencies
         missing_deps = self.check_dependencies(plugin_id)
         if missing_deps and not force:
-            print(f"❌ Missing dependencies: {', '.join(missing_deps)}")
+            print(f"Missing dependencies: {', '.join(missing_deps)}")
             return False
         
         # Create plugin directory
@@ -571,7 +571,7 @@ class PluginManager:
         try:
             self._generate_plugin_files(plugin_id, plugin_dir)
         except Exception as e:
-            print(f"❌ Failed to generate plugin files: {e}")
+            print(f"Failed to generate plugin files: {e}")
             return False
         
         # Mark as installed
@@ -582,7 +582,7 @@ class PluginManager:
         }
         
         self.save_installed_plugins()
-        print(f"✅ Plugin '{plugin['name']}' installed successfully")
+        print(f"Plugin '{plugin['name']}' installed successfully")
         return True
     
     def _generate_plugin_files(self, plugin_id: str, plugin_dir: Path):
@@ -615,7 +615,7 @@ class PluginManager:
         for config_file in plugin.get('config_files', []):
             self._create_config_file(plugin_dir, config_file, plugin)
         
-        print(f"    ✅ Generated configuration files for {plugin_id}")
+        print(f"    Generated configuration files for {plugin_id}")
     
     def _create_basic_configs(self, plugin_id: str, plugin_dir: Path):
         """Create basic configuration files when yaml is not available"""
@@ -654,7 +654,7 @@ services:
                 dir_path.mkdir(parents=True, exist_ok=True)
                 (dir_path / "README.md").write_text(f"# {plugin['name']} Templates\n")
         
-        print(f"    ✅ Created basic configuration files for {plugin_id}")
+        print(f"    Created basic configuration files for {plugin_id}")
         
         # Create dashboard query examples for this plugin
         self._create_dashboard_examples(plugin_id, plugin_dir, plugin)
@@ -875,7 +875,7 @@ services:
 """
         
         examples_file.write_text(content)
-        print(f"    ✅ Created dashboard query examples for {plugin_id}")
+        print(f"    Created dashboard query examples for {plugin_id}")
     
     def _get_default_image(self, service_name: str) -> str:
         """Get default Docker image for a service"""
@@ -1038,7 +1038,7 @@ def main():
     
     if args.command == 'list':
         plugins = manager.list_available_plugins(args.category)
-        print(f"\n🔌 Available Plugins ({len(plugins)} total):")
+        print(f"\nAvailable Plugins ({len(plugins)} total):")
         print("=" * 60)
         
         current_category = None
@@ -1048,7 +1048,7 @@ def main():
                 print(f"\n📂 {current_category}")
                 print("-" * 40)
             
-            status = "✅ Installed" if plugin_id in manager.installed_plugins else "⬜ Available"
+            status = "Installed" if plugin_id in manager.installed_plugins else "Available"
             print(f"  {plugin_id:<20} | {plugin['name']:<30} | {status}")
             print(f"  {'':20} | {plugin['description']:<30} | {plugin['size_mb']}MB")
     

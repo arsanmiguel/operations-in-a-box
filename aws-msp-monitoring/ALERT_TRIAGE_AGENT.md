@@ -6,16 +6,16 @@ Bedrock-powered intelligent agent that analyzes Prometheus alerts and automatica
 
 ## Features
 
-✅ **AI-powered analysis** - Uses Claude via Bedrock to understand alert context  
-✅ **Multi-system routing** - Routes to multiple ITSM/ticketing systems simultaneously  
-✅ **Auto-remediation** - Triggers fixes when appropriate  
-✅ **Zero plugin changes** - Uses existing plugin APIs  
-✅ **Intelligent decisions** - Determines severity, root cause, and best routing  
+- **AI-powered analysis** - Uses Claude via Bedrock to understand alert context
+- **Multi-system routing** - Routes to multiple ITSM/ticketing systems simultaneously
+- **Auto-remediation** - Triggers fixes when appropriate
+- **Zero plugin changes** - Uses existing plugin APIs
+- **Intelligent decisions** - Determines severity, root cause, and best routing  
 
 ## How It Works
 
 ```
-Prometheus Alert → AlertManager Webhook → Bedrock Agent → Routes to:
+Prometheus Alert -> AlertManager Webhook -> Bedrock Agent -> Routes to:
                                                           ├─ AWS Support
                                                           ├─ ServiceNow
                                                           ├─ BMC Helix
@@ -114,20 +114,20 @@ python alert_triage_agent.py
 ## Example Output
 
 ```
-🤖 Analyzing alert: HighCPUUsage
-📊 Analysis complete:
+Analyzing alert: HighCPUUsage
+Analysis complete:
   Root cause: EC2 instance experiencing sustained high CPU load, likely due to runaway process or insufficient capacity
   Severity: critical
   Targets: aws-support, servicenow
   Auto-remediate: false
 
-🚀 Routing alert to 2 system(s)...
-✅ aws-support: success
+Routing alert to 2 system(s)...
+aws-support: success
    Ticket ID: case-123456789
-✅ servicenow: success
+servicenow: success
    Ticket ID: INC0012345
 
-✨ Alert triage complete!
+Alert triage complete!
 ```
 
 ## Agent Decision Logic
@@ -135,8 +135,8 @@ python alert_triage_agent.py
 The Bedrock agent analyzes:
 
 1. **Alert severity** - Critical, high, medium, low
-2. **Resource type** - AWS resources → AWS Support
-3. **Alert type** - Compliance → AWS Config
+2. **Resource type** - AWS resources -> AWS Support
+3. **Alert type** - Compliance -> AWS Config
 4. **Historical patterns** - Similar past incidents
 5. **Remediation confidence** - Auto-fix if high confidence
 
@@ -175,9 +175,9 @@ Modify the prompt in `analyze_alert()` to include your specific rules:
 ```python
 prompt = f"""...
 Custom routing rules:
-- Database alerts → Create Jira ticket for DB team
-- Security alerts → Create AWS Support case + notify security team
-- Cost alerts → Create Linear issue for FinOps team
+- Database alerts -> Create Jira ticket for DB team
+- Security alerts -> Create AWS Support case + notify security team
+- Cost alerts -> Create Linear issue for FinOps team
 ..."""
 ```
 

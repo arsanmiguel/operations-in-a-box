@@ -81,8 +81,8 @@ class DemoDataGenerator:
     
     def run_demo(self, duration_minutes=10):
         """Run demo data generation"""
-        print(f"🚀 Starting demo data generation for {duration_minutes} minutes...")
-        print("📊 Generating realistic monitoring data...")
+        print(f"Starting demo data generation for {duration_minutes} minutes...")
+        print("Generating realistic monitoring data...")
         
         end_time = time.time() + (duration_minutes * 60)
         cycle = 0
@@ -111,7 +111,7 @@ class DemoDataGenerator:
             
             time.sleep(10)  # Send data every 10 seconds
         
-        print(f"✅ Demo completed after {cycle} cycles")
+        print(f"Demo completed after {cycle} cycles")
 
 def main():
     # Get API key from credentials
@@ -127,8 +127,8 @@ def main():
             else:
                 raise ValueError("API key not found")
     except Exception as e:
-        print(f"❌ Could not read API key: {e}")
-        print("💡 Make sure you're in the monitoring stack directory with CREDENTIALS.md")
+        print(f"Could not read API key: {e}")
+        print("Make sure you're in the monitoring stack directory with CREDENTIALS.md")
         return
     
     generator = DemoDataGenerator(api_key)

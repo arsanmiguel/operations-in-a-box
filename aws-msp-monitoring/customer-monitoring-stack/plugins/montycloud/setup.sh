@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # Montycloud Plugin Setup Script
-echo "🔧 Montycloud Plugin Configuration"
+echo "Montycloud Plugin Configuration"
 echo "=================================================="
 
 # Check if .env file exists
 ENV_FILE=".env"
 if [ ! -f "$ENV_FILE" ]; then
     cp .env.template "$ENV_FILE"
-    echo "✅ Created .env file from template"
+    echo "Created .env file from template"
 fi
 
 echo ""

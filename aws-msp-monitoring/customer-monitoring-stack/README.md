@@ -16,12 +16,12 @@ Enterprise-style monitoring solution with Prometheus, Grafana, and secure API.
 
 ## Security Features
 
-✅ API Key authentication  
-✅ Non-root containers  
-✅ Read-only filesystems  
-✅ Security headers  
-✅ Input validation  
-✅ Rate limiting  
+- API Key authentication
+- Non-root containers
+- Read-only filesystems
+- Security headers
+- Input validation
+- Rate limiting  
 
 ## Management
 

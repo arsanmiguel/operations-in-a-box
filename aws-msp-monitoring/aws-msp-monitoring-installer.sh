@@ -4,7 +4,7 @@
 
 set -euo pipefail
 
-echo "🛡️  Secure Monitoring Stack Deployment"
+echo "Secure Monitoring Stack Deployment"
 echo "======================================"
 echo ""
 echo "Creating enterprise-style monitoring stack with all security controls..."
@@ -36,61 +36,61 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-echo "📋 Configuration:"
+echo "Configuration:"
 echo "   Installation Directory: $INSTALL_DIR"
 echo ""
 
 # Step 1: Create secure deployment
-echo "🚀 Step 1: Creating Secure Deployment"
+echo "Step 1: Creating Secure Deployment"
 echo "====================================="
 echo ""
 
 if python3 aws_msp_monitoring_stack.py --install-dir "$INSTALL_DIR"; then
     echo ""
-    echo "✅ Secure deployment created successfully!"
+    echo "Secure deployment created successfully!"
     echo ""
 else
     echo ""
-    echo "❌ Deployment creation failed!"
+    echo "Deployment creation failed!"
     exit 1
 fi
 
 # Step 2: Validate security controls
-echo "🔒 Step 2: Validating Security Controls"
+echo "Step 2: Validating Security Controls"
 echo "======================================"
 echo ""
 
 if python3 aws_msp_security_validator.py --install-dir "$INSTALL_DIR"; then
     echo ""
-    echo "🎉 DEPLOYMENT COMPLETED SUCCESSFULLY!"
+    echo "DEPLOYMENT COMPLETED SUCCESSFULLY!"
     echo "====================================="
     echo ""
-    echo "📁 Your secure monitoring stack is ready at: $(pwd)/$INSTALL_DIR"
+    echo "Your secure monitoring stack is ready at: $(pwd)/$INSTALL_DIR"
     echo ""
-    echo "🔗 Quick Start:"
+    echo "Quick Start:"
     echo "   cd $INSTALL_DIR"
     echo "   ./start.sh"
     echo ""
-    echo "📖 Access Information:"
+    echo "Access Information:"
     echo "   - Grafana: http://localhost:3000"
     echo "   - Prometheus: http://localhost:9090"
     echo "   - API: http://localhost:8080"
     echo "   - Credentials: See CREDENTIALS.md"
     echo ""
-    echo "🛡️  Security Features Enabled:"
-    echo "   ✅ Secure credentials (no defaults)"
-    echo "   ✅ API key authentication"
-    echo "   ✅ Non-root containers"
-    echo "   ✅ Localhost-only binding"
-    echo "   ✅ Security headers"
-    echo "   ✅ Input validation"
-    echo "   ✅ Rate limiting"
-    echo "   ✅ Session timeouts"
-    echo "   ✅ Container hardening"
+    echo "Security Features Enabled:"
+    echo "   - Secure credentials (no defaults)"
+    echo "   - API key authentication"
+    echo "   - Non-root containers"
+    echo "   - Localhost-only binding"
+    echo "   - Security headers"
+    echo "   - Input validation"
+    echo "   - Rate limiting"
+    echo "   - Session timeouts"
+    echo "   - Container hardening"
     echo ""
 else
     echo ""
-    echo "❌ Security validation failed!"
+    echo "Security validation failed!"
     echo "Some security controls may not be properly configured."
     echo "Check the validation output above for details."
     exit 1

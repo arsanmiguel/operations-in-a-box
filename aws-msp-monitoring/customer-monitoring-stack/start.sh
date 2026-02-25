@@ -1,9 +1,9 @@
 #!/bin/bash
-echo "🚀 Starting Secure Monitoring Stack..."
+echo "Starting Secure Monitoring Stack..."
 docker compose up -d
-echo "✅ Services started!"
+echo "Services started!"
 echo ""
-echo "📊 Access URLs:"
+echo "Access URLs:"
 echo "- Grafana: http://localhost:3000 (admin/dWOrJpkx9cX28yQeNkJNPA)"
 echo "- Prometheus: http://localhost:9090"
 echo "- API: http://localhost:8080"

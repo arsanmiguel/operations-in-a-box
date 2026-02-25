@@ -35,31 +35,31 @@ class UniversalInstaller:
         elif self.system == "linux":
             return "linux"
         else:
-            print(f"❌ Unsupported OS: {self.system}")
+            print(f"Unsupported OS: {self.system}")
             sys.exit(1)
     
     def check_python(self):
         """Verify Python version and install dependencies"""
         version = sys.version_info
         if version < (3, 7):
-            print(f"❌ Python 3.7+ required. Current: {version.major}.{version.minor}")
+            print(f"Python 3.7+ required. Current: {version.major}.{version.minor}")
             print("Please install Python 3.7+ and try again.")
             sys.exit(1)
-        print(f"✅ Python {version.major}.{version.minor}.{version.micro}")
+        print(f"Python {version.major}.{version.minor}.{version.micro}")
         
         # Install PyYAML for enhanced plugin support
         self.install_python_dependencies()
     
     def install_python_dependencies(self):
         """Install required Python dependencies"""
-        print("📦 Installing Python dependencies...")
+        print("Installing Python dependencies...")
         
         dependencies = ["pyyaml", "requests"]
         
         for dep in dependencies:
             try:
                 __import__(dep.replace("-", "_"))
-                print(f"    ✅ {dep} already installed")
+                print(f"    {dep} already installed")
                 continue
             except ImportError:
                 pass
@@ -78,7 +78,7 @@ class UniversalInstaller:
                 try:
                     result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
                     if result.returncode == 0:
-                        print(f"    ✅ {dep} installed successfully")
+                        print(f"    {dep} installed successfully")
                         success = True
                         break
                 except (subprocess.TimeoutExpired, subprocess.SubprocessError):
@@ -87,18 +87,18 @@ class UniversalInstaller:
             if not success:
                 print(f"    ⚠️  Could not install {dep} automatically")
                 if dep == "pyyaml":
-                    print("    💡 Plugin configs will use basic format")
+                    print("    Plugin configs will use basic format")
                 elif dep == "requests":
-                    print("    💡 API examples may not work without manual installation")
+                    print("    API examples may not work without manual installation")
     
     def install_docker_windows(self):
         """Install Docker Desktop on Windows"""
-        print("📦 Installing Docker Desktop for Windows...")
+        print("Installing Docker Desktop for Windows...")
         
         # Check if Docker is already installed
         try:
             subprocess.run(["docker", "--version"], check=True, capture_output=True)
-            print("✅ Docker already installed")
+            print("Docker already installed")
             return True
         except (subprocess.CalledProcessError, FileNotFoundError):
             pass
@@ -109,24 +109,24 @@ class UniversalInstaller:
         
         try:
             urllib.request.urlretrieve(docker_url, installer_path)
-            print("🚀 Running Docker Desktop installer...")
+            print("Running Docker Desktop installer...")
             subprocess.run([str(installer_path), "install", "--quiet"], check=True)
-            print("✅ Docker Desktop installed")
+            print("Docker Desktop installed")
             print("⚠️  Please restart your computer and run this installer again")
             return False
         except Exception as e:
-            print(f"❌ Failed to install Docker: {e}")
+            print(f"Failed to install Docker: {e}")
             print("Please install Docker Desktop manually from https://docker.com/products/docker-desktop")
             return False
     
     def install_docker_macos(self):
         """Install Docker Desktop on macOS"""
-        print("📦 Installing Docker Desktop for macOS...")
+        print("Installing Docker Desktop for macOS...")
         
         # Check if Docker is already installed
         try:
             subprocess.run(["docker", "--version"], check=True, capture_output=True)
-            print("✅ Docker already installed")
+            print("Docker already installed")
             return True
         except (subprocess.CalledProcessError, FileNotFoundError):
             pass
@@ -136,7 +136,7 @@ class UniversalInstaller:
             subprocess.run(["brew", "--version"], check=True, capture_output=True)
             print("🍺 Installing via Homebrew...")
             subprocess.run(["brew", "install", "--cask", "docker"], check=True)
-            print("✅ Docker Desktop installed via Homebrew")
+            print("Docker Desktop installed via Homebrew")
             print("⚠️  Please start Docker Desktop from Applications and run this installer again")
             return False
         except (subprocess.CalledProcessError, FileNotFoundError):
@@ -155,22 +155,22 @@ class UniversalInstaller:
             urllib.request.urlretrieve(docker_url, installer_path)
             print("📀 Mounting Docker.dmg...")
             subprocess.run(["hdiutil", "attach", str(installer_path)], check=True)
-            print("📋 Please drag Docker to Applications folder and start it")
+            print("Please drag Docker to Applications folder and start it")
             print("⚠️  Then run this installer again")
             return False
         except Exception as e:
-            print(f"❌ Failed to download Docker: {e}")
+            print(f"Failed to download Docker: {e}")
             print("Please install Docker Desktop manually from https://docker.com/products/docker-desktop")
             return False
     
     def install_docker_linux(self):
         """Install Docker on Linux"""
-        print("📦 Installing Docker on Linux...")
+        print("Installing Docker on Linux...")
         
         # Check if Docker is already installed
         try:
             subprocess.run(["docker", "--version"], check=True, capture_output=True)
-            print("✅ Docker already installed")
+            print("Docker already installed")
             return True
         except (subprocess.CalledProcessError, FileNotFoundError):
             pass
@@ -180,7 +180,7 @@ class UniversalInstaller:
             with open("/etc/os-release") as f:
                 os_info = f.read().lower()
         except FileNotFoundError:
-            print("❌ Cannot detect Linux distribution")
+            print("Cannot detect Linux distribution")
             return False
         
         try:
@@ -201,7 +201,7 @@ class UniversalInstaller:
                     ["sudo", "yum", "install", "-y", "docker-ce", "docker-ce-cli", "containerd.io", "docker-compose-plugin"]
                 ]
             else:
-                print("❌ Unsupported Linux distribution")
+                print("Unsupported Linux distribution")
                 print("Please install Docker manually: https://docs.docker.com/engine/install/")
                 return False
             
@@ -221,12 +221,12 @@ class UniversalInstaller:
             username = getpass.getuser()
             subprocess.run(["sudo", "usermod", "-aG", "docker", username], check=True)
             
-            print("✅ Docker installed successfully")
+            print("Docker installed successfully")
             print("⚠️  Please log out and log back in, then run this installer again")
             return False
             
         except subprocess.CalledProcessError as e:
-            print(f"❌ Failed to install Docker: {e}")
+            print(f"Failed to install Docker: {e}")
             print("Please install Docker manually: https://docs.docker.com/engine/install/")
             return False
     
@@ -245,7 +245,7 @@ class UniversalInstaller:
     
     def create_package_structure(self):
         """Create the monitoring package structure"""
-        print("📁 Creating package structure...")
+        print("Creating package structure...")
         
         # Create main directory
         self.install_dir.mkdir(exist_ok=True)
@@ -267,7 +267,7 @@ class UniversalInstaller:
             if src.exists():
                 dst = self.install_dir / file_name
                 shutil.copy2(src, dst)
-                print(f"  ✅ {file_name}")
+                print(f"  {file_name}")
             else:
                 print(f"  ⚠️  {file_name} not found")
         
@@ -280,7 +280,7 @@ class UniversalInstaller:
     
     def create_cross_platform_launcher(self):
         """Create platform-specific launcher scripts"""
-        print("🚀 Creating launcher scripts...")
+        print("Creating launcher scripts...")
         
         # Windows batch file
         windows_launcher = self.install_dir / "install.bat"
@@ -334,13 +334,13 @@ cd "{self.install_dir}"
 
 # Check if Python is available
 if ! command -v python3 &> /dev/null; then
-    echo "❌ Error: Python 3 not found. Please install Python 3.7+"
+    echo "Error: Python 3 not found. Please install Python 3.7+"
     exit 1
 fi
 
 # Check if Docker is running
 if ! command -v docker &> /dev/null; then
-    echo "❌ Error: Docker not found. Please install Docker"
+    echo "Error: Docker not found. Please install Docker"
     exit 1
 fi
 
@@ -348,12 +348,12 @@ fi
 python3 aws_msp_monitoring_stack.py --install-dir customer-monitoring-stack
 if [ $? -ne 0 ]; then
     echo ""
-    echo "❌ Installation failed. Check the error messages above."
+    echo "Installation failed. Check the error messages above."
     exit 1
 fi
 
 echo ""
-echo "✅ Installation completed successfully!"
+echo "Installation completed successfully!"
 echo "🌐 Access Grafana at: http://localhost:3000"
 echo "🔑 Check CREDENTIALS.md for login information"
 """)
@@ -362,8 +362,8 @@ echo "🔑 Check CREDENTIALS.md for login information"
         if self.system != "windows":
             unix_launcher.chmod(0o755)
         
-        print(f"  ✅ install.bat (Windows)")
-        print(f"  ✅ install.sh (macOS/Linux)")
+        print(f"  install.bat (Windows)")
+        print(f"  install.sh (macOS/Linux)")
     
     def create_readme(self):
         """Create installation README"""
@@ -430,11 +430,11 @@ For issues or questions:
         
         readme_file = self.install_dir / "README.md"
         readme_file.write_text(readme_content)
-        print("  ✅ README.md")
+        print("  README.md")
     
     def run_installation(self):
         """Run the complete installation process"""
-        print("🚀 AWS MSP Monitoring Stack - Universal Installer")
+        print("AWS MSP Monitoring Stack - Universal Installer")
         print("=" * 50)
         print()
         
@@ -460,11 +460,11 @@ For issues or questions:
         self.create_readme()
         
         print("\n" + "=" * 50)
-        print("🎉 UNIVERSAL INSTALLER PACKAGE CREATED!")
+        print("UNIVERSAL INSTALLER PACKAGE CREATED!")
         print("=" * 50)
-        print(f"📁 Location: {self.install_dir.absolute()}")
+        print(f"Location: {self.install_dir.absolute()}")
         print()
-        print("🚀 To deploy monitoring stack:")
+        print("To deploy monitoring stack:")
         if os_type == "windows":
             print(f"   cd {self.install_dir}")
             print("   install.bat")
@@ -472,7 +472,7 @@ For issues or questions:
             print(f"   cd {self.install_dir}")
             print("   ./install.sh")
         print()
-        print("📖 Documentation:")
+        print("Documentation:")
         print("   • README.md - Quick start guide")
         print("   • AWS_MSP_DASHBOARD_WALKTHROUGH.md - Complete tutorial")
         print("   • AWS_MSP_PARTNER_GUIDE.md - Partner information")
@@ -487,10 +487,10 @@ def main():
         success = installer.run_installation()
         sys.exit(0 if success else 1)
     except KeyboardInterrupt:
-        print("\n❌ Installation cancelled by user")
+        print("\nInstallation cancelled by user")
         sys.exit(1)
     except Exception as e:
-        print(f"\n❌ Unexpected error: {e}")
+        print(f"\nUnexpected error: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":

@@ -191,11 +191,11 @@ class ComprehensivePluginEnhancer:
             self.create_enhanced_readme(plugin_dir, plugin_name, service_config)
             
             self.enhanced_count += 1
-            print(f"✅ Enhanced: {plugin_name} (port {service_config['port']})")
+            print(f"Enhanced: {plugin_name} (port {service_config['port']})")
             return True
             
         except Exception as e:
-            print(f"❌ Failed to enhance {plugin_name}: {e}")
+            print(f"Failed to enhance {plugin_name}: {e}")
             return False
     
     def create_enhanced_env_template(self, plugin_dir, plugin_name, service_config):
@@ -313,14 +313,14 @@ RETRY_ATTEMPTS=3
         content = f"""#!/bin/bash
 
 # {plugin_name.title()} Plugin Setup Script
-echo "🔧 {plugin_name.title()} Plugin Configuration"
+echo "{plugin_name.title()} Plugin Configuration"
 echo "{'=' * 50}"
 
 # Check if .env file exists
 ENV_FILE=".env"
 if [ ! -f "$ENV_FILE" ]; then
     cp .env.template "$ENV_FILE"
-    echo "✅ Created .env file from template"
+    echo "Created .env file from template"
 fi
 
 echo ""
@@ -355,11 +355,11 @@ This plugin provides {plugin_name} integration for the monitoring stack.
 
 ## Features
 
-- ✅ **Production-ready configuration** with comprehensive templates
-- ✅ **Environment-based configuration** via .env files
-- ✅ **Health monitoring** with built-in health checks
-- ✅ **Metrics export** to Prometheus format
-- ✅ **Interactive setup** with guided configuration
+- **Production-ready configuration** with comprehensive templates
+- **Environment-based configuration** via .env files
+- **Health monitoring** with built-in health checks
+- **Metrics export** to Prometheus format
+- **Interactive setup** with guided configuration
 
 ## Quick Start
 
@@ -450,12 +450,12 @@ docker-compose down && docker-compose up -d
     
     def enhance_all_plugins(self):
         """Enhance all plugins with comprehensive templates"""
-        print("🚀 Starting comprehensive plugin template enhancement...")
+        print("Starting comprehensive plugin template enhancement...")
         print("=" * 60)
         
         # Get all plugin directories
         if not self.base_dir.exists():
-            print("❌ Plugin directory not found")
+            print("Plugin directory not found")
             return
         
         plugin_dirs = [d for d in self.base_dir.iterdir() if d.is_dir()]
@@ -472,12 +472,12 @@ docker-compose down && docker-compose up -d
         
         print("")
         print("=" * 60)
-        print("📊 ENHANCEMENT SUMMARY")
+        print("ENHANCEMENT SUMMARY")
         print("=" * 60)
-        print(f"✅ Enhanced: {self.enhanced_count} plugins")
-        print(f"📦 Total plugins: {total_plugins}")
+        print(f"Enhanced: {self.enhanced_count} plugins")
+        print(f"Total plugins: {total_plugins}")
         print("")
-        print("🎉 All plugins now have comprehensive configuration templates!")
+        print("All plugins now have comprehensive configuration templates!")
         print("Users can now install any plugin and get production-ready templates!")
 
 if __name__ == '__main__':

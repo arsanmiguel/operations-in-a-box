@@ -4,11 +4,11 @@ This plugin provides prometheus-federation integration for the monitoring stack.
 
 ## Features
 
-- ✅ **Production-ready configuration** with comprehensive templates
-- ✅ **Environment-based configuration** via .env files
-- ✅ **Health monitoring** with built-in health checks
-- ✅ **Metrics export** to Prometheus format
-- ✅ **Interactive setup** with guided configuration
+- **Production-ready configuration** with comprehensive templates
+- **Environment-based configuration** via .env files
+- **Health monitoring** with built-in health checks
+- **Metrics export** to Prometheus format
+- **Interactive setup** with guided configuration
 
 ## Quick Start
 

@@ -4,15 +4,15 @@ This plugin provides AWS VPC Flow Logs integration for the monitoring stack, ena
 
 ## Features
 
-- ✅ **Production-ready configuration** with comprehensive templates
-- ✅ **Environment-based configuration** via .env files
-- ✅ **Health monitoring** with built-in health checks
-- ✅ **Metrics export** to Prometheus format
-- ✅ **Interactive setup** with guided configuration
-- ✅ **Network traffic analysis** - Monitor accepted/rejected connections
-- ✅ **Security monitoring** - Detect suspicious traffic patterns
-- ✅ **Cost optimization** - Identify high-traffic resources
-- ✅ **Compliance tracking** - Audit network access patterns
+- **Production-ready configuration** with comprehensive templates
+- **Environment-based configuration** via .env files
+- **Health monitoring** with built-in health checks
+- **Metrics export** to Prometheus format
+- **Interactive setup** with guided configuration
+- **Network traffic analysis** - Monitor accepted/rejected connections
+- **Security monitoring** - Detect suspicious traffic patterns
+- **Cost optimization** - Identify high-traffic resources
+- **Compliance tracking** - Audit network access patterns
 
 ## Quick Start
 

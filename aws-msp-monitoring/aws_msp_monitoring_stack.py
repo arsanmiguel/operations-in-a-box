@@ -40,7 +40,7 @@ class ProgressTracker:
         
     def complete(self):
         elapsed = time.time() - self.start_time
-        print(f"\n✅ Installation completed in {elapsed:.1f}s")
+        print(f"\nInstallation completed in {elapsed:.1f}s")
 
 class SecureMonitoringInstaller:
     def __init__(self, install_dir="secure-monitoring-stack"):
@@ -59,7 +59,7 @@ class SecureMonitoringInstaller:
             'step': self.progress.current_step
         }
         self.errors.append(error_entry)
-        print(f"❌ ERROR: {error}")
+        print(f"ERROR: {error}")
         if details:
             print(f"    Details: {details}")
             
@@ -104,16 +104,16 @@ class SecureMonitoringInstaller:
         # Check Docker
         try:
             docker_version = self.run_command("docker --version", capture_output=True)
-            print(f"    ✅ Docker found: {docker_version}")
+            print(f"    Docker found: {docker_version}")
         except:
-            print("    📦 Docker not found, installing...")
+            print("    Docker not found, installing...")
             if not self.install_docker():
                 return False
                 
         # Check Docker Compose
         try:
             compose_version = self.run_command("docker compose version", capture_output=True)
-            print(f"    ✅ Docker Compose found: {compose_version}")
+            print(f"    Docker Compose found: {compose_version}")
         except:
             self.log_error("Docker Compose not available", "Please install Docker Desktop or docker-compose-plugin")
             return False
@@ -130,9 +130,9 @@ class SecureMonitoringInstaller:
         # Check for PyYAML (needed for enhanced plugin configs)
         try:
             import yaml
-            print("    ✅ PyYAML found")
+            print("    PyYAML found")
         except ImportError:
-            print("    📦 Installing PyYAML for enhanced plugin support...")
+            print("    Installing PyYAML for enhanced plugin support...")
             try:
                 import subprocess
                 
@@ -147,17 +147,17 @@ class SecureMonitoringInstaller:
                     try:
                         result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
                         if result.returncode == 0:
-                            print("    ✅ PyYAML installed successfully")
+                            print("    PyYAML installed successfully")
                             break
                     except (subprocess.TimeoutExpired, subprocess.SubprocessError):
                         continue
                 else:
                     print("    ⚠️  Could not install PyYAML automatically")
-                    print("    💡 Plugin configs will use basic format")
+                    print("    Plugin configs will use basic format")
                     
             except Exception as e:
                 print(f"    ⚠️  PyYAML installation failed: {e}")
-                print("    💡 Plugin configs will use basic format")
+                print("    Plugin configs will use basic format")
         
         # Check for other optional dependencies
         optional_deps = {
@@ -168,7 +168,7 @@ class SecureMonitoringInstaller:
         for dep, purpose in optional_deps.items():
             try:
                 __import__(dep)
-                print(f"    ✅ {dep} found")
+                print(f"    {dep} found")
             except ImportError:
                 print(f"    ℹ️  {dep} not found (optional - for {purpose})")
             
@@ -185,7 +185,7 @@ class SecureMonitoringInstaller:
             try:
                 print(f"    📥 Pulling {image}...")
                 self.run_command(f"docker pull {image}", capture_output=True)
-                print(f"    ✅ {image} updated")
+                print(f"    {image} updated")
             except Exception as e:
                 print(f"    ⚠️  Warning: Could not pull {image}: {e}")
                 
@@ -220,7 +220,7 @@ class SecureMonitoringInstaller:
             for i in range(30):
                 try:
                     self.run_command("docker ps", capture_output=True)
-                    print("    ✅ Docker is ready")
+                    print("    Docker is ready")
                     return True
                 except:
                     print(f"    Waiting for Docker... ({i+1}/30)")
@@ -245,7 +245,7 @@ class SecureMonitoringInstaller:
             'jwt_secret': secrets.token_urlsafe(64)
         }
         
-        print("    ✅ Secure credentials generated")
+        print("    Secure credentials generated")
         for key, value in self.credentials.items():
             print(f"    {key}: {value[:8]}...")
             
@@ -389,7 +389,7 @@ volumes:
 
         with open(self.install_dir / "docker-compose.yml", "w") as f:
             f.write(compose_content)
-        print("    ✅ Docker Compose configuration created")
+        print("    Docker Compose configuration created")
         
         # Prometheus configuration
         prometheus_config = '''global:
@@ -418,7 +418,7 @@ scrape_configs:
             
         with open(prometheus_file, "w") as f:
             f.write(prometheus_config)
-        print("    ✅ Prometheus configuration created")
+        print("    Prometheus configuration created")
         
     def create_secure_api(self):
         """Create secure API server"""
@@ -550,7 +550,7 @@ if __name__ == '__main__':
         with open(self.install_dir / "api" / "app.py", "w") as f:
             f.write(api_content)
             
-        print("    ✅ Secure API server created")
+        print("    Secure API server created")
         
     def create_grafana_config(self):
         """Create Grafana configuration"""
@@ -581,7 +581,7 @@ providers:
         with open(self.install_dir / "grafana" / "provisioning" / "dashboards" / "dashboard.yml", "w") as f:
             f.write(dashboard_provider)
             
-        print("    ✅ Grafana configuration created")
+        print("    Grafana configuration created")
         
     def save_credentials(self):
         """Save credentials securely"""
@@ -607,7 +607,7 @@ providers:
             f.write("```\\n")
             
         os.chmod(credentials_file, 0o600)
-        print("    ✅ Credentials saved securely")
+        print("    Credentials saved securely")
         
     def build_and_deploy(self):
         """Build and deploy the monitoring stack"""
@@ -635,11 +635,11 @@ providers:
             try:
                 result = self.run_command(f"docker compose ps {service}", capture_output=True)
                 if "Up" in result:
-                    print(f"    ✅ {service} is running")
+                    print(f"    {service} is running")
                 else:
                     print(f"    ⚠️  {service} status unclear")
             except:
-                print(f"    ❌ {service} failed to start")
+                print(f"    {service} failed to start")
                 
         return True
         
@@ -656,7 +656,7 @@ providers:
         for test_name, test_cmd in tests:
             try:
                 self.run_command(test_cmd, f"Testing {test_name}")
-                print(f"    ✅ {test_name} passed")
+                print(f"    {test_name} passed")
             except:
                 print(f"    ⚠️  {test_name} failed")
                 
@@ -668,7 +668,7 @@ providers:
                 -d '{{"app_name": "test", "metric_name": "test_metric", "value": 1}}'
             '''
             self.run_command(test_metric_cmd, "Testing authenticated API")
-            print("    ✅ API authentication test passed")
+            print("    API authentication test passed")
         except:
             print("    ⚠️  API authentication test failed")
             
@@ -678,11 +678,11 @@ providers:
         
         # Start script
         start_script = f'''#!/bin/bash
-echo "🚀 Starting Secure Monitoring Stack..."
+echo "Starting Secure Monitoring Stack..."
 docker compose up -d
-echo "✅ Services started!"
+echo "Services started!"
 echo ""
-echo "📊 Access URLs:"
+echo "Access URLs:"
 echo "- Grafana: http://localhost:3000 (admin/{self.credentials['grafana_admin_password']})"
 echo "- Prometheus: http://localhost:9090"
 echo "- API: http://localhost:8080"
@@ -695,9 +695,9 @@ echo "🔑 API Key: {self.credentials['api_key']}"
             with open("start.sh", "w") as f:
                 f.write(start_script)
             os.chmod("start.sh", 0o755)
-            print("    ✅ start.sh created successfully")
+            print("    start.sh created successfully")
         except Exception as e:
-            print(f"    ❌ Failed to create start.sh: {e}")
+            print(f"    Failed to create start.sh: {e}")
             raise
         
         # README
@@ -719,12 +719,12 @@ Enterprise-style monitoring solution with Prometheus, Grafana, and secure API.
 
 ## Security Features
 
-✅ API Key authentication  
-✅ Non-root containers  
-✅ Read-only filesystems  
-✅ Security headers  
-✅ Input validation  
-✅ Rate limiting  
+- API Key authentication
+- Non-root containers
+- Read-only filesystems
+- Security headers
+- Input validation
+- Rate limiting  
 
 ## Management
 
@@ -740,7 +740,7 @@ Generated on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         with open("README.md", "w") as f:
             f.write(readme_content)
             
-        print("    ✅ Management tools created")
+        print("    Management tools created")
         
     def generate_installation_report(self):
         """Generate installation report"""
@@ -778,12 +778,12 @@ Generated on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         with open(report_file, 'w') as f:
             json.dump(report, f, indent=2)
             
-        print(f"    ✅ Installation report saved: {report_file}")
+        print(f"    Installation report saved: {report_file}")
         return report
         
     def install(self):
         """Main installation process"""
-        print("🛡️  Secure Monitoring Stack Installer v2.0")
+        print("Secure Monitoring Stack Installer v2.0")
         print("=" * 50)
         print("Enterprise-style monitoring with comprehensive security\\n")
         
@@ -810,11 +810,11 @@ Generated on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
             
             # Success summary
             print("\\n" + "=" * 60)
-            print("🎉 INSTALLATION SUCCESSFUL!")
+            print("INSTALLATION SUCCESSFUL!")
             print("=" * 60)
-            print(f"📁 Installation Directory: {self.install_dir.absolute()}")
+            print(f"Installation Directory: {self.install_dir.absolute()}")
             print(f"🔐 Credentials File: {self.install_dir / 'CREDENTIALS.md'}")
-            print("\\n📊 Access Your Monitoring Stack:")
+            print("\\nAccess Your Monitoring Stack:")
             print(f"- Grafana: http://localhost:3000 (admin/{self.credentials['grafana_admin_password']})")
             print(f"- Prometheus: http://localhost:9090")
             print(f"- API: http://localhost:8080 (Key: {self.credentials['api_key'][:16]}...)")
@@ -826,11 +826,11 @@ Generated on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
             return True
             
         except KeyboardInterrupt:
-            print("\\n❌ Installation cancelled by user")
+            print("\\nInstallation cancelled by user")
             return False
         except Exception as e:
             self.log_error("Installation failed", str(e))
-            print(f"\\n❌ Installation failed: {e}")
+            print(f"\\nInstallation failed: {e}")
             return False
 
 if __name__ == "__main__":

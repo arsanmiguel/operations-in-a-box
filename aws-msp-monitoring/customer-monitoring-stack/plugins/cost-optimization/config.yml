@@ -1,0 +1,4 @@
+description: Configuration for cost-optimization plugin
+enabled: true
+name: Cost Optimization
+version: 1.0.0

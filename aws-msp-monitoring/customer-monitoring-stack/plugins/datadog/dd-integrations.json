@@ -1,0 +1,5 @@
+{
+  "name": "Datadog APM",
+  "version": "1.0.0",
+  "enabled": true
+}

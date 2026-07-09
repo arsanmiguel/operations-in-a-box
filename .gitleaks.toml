@@ -1,0 +1,12 @@
+title = "operations-in-a-box gitleaks config"
+
+[allowlist]
+description = "Documentation placeholders and install-time generated secret patterns"
+paths = [
+  '''aws-msp-monitoring/AWS_MSP_SECURITY_GUIDE.md''',
+  '''aws-msp-monitoring/AWS_MSP_DASHBOARD_WALKTHROUGH.md''',
+]
+regexes = [
+  '''YOUR_API_KEY''',
+  '''your-api-key-from-credentials-file''',
+]

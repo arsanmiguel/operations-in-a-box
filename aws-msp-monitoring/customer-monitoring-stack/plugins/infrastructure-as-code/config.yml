@@ -1,0 +1,4 @@
+description: Configuration for infrastructure-as-code plugin
+enabled: true
+name: Infrastructure As Code
+version: 1.0.0

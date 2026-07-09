@@ -1,0 +1,32 @@
+networks:
+  default:
+    external: false
+services:
+  splunk_enterprise:
+    container_name: splunk_enterprise
+    environment:
+    - SPLUNK_START_ARGS=${SPLUNK_START_ARGS}
+    - SPLUNK_PASSWORD=${SPLUNK_PASSWORD}
+    - SPLUNK_HEC_TOKEN=${SPLUNK_HEC_TOKEN}
+    - SPLUNK_APPS_URL=${SPLUNK_APPS_URL}
+    healthcheck:
+      interval: 60s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - wget
+      - --no-verbose
+      - --tries=1
+      - --spider
+      - http://localhost:9139/health
+      timeout: 10s
+    image: splunk/splunk:latest
+    networks:
+    - default
+    ports:
+    - 9139:9139
+    restart: unless-stopped
+    volumes:
+    - ./splunk-enterprise-config.yml:/config/config.yml:ro
+    - ./logs:/var/log:rw

@@ -1,0 +1,7 @@
+# Local secrets and generated install artifacts
+aws-msp-monitoring/customer-monitoring-stack/.env
+aws-msp-monitoring/customer-monitoring-stack/CREDENTIALS.md
+aws-msp-monitoring/customer-monitoring-stack/installation_report_*.json
+aws-msp-monitoring/customer-monitoring-stack/data/
+aws-msp-monitoring/__pycache__/
+**/__pycache__/

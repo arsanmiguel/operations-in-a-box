@@ -1,0 +1,134 @@
+# AWS Config Configuration
+# This configuration defines Config rule monitoring and compliance tracking
+
+# AWS Configuration
+aws_region: ${AWS_REGION:-us-east-1}
+
+# Config Service Configuration
+config:
+  delivery_channel: ${CONFIG_DELIVERY_CHANNEL}
+  s3_bucket: ${CONFIG_S3_BUCKET}
+  
+  # Processing Configuration
+  poll_interval_seconds: 600  # Check compliance every 10 minutes
+  batch_size: 50              # Process rules in batches
+  
+  # Compliance Rules to Monitor
+  compliance_rules:
+    # Security Group Rules
+    - rule_name: "securitygroup-ssh-check"
+      description: "Security groups should not allow unrestricted SSH access"
+      severity: "high"
+      resource_type: "AWS::EC2::SecurityGroup"
+      
+    - rule_name: "securitygroup-unrestricted-common-ports"
+      description: "Security groups should not allow unrestricted access to common ports"
+      severity: "high"
+      resource_type: "AWS::EC2::SecurityGroup"
+      
+    # S3 Bucket Rules
+    - rule_name: "s3-bucket-public-read-prohibited"
+      description: "S3 buckets should not allow public read access"
+      severity: "critical"
+      resource_type: "AWS::S3::Bucket"
+      
+    - rule_name: "s3-bucket-public-write-prohibited"
+      description: "S3 buckets should not allow public write access"
+      severity: "critical"
+      resource_type: "AWS::S3::Bucket"
+      
+    - rule_name: "s3-bucket-ssl-requests-only"
+      description: "S3 buckets should require SSL requests"
+      severity: "medium"
+      resource_type: "AWS::S3::Bucket"
+      
+    # IAM Rules
+    - rule_name: "iam-password-policy"
+      description: "IAM password policy should meet requirements"
+      severity: "medium"
+      resource_type: "AWS::IAM::User"
+      
+    - rule_name: "iam-user-no-policies-check"
+      description: "IAM users should not have policies attached directly"
+      severity: "medium"
+      resource_type: "AWS::IAM::User"
+      
+    - rule_name: "root-access-key-check"
+      description: "Root account should not have access keys"
+      severity: "critical"
+      resource_type: "AWS::IAM::User"
+      
+    # EC2 Rules
+    - rule_name: "ec2-security-group-attached-to-eni"
+      description: "EC2 instances should use security groups"
+      severity: "medium"
+      resource_type: "AWS::EC2::Instance"
+      
+    - rule_name: "encrypted-volumes"
+      description: "EBS volumes should be encrypted"
+      severity: "high"
+      resource_type: "AWS::EC2::Volume"
+      
+    # RDS Rules
+    - rule_name: "rds-instance-public-access-check"
+      description: "RDS instances should not be publicly accessible"
+      severity: "high"
+      resource_type: "AWS::RDS::DBInstance"
+      
+    - rule_name: "rds-storage-encrypted"
+      description: "RDS instances should have storage encryption enabled"
+      severity: "high"
+      resource_type: "AWS::RDS::DBInstance"
+      
+    # CloudTrail Rules
+    - rule_name: "cloudtrail-enabled"
+      description: "CloudTrail should be enabled"
+      severity: "critical"
+      resource_type: "AWS::CloudTrail::Trail"
+      
+    - rule_name: "cloudtrail-log-file-validation-enabled"
+      description: "CloudTrail log file validation should be enabled"
+      severity: "medium"
+      resource_type: "AWS::CloudTrail::Trail"
+
+# Metrics Configuration
+metrics:
+  port: 9108
+  path: "/metrics"
+  
+  # Custom metrics to track
+  track_metrics:
+    - "config_compliance_score"
+    - "config_compliant_resources_total"
+    - "config_non_compliant_resources_total"
+    - "config_rules_total"
+    - "config_evaluation_results_total"
+    - "config_configuration_changes_total"
+    - "config_errors_total"
+
+# Alerting Thresholds
+alerts:
+  compliance_score_threshold: 80      # Alert if compliance drops below 80%
+  critical_violations_threshold: 1    # Alert on any critical violations
+  high_violations_threshold: 5        # Alert after 5 high severity violations
+  
+# Resource Types to Monitor
+resource_types:
+  - "AWS::EC2::Instance"
+  - "AWS::EC2::SecurityGroup"
+  - "AWS::EC2::Volume"
+  - "AWS::S3::Bucket"
+  - "AWS::IAM::User"
+  - "AWS::IAM::Role"
+  - "AWS::IAM::Policy"
+  - "AWS::RDS::DBInstance"
+  - "AWS::CloudTrail::Trail"
+  - "AWS::ELB::LoadBalancer"
+  - "AWS::Lambda::Function"
+
+# Compliance Scoring
+scoring:
+  critical_weight: 10    # Critical violations have 10x weight
+  high_weight: 5         # High violations have 5x weight
+  medium_weight: 2       # Medium violations have 2x weight
+  low_weight: 1          # Low violations have 1x weight

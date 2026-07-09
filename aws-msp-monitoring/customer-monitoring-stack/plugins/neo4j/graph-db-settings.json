@@ -1,0 +1,5 @@
+{
+  "name": "Neo4j Graph Database",
+  "version": "1.0.0",
+  "enabled": true
+}

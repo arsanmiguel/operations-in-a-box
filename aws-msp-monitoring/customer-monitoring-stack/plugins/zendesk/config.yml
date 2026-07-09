@@ -1,0 +1,4 @@
+description: Configuration for zendesk plugin
+enabled: true
+name: Zendesk
+version: 1.0.0

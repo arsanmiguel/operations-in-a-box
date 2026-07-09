@@ -1,0 +1,32 @@
+networks:
+  default:
+    external: false
+services:
+  mongodb:
+    container_name: mongodb
+    environment:
+    - MONGODB_URI=${MONGODB_URI}
+    - MONGODB_DATABASE=${MONGODB_DATABASE}
+    - MONGODB_USERNAME=${MONGODB_USERNAME}
+    - MONGODB_PASSWORD=${MONGODB_PASSWORD}
+    healthcheck:
+      interval: 60s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - wget
+      - --no-verbose
+      - --tries=1
+      - --spider
+      - http://localhost:9152/health
+      timeout: 10s
+    image: mongo:latest
+    networks:
+    - default
+    ports:
+    - 9152:9152
+    restart: unless-stopped
+    volumes:
+    - ./mongodb-config.yml:/config/config.yml:ro
+    - ./logs:/var/log:rw

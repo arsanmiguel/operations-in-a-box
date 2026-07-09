@@ -1,0 +1,4 @@
+description: Configuration for network-security plugin
+enabled: true
+name: Network Security
+version: 1.0.0

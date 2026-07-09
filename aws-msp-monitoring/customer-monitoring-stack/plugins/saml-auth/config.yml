@@ -1,0 +1,4 @@
+description: Configuration for saml-auth plugin
+enabled: true
+name: Saml Auth
+version: 1.0.0

@@ -1,0 +1,88 @@
+# AWS CloudWatch Exporter Configuration
+# This configuration defines which CloudWatch metrics to scrape
+# Replace the placeholder values with your actual AWS configuration
+
+region: ${AWS_REGION:-us-east-1}
+metrics:
+  # EC2 Instance Metrics
+  - aws_namespace: AWS/EC2
+    aws_metric_name: CPUUtilization
+    aws_dimensions: [InstanceId]
+    aws_statistics: [Average, Maximum]
+    
+  - aws_namespace: AWS/EC2
+    aws_metric_name: NetworkIn
+    aws_dimensions: [InstanceId]
+    aws_statistics: [Sum]
+    
+  - aws_namespace: AWS/EC2
+    aws_metric_name: NetworkOut
+    aws_dimensions: [InstanceId]
+    aws_statistics: [Sum]
+    
+  - aws_namespace: AWS/EC2
+    aws_metric_name: DiskReadBytes
+    aws_dimensions: [InstanceId]
+    aws_statistics: [Sum]
+    
+  - aws_namespace: AWS/EC2
+    aws_metric_name: DiskWriteBytes
+    aws_dimensions: [InstanceId]
+    aws_statistics: [Sum]
+
+  # RDS Database Metrics
+  - aws_namespace: AWS/RDS
+    aws_metric_name: CPUUtilization
+    aws_dimensions: [DBInstanceIdentifier]
+    aws_statistics: [Average, Maximum]
+    
+  - aws_namespace: AWS/RDS
+    aws_metric_name: DatabaseConnections
+    aws_dimensions: [DBInstanceIdentifier]
+    aws_statistics: [Average]
+    
+  - aws_namespace: AWS/RDS
+    aws_metric_name: FreeableMemory
+    aws_dimensions: [DBInstanceIdentifier]
+    aws_statistics: [Average]
+
+  # ELB Load Balancer Metrics
+  - aws_namespace: AWS/ELB
+    aws_metric_name: RequestCount
+    aws_dimensions: [LoadBalancerName]
+    aws_statistics: [Sum]
+    
+  - aws_namespace: AWS/ELB
+    aws_metric_name: Latency
+    aws_dimensions: [LoadBalancerName]
+    aws_statistics: [Average]
+    
+  - aws_namespace: AWS/ELB
+    aws_metric_name: HTTPCode_Backend_2XX
+    aws_dimensions: [LoadBalancerName]
+    aws_statistics: [Sum]
+
+  # Lambda Function Metrics
+  - aws_namespace: AWS/Lambda
+    aws_metric_name: Duration
+    aws_dimensions: [FunctionName]
+    aws_statistics: [Average, Maximum]
+    
+  - aws_namespace: AWS/Lambda
+    aws_metric_name: Errors
+    aws_dimensions: [FunctionName]
+    aws_statistics: [Sum]
+    
+  - aws_namespace: AWS/Lambda
+    aws_metric_name: Invocations
+    aws_dimensions: [FunctionName]
+    aws_statistics: [Sum]
+
+# AWS Credentials Configuration
+# Option 1: Use IAM Role (recommended for EC2/ECS)
+# Option 2: Use environment variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
+# Option 3: Use AWS credentials file
+
+# Rate limiting to avoid AWS API throttling
+period_seconds: 300
+delay_seconds: 0

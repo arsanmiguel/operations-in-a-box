@@ -4,8 +4,6 @@ Reference **Operations Observability Stack** — monitoring and observability wi
 
 **Quick links:** [Prerequisites](#prerequisites) · [Getting Started](#getting-started) · [Installation & Credentials](#installation--credentials) · [Plugin System](#plugin-system) · [Support](#support)
 
-**Internal review:** CSE scan scope, commands, and documented exceptions — [`observability-stack/SECURITY-EXCEPTIONS.md`](observability-stack/SECURITY-EXCEPTIONS.md). Run `./observability-stack/security-scan.sh` before handoff.
-
 **Contents:** [Overview](#overview) · [Prerequisites](#prerequisites) · [Getting Started](#getting-started) · [Installation & Credentials](#installation--credentials) · [Uninstalling](#uninstalling) · [Next Steps](#next-steps-after-installation) · [Plugin System](#plugin-system) · [Agentic AI](#agentic-ai-integration) · [Package Contents](#package-contents) · [Support](#support)
 
 Links jump to the section heading; expand the block under it to read.
@@ -332,9 +330,8 @@ Documentation: See `ALERT_TRIAGE_AGENT.md` for full setup, configuration example
 - `observability-stack-installer.sh` - Main installer (Unix)
 - `monitoring_stack_installer.py` - Core installer with PyYAML auto-install
 - `universal_installer.py` - Cross-platform installer (Windows/macOS/Linux)
-- `security_validator.py` - Security validation
-- `security-scan.sh` - CSE handoff: Trivy, Gitleaks, optional hadolint/shellcheck, runtime validator
-- `SECURITY-EXCEPTIONS.md` - Documented scan scope and intentional lab exceptions
+- `security_validator.py` - Post-install security validation
+- `SECURITY-EXCEPTIONS.md` - Intentional security design choices for lab deployments
 - `plugin_manager.py` - Plugin system (49 plugins across 12 categories)
 - `plugin_web_gui.py` - Web-based plugin management interface
 - `alert_triage_agent.py` - Bedrock-powered intelligent alert routing (optional)

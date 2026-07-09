@@ -1,56 +1,25 @@
-# Security exceptions — Operations in a Box
+# Security design notes — Operations in a Box
 
 Intentional security choices for the **reference monitoring stack** (local Docker lab starting point).  
-These are **by design** for localhost-first deployment — do not “fix” without an explicit architecture change.
+These are **by design** for localhost-first deployment — adjust deliberately if you change the architecture.
 
 **Related:** [README](../README.md) · [SECURITY_GUIDE.md](SECURITY_GUIDE.md) · [customer-monitoring-stack/README.md](customer-monitoring-stack/README.md)
 
 ---
 
-## CSE / security scan handoff
+## What this stack includes
 
-**What this is:** A Docker Compose monitoring lab (Prometheus, Grafana, Pushgateway, metrics API). Not a multi-tenant SaaS. Core scan scope is the **base stack**, not all 49 optional plugin templates.
+A Docker Compose monitoring lab (Prometheus, Grafana, Pushgateway, metrics API). It is not a multi-tenant SaaS. The base installer starts the **core stack only**; optional integration templates under `customer-monitoring-stack/plugins/` are filled in locally.
 
-**Templates / paths in scope:**
-
-| Path | Role |
-|------|------|
-| `customer-monitoring-stack/docker-compose.yml` | **Core deploy** — what `install.sh` runs |
-| `customer-monitoring-stack/api/` | Metrics API (Flask) + Dockerfile |
-| `*.py`, `*.sh` (this directory) | Installers and validators |
-
-**Run automated scans (Docker required; Colima on macOS):**
+**Validate a local install:**
 
 ```bash
-colima start   # if needed
-cd observability-stack
-./security-scan.sh
-```
-
-Optional full plugin template scan:
-
-```bash
-SCAN_PLUGINS=1 ./security-scan.sh
-```
-
-Reports default to `/tmp/operations-in-a-box-security-scan/` (`latest-trivy-*.txt`, `latest-gitleaks.txt`, `latest-security-validator.txt`, optional hadolint/shellcheck).
-
-**Runtime validation (included in scan script):**
-
-```bash
-cd customer-monitoring-stack
+cd observability-stack/customer-monitoring-stack
 ./scripts/bootstrap-env.sh    # creates .env (gitignored) if missing
 python3 ../security_validator.py --install-dir .
 ```
 
-Expect **9/9** checks when `.env` is generated and core files are unchanged.
-
-**Before filing findings, read:**
-
-- This document (localhost binding, Grafana HTTP cookies, plugin scope)
-- [`.gitleaks.toml`](../.gitleaks.toml) — documentation placeholder allowlist
-
-**Operational note:** Do not commit `customer-monitoring-stack/.env`. Tear down with `uninstall.sh` when done.
+Do not commit `customer-monitoring-stack/.env`. Tear down with `uninstall.sh` when finished.
 
 ---
 
@@ -78,13 +47,11 @@ Expect **9/9** checks when `.env` is generated and core files are unchanged.
 
 ---
 
-## Plugin templates (out of core CSE scope)
+## Plugin templates (optional)
 
 **Design:** `customer-monitoring-stack/plugins/*` are **49 optional integration templates** (third-party APIs, extra containers). They are not started by the base installer.
 
-**CSE default:** `./security-scan.sh` scans **core stack only**. Set `SCAN_PLUGINS=1` to include plugin trees (expect third-party config noise; customers fill credentials locally).
-
-Plugin `*-api-keys.json` files in git are **metadata stubs** (name/version/enabled), not live secrets.
+Customers copy templates, add credentials locally, and run plugin install commands as needed. Plugin `*-api-keys.json` files in git are **metadata stubs** (name/version/enabled), not live secrets.
 
 ---
 
@@ -92,7 +59,7 @@ Plugin `*-api-keys.json` files in git are **metadata stubs** (name/version/enabl
 
 **Design:** Metrics API uses `X-API-Key` from `.env`, constant-time compare, Flask-Limiter defaults documented in `SECURITY_GUIDE.md`.
 
-**Why:** Suitable for lab and single-tenant deployment handoff; production may need OAuth/SAML (see `saml-auth` plugin template).
+**Why:** Suitable for lab and single-tenant deployments; production may need OAuth/SAML (see `saml-auth` plugin template).
 
 ---
 

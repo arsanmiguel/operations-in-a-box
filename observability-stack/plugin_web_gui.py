@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AWS MSP Plugin Manager - Web GUI
+Operations Observability Stack Plugin Manager - Web GUI
 ===============================
 
 Web-based interface for managing monitoring stack plugins.
@@ -15,7 +15,7 @@ import secrets
 import hmac
 from functools import wraps
 from pathlib import Path
-from aws_msp_plugin_manager import PluginManager
+from plugin_manager import PluginManager
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', secrets.token_hex(32))
@@ -203,7 +203,7 @@ def serve_template():
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AWS MSP Plugin Manager</title>
+    <title>Operations Observability Stack Plugin Manager</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; }
@@ -248,7 +248,7 @@ def serve_template():
 </head>
 <body>
     <div class="header">
-        <h1>AWS MSP Plugin Manager</h1>
+        <h1>Operations Observability Stack Plugin Manager</h1>
         <p>Extend your monitoring stack with powerful plugins</p>
     </div>
 

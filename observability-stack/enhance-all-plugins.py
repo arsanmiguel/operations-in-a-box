@@ -78,7 +78,7 @@ class PluginEnhancer:
         """Get list of all available plugins"""
         try:
             result = subprocess.run([
-                'python3', 'aws_msp_plugin_manager.py', 
+                'python3', 'plugin_manager.py', 
                 '--install-dir', 'customer-monitoring-stack', 
                 'list'
             ], capture_output=True, text=True)
@@ -99,7 +99,7 @@ class PluginEnhancer:
         """Install a single plugin"""
         try:
             result = subprocess.run([
-                'python3', 'aws_msp_plugin_manager.py',
+                'python3', 'plugin_manager.py',
                 '--install-dir', 'customer-monitoring-stack',
                 'install', plugin_name
             ], capture_output=True, text=True)

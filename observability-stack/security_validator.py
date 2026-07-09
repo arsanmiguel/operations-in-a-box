@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-AWS MSP Security Validator
+Operations Observability Stack Security Validator
 ==========================
 
-Post-deployment security validator for AWS MSP monitoring stacks.
+Post-deployment security validator for Operations Observability Stack deployments.
 Validates that all enterprise security controls are properly implemented
 for customer deployments.
 """

@@ -1,4 +1,4 @@
-# AWS MSP Dashboard Creation Walkthrough
+# Operations Observability Stack Dashboard Walkthrough
 
 ## Complete Beginner's Guide to Building Monitoring Dashboards
 
@@ -8,7 +8,7 @@ This guide assumes **zero prior experience** with monitoring or dashboards. Foll
 
 ## Prerequisites
 
-- **Monitoring stack deployed** using `./install.sh` or `./aws-msp-monitoring-installer.sh`
+- **Monitoring stack deployed** using `./install.sh` or `./observability-stack-installer.sh`
 - **Grafana running** at http://localhost:3000
 - **Login credentials** from `customer-monitoring-stack/.env` (`GRAFANA_ADMIN_PASSWORD`)
 - **Default dashboard** — **Operations in a Box - Overview** is provisioned automatically; use this walkthrough to add custom panels
@@ -167,7 +167,7 @@ This guide assumes **zero prior experience** with monitoring or dashboards. Foll
    ```
 3. **Run data generator:**
    ```bash
-   python3 ../aws_msp_demo_data_generator.py
+   python3 ../demo_data_generator.py
    ```
 4. **Wait 2-3 minutes for data to populate**
 
@@ -298,9 +298,9 @@ This guide assumes **zero prior experience** with monitoring or dashboards. Foll
 ## Support
 
 ### Getting Help
-- **Documentation:** Check other AWS MSP guide files
+- **Documentation:** Check other Operations Observability Stack guide files
 - **Community:** Grafana community forums
-- **Professional:** Contact your AWS MSP partner
+- **Professional:** Contact your operations team
 
 ### Common Resources
 - **Grafana Documentation:** https://grafana.com/docs/
@@ -669,7 +669,7 @@ for _ in range(3):
 
 ### Step 15: Understanding the Plugin Architecture
 
-The AWS MSP monitoring stack includes a powerful plugin system with **18 plugins across 6 categories**. Plugins extend your monitoring capabilities without modifying the core stack.
+The Operations Observability Stack includes a powerful plugin system with **18 plugins across 6 categories**. Plugins extend your monitoring capabilities without modifying the core stack.
 
 #### 15.1 Plugin Categories Available
 - **Performance & Scale** (3 plugins) - Federation, HA, Auto-scaling
@@ -684,7 +684,7 @@ The AWS MSP monitoring stack includes a powerful plugin system with **18 plugins
 **Method 1: Web GUI (Recommended for Beginners)**
 ```bash
 # Start the plugin web interface
-python3 aws_msp_plugin_web_gui.py
+python3 plugin_web_gui.py
 
 # Open browser to: http://localhost:5000
 # Browse plugins, read descriptions, one-click install
@@ -701,13 +701,13 @@ python3 aws_msp_plugin_web_gui.py
 **Method 3: Direct Command Line**
 ```bash
 # Install specific plugin
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack install aws-cloudwatch
+python3 plugin_manager.py --install-dir customer-monitoring-stack install aws-cloudwatch
 
 # List all available plugins
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack list
+python3 plugin_manager.py --install-dir customer-monitoring-stack list
 
 # View plugins by category
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack list --category "AI/ML Features"
+python3 plugin_manager.py --install-dir customer-monitoring-stack list --category "AI/ML Features"
 ```
 
 ### Step 16: Popular Plugin Combinations for Dashboards
@@ -880,7 +880,7 @@ aws_support_communication_count
 - Support Communication Activity (case updates and responses)
 - Severity Distribution (critical, high, normal, low cases)
 
-**MSP Partner Benefits:**
+**Deployment benefits:**
 - Proactive customer communication about AWS issues
 - Track AWS support performance for customer SLAs
 - Correlate infrastructure problems with AWS support cases
@@ -918,13 +918,13 @@ datadog_custom_metrics
 #### 18.1 Plugin Lifecycle Management
 ```bash
 # Check installed plugins
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack list
+python3 plugin_manager.py --install-dir customer-monitoring-stack list
 
 # Update plugin (reinstall)
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack install aws-cloudwatch --force
+python3 plugin_manager.py --install-dir customer-monitoring-stack install aws-cloudwatch --force
 
 # Remove plugin
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack uninstall aws-cloudwatch
+python3 plugin_manager.py --install-dir customer-monitoring-stack uninstall aws-cloudwatch
 ```
 
 #### 18.2 Plugin Dependencies
@@ -971,15 +971,15 @@ You've now learned:
 
 ```bash
 # Install comprehensive data platform monitoring
-python3 aws_msp_plugin_manager.py install redis
-python3 aws_msp_plugin_manager.py install elasticsearch  
-python3 aws_msp_plugin_manager.py install databricks
-python3 aws_msp_plugin_manager.py install snowflake
-python3 aws_msp_plugin_manager.py install mongodb
-python3 aws_msp_plugin_manager.py install confluent
-python3 aws_msp_plugin_manager.py install influxdb
-python3 aws_msp_plugin_manager.py install clickhouse
-python3 aws_msp_plugin_manager.py install neo4j
+python3 plugin_manager.py install redis
+python3 plugin_manager.py install elasticsearch  
+python3 plugin_manager.py install databricks
+python3 plugin_manager.py install snowflake
+python3 plugin_manager.py install mongodb
+python3 plugin_manager.py install confluent
+python3 plugin_manager.py install influxdb
+python3 plugin_manager.py install clickhouse
+python3 plugin_manager.py install neo4j
 ```
 
 ### Step 12.2: Create Data Platform Dashboard

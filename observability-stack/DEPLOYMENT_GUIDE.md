@@ -1,7 +1,7 @@
-# AWS MSP Monitoring Stack - Partner Guide
+# Operations Observability Stack - Deployment Guide
 
 ## Overview
-This secure monitoring stack installer is designed for AWS Managed Service Provider (MSP) partners to deploy enterprise-style monitoring solutions for their customers. It provides a complete, hardened monitoring infrastructure with comprehensive security controls.
+This secure monitoring stack installer is designed for teams deploying enterprise-style monitoring solutions for their customers. It provides a complete, hardened monitoring infrastructure with comprehensive security controls.
 
 ## What Gets Deployed
 
@@ -21,7 +21,7 @@ This secure monitoring stack installer is designed for AWS Managed Service Provi
 - **Advanced Analytics** - Business intelligence, ELK stack, APM monitoring
 - **DevOps Automation** - Infrastructure as code, CI/CD monitoring, GitOps deployment
 
-## Quick Start for MSP Partners
+## Quick Start
 
 ### Prerequisites
 - Docker and Docker Compose
@@ -30,16 +30,16 @@ This secure monitoring stack installer is designed for AWS Managed Service Provi
 
 ### Deploy for Customer
 ```bash
-./aws-msp-monitoring-installer.sh --install-dir [customer-name]-monitoring
+./observability-stack-installer.sh --install-dir [customer-name]-monitoring
 ```
 
 ### Example Customer Deployments
 ```bash
 # Deploy for ACME Corp
-./aws-msp-monitoring-installer.sh --install-dir acme-corp-monitoring
+./observability-stack-installer.sh --install-dir acme-corp-monitoring
 
 # Deploy for TechStart Inc
-./aws-msp-monitoring-installer.sh --install-dir techstart-monitoring
+./observability-stack-installer.sh --install-dir techstart-monitoring
 ```
 
 ## What the Installer Does
@@ -51,7 +51,7 @@ This secure monitoring stack installer is designed for AWS Managed Service Provi
 6. **Security Validation** - Validates 9 security controls post-deployment
 7. **Documentation** - Creates comprehensive security and usage documentation
 
-## MSP Partner Benefits
+## Deployment benefits
 
 ### Enterprise Security by Default
 - No default credentials (admin/admin eliminated)
@@ -95,7 +95,7 @@ curl -X POST http://localhost:8080/api/metrics \
 ### Demo Data Generation
 ```bash
 # Generate sample data for customer demos
-python3 aws_msp_demo_data_generator.py
+python3 demo_data_generator.py
 ```
 
 ## Production Deployment Considerations
@@ -132,7 +132,7 @@ Each deployment gets a unique `customer-monitoring-stack/.env` created during in
 The installer automatically validates 9 security controls:
 ```bash
 # Manual security validation
-python3 aws_msp_security_validator.py --install-dir [customer-name]-monitoring
+python3 security_validator.py --install-dir [customer-name]-monitoring
 ```
 
 ### Common Issues
@@ -144,11 +144,11 @@ python3 aws_msp_security_validator.py --install-dir [customer-name]-monitoring
 ### Deploy for Customer with Plugins
 ```bash
 # Basic deployment
-./aws-msp-monitoring-installer.sh --install-dir [customer-name]-monitoring
+./observability-stack-installer.sh --install-dir [customer-name]-monitoring
 
 # Add plugins after deployment
 cd [customer-name]-monitoring
-python3 aws_msp_plugin_web_gui.py  # Web interface at http://localhost:5000
+python3 plugin_web_gui.py  # Web interface at http://localhost:5000
 # OR
 ./install-plugins.sh  # Interactive command-line installer
 ```
@@ -157,87 +157,87 @@ python3 aws_msp_plugin_web_gui.py  # Web interface at http://localhost:5000
 
 #### **Small Business Package**
 ```bash
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install aws-cloudwatch
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install montycloud
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install saml-auth
+python3 plugin_manager.py --install-dir customer-monitoring install aws-cloudwatch
+python3 plugin_manager.py --install-dir customer-monitoring install montycloud
+python3 plugin_manager.py --install-dir customer-monitoring install saml-auth
 ```
 *AWS integration + MontyCloud governance + SSO authentication*
 
 #### **Enterprise Package**  
 ```bash
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install prometheus-federation
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install grafana-ha
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install anomaly-detection
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install log-aggregation
+python3 plugin_manager.py --install-dir customer-monitoring install prometheus-federation
+python3 plugin_manager.py --install-dir customer-monitoring install grafana-ha
+python3 plugin_manager.py --install-dir customer-monitoring install anomaly-detection
+python3 plugin_manager.py --install-dir customer-monitoring install log-aggregation
 ```
 *High availability + AI monitoring + log analysis*
 
 #### **Security-Focused Package**
 ```bash
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install saml-auth
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install cert-auth
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install network-security
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install crowdstrike-falcon
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install palo-alto-prisma
+python3 plugin_manager.py --install-dir customer-monitoring install saml-auth
+python3 plugin_manager.py --install-dir customer-monitoring install cert-auth
+python3 plugin_manager.py --install-dir customer-monitoring install network-security
+python3 plugin_manager.py --install-dir customer-monitoring install crowdstrike-falcon
+python3 plugin_manager.py --install-dir customer-monitoring install palo-alto-prisma
 ```
 *Complete security monitoring with partner integrations*
 
 #### **ITSM Integration Package**
 ```bash
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install servicenow
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install bmc-helix
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install jira-service-mgmt
+python3 plugin_manager.py --install-dir customer-monitoring install servicenow
+python3 plugin_manager.py --install-dir customer-monitoring install bmc-helix
+python3 plugin_manager.py --install-dir customer-monitoring install jira-service-mgmt
 ```
 *Full CMDB and change management integration*
 
 #### **Monitoring Partner Package**
 ```bash
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install splunk-enterprise
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install sumologic
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install datadog
+python3 plugin_manager.py --install-dir customer-monitoring install splunk-enterprise
+python3 plugin_manager.py --install-dir customer-monitoring install sumologic
+python3 plugin_manager.py --install-dir customer-monitoring install datadog
 ```
 *Comprehensive monitoring platform integration*
 
 #### **Ticketing Platform Package**
 ```bash
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install aws-support
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install zendesk
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install freshworks
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install linear
+python3 plugin_manager.py --install-dir customer-monitoring install aws-support
+python3 plugin_manager.py --install-dir customer-monitoring install zendesk
+python3 plugin_manager.py --install-dir customer-monitoring install freshworks
+python3 plugin_manager.py --install-dir customer-monitoring install linear
 ```
 *Complete AWS Support and customer ticketing platform integration*
 
 #### **Identity Management Package**
 ```bash
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install duo-security
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install okta
+python3 plugin_manager.py --install-dir customer-monitoring install duo-security
+python3 plugin_manager.py --install-dir customer-monitoring install okta
 ```
 *Complete MFA and identity governance integration*
 
 #### **DevOps Package**
 ```bash
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install aws-cloudformation
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install terraform
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install cicd-monitoring
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install gitops-deployment
+python3 plugin_manager.py --install-dir customer-monitoring install aws-cloudformation
+python3 plugin_manager.py --install-dir customer-monitoring install terraform
+python3 plugin_manager.py --install-dir customer-monitoring install cicd-monitoring
+python3 plugin_manager.py --install-dir customer-monitoring install gitops-deployment
 ```
 *Complete infrastructure as code and deployment pipeline monitoring*
 
 #### **Data Platform Package**
 ```bash
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install redis
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install elasticsearch
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install databricks
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install snowflake
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install mongodb
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install confluent
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install influxdb
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install clickhouse
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring install neo4j
+python3 plugin_manager.py --install-dir customer-monitoring install redis
+python3 plugin_manager.py --install-dir customer-monitoring install elasticsearch
+python3 plugin_manager.py --install-dir customer-monitoring install databricks
+python3 plugin_manager.py --install-dir customer-monitoring install snowflake
+python3 plugin_manager.py --install-dir customer-monitoring install mongodb
+python3 plugin_manager.py --install-dir customer-monitoring install confluent
+python3 plugin_manager.py --install-dir customer-monitoring install influxdb
+python3 plugin_manager.py --install-dir customer-monitoring install clickhouse
+python3 plugin_manager.py --install-dir customer-monitoring install neo4j
 ```
 *Complete data platform and analytics monitoring*
 
-### Plugin Management for MSP Partners
+### Plugin management
 
 #### **Plugin Revenue Opportunities**
 - **Basic Stack**: $X/month (core monitoring)
@@ -263,10 +263,10 @@ docker compose logs -f        # View logs
 docker compose ps             # Check status
 
 # Plugin management
-python3 aws_msp_plugin_manager.py list                    # Show available plugins
-python3 aws_msp_plugin_manager.py list --installed        # Show installed plugins
-python3 aws_msp_plugin_manager.py install plugin-name     # Install plugin
-python3 aws_msp_plugin_manager.py uninstall plugin-name   # Remove plugin
+python3 plugin_manager.py list                    # Show available plugins
+python3 plugin_manager.py list --installed        # Show installed plugins
+python3 plugin_manager.py install plugin-name     # Install plugin
+python3 plugin_manager.py uninstall plugin-name   # Remove plugin
 ```
 
 ## Architecture Overview
@@ -282,7 +282,7 @@ Customer Apps → Secure API → Pushgateway → Prometheus → Grafana
         AWS Integration | Security | AI/ML | Analytics | DevOps
 ```
 
-## Plugin System Benefits for MSP Partners
+## Plugin system benefits
 
 ### **Scalable Revenue Model**
 - Start with basic monitoring, add plugins as customer needs grow
@@ -300,11 +300,11 @@ Customer Apps → Secure API → Pushgateway → Prometheus → Grafana
 - Enterprise plugins justify premium pricing
 
 ## Documentation References
-- `AWS_MSP_SECURITY_GUIDE.md` - Complete security documentation
-- `AWS_MSP_SECURITY_ANALYSIS.md` - Security comparison analysis  
-- `AWS_MSP_DASHBOARD_WALKTHROUGH.md` - Complete plugin integration guide
-- `AWS_MSP_PLUGIN_VALIDATION_REPORT.md` - Plugin system validation results
+- `SECURITY_GUIDE.md` - Complete security documentation
+- `SECURITY_ANALYSIS.md` - Security comparison analysis  
+- `DASHBOARD_WALKTHROUGH.md` - Complete plugin integration guide
+- `PLUGIN_VALIDATION_REPORT.md` - Plugin system validation results
 - `customer-monitoring-stack/.env` - Customer-specific access credentials (generated per deployment, do not commit)
 - `README.md` - Customer usage guide (generated per deployment)
 
-This monitoring stack provides enterprise-style security and monitoring capabilities with a modular plugin system that MSP partners can confidently deploy and scale for their most demanding customers.
+This monitoring stack provides enterprise-style security and monitoring capabilities with a modular plugin system that Operators can confidently deploy and scale for their most demanding customers.

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AWS MSP Monitoring Stack - Universal Installer
+Operations Observability Stack - Universal Installer
 ==============================================
 
 Cross-platform installer for Windows, macOS, and Linux.
@@ -21,7 +21,7 @@ class UniversalInstaller:
     def __init__(self):
         self.system = platform.system().lower()
         self.arch = platform.machine().lower()
-        self.install_dir = Path.cwd() / "aws-msp-monitoring"
+        self.install_dir = Path.cwd() / "observability-stack"
         
     def detect_os(self):
         """Detect operating system and architecture"""
@@ -250,16 +250,16 @@ class UniversalInstaller:
         # Create main directory
         self.install_dir.mkdir(exist_ok=True)
         
-        # Copy all AWS MSP files
+        # Copy all stack files
         files_to_copy = [
-            "aws-msp-monitoring-installer.sh",
-            "aws_msp_monitoring_stack.py",
-            "aws_msp_security_validator.py",
-            "AWS_MSP_SECURITY_GUIDE.md",
-            "AWS_MSP_SECURITY_ANALYSIS.md",
-            "AWS_MSP_PARTNER_GUIDE.md",
-            "AWS_MSP_DASHBOARD_WALKTHROUGH.md",
-            "aws_msp_demo_data_generator.py"
+            "observability-stack-installer.sh",
+            "monitoring_stack_installer.py",
+            "security_validator.py",
+            "SECURITY_GUIDE.md",
+            "SECURITY_ANALYSIS.md",
+            "DEPLOYMENT_GUIDE.md",
+            "DASHBOARD_WALKTHROUGH.md",
+            "demo_data_generator.py"
         ]
         
         for file_name in files_to_copy:
@@ -274,7 +274,7 @@ class UniversalInstaller:
         # Make shell script executable on Unix systems
         os_type = self.detect_os()
         if os_type != "windows":
-            installer_script = self.install_dir / "aws-msp-monitoring-installer.sh"
+            installer_script = self.install_dir / "observability-stack-installer.sh"
             if installer_script.exists():
                 installer_script.chmod(0o755)
     
@@ -285,7 +285,7 @@ class UniversalInstaller:
         # Windows batch file
         windows_launcher = self.install_dir / "install.bat"
         windows_launcher.write_text(f"""@echo off
-echo AWS MSP Monitoring Stack Installer
+echo Operations Observability Stack Installer
 echo ===================================
 echo.
 
@@ -308,7 +308,7 @@ if errorlevel 1 (
 )
 
 REM Run the installer
-python aws_msp_monitoring_stack.py --install-dir customer-monitoring-stack
+python monitoring_stack_installer.py --install-dir customer-monitoring-stack
 if errorlevel 1 (
     echo.
     echo Installation failed. Check the error messages above.
@@ -326,7 +326,7 @@ pause
         # Unix shell script
         unix_launcher = self.install_dir / "install.sh"
         unix_launcher.write_text(f"""#!/bin/bash
-echo "AWS MSP Monitoring Stack Installer"
+echo "Operations Observability Stack Installer"
 echo "==================================="
 echo ""
 
@@ -345,7 +345,7 @@ if ! command -v docker &> /dev/null; then
 fi
 
 # Run the installer
-python3 aws_msp_monitoring_stack.py --install-dir customer-monitoring-stack
+python3 monitoring_stack_installer.py --install-dir customer-monitoring-stack
 if [ $? -ne 0 ]; then
     echo ""
     echo "Installation failed. Check the error messages above."
@@ -367,7 +367,7 @@ echo "Check customer-monitoring-stack/.env for login credentials"
     
     def create_readme(self):
         """Create installation README"""
-        readme_content = f"""# AWS MSP Monitoring Stack - Universal Installer
+        readme_content = f"""# Operations Observability Stack - Universal Installer
 
 ## Quick Start
 
@@ -389,34 +389,34 @@ echo "Check customer-monitoring-stack/.env for login credentials"
 ### Install Command
 ```bash
 # Windows
-python aws_msp_monitoring_stack.py --install-dir customer-monitoring-stack
+python monitoring_stack_installer.py --install-dir customer-monitoring-stack
 
 # macOS/Linux  
-python3 aws_msp_monitoring_stack.py --install-dir customer-monitoring-stack
+python3 monitoring_stack_installer.py --install-dir customer-monitoring-stack
 ```
 
 ## After Installation
 
 1. **Access Grafana**: http://localhost:3000
 2. **Login credentials**: Check `customer-monitoring-stack/.env` (`GRAFANA_ADMIN_PASSWORD`)
-3. **Dashboard guide**: See `AWS_MSP_DASHBOARD_WALKTHROUGH.md`
+3. **Dashboard guide**: See `DASHBOARD_WALKTHROUGH.md`
 4. **API integration**: Examples in the dashboard walkthrough
 
 ## Package Contents
 
-- `aws-msp-monitoring-installer.sh` - Main installer (Unix)
-- `aws_msp_monitoring_stack.py` - Core installer
-- `aws_msp_security_validator.py` - Security validation
-- `AWS_MSP_DASHBOARD_WALKTHROUGH.md` - Complete dashboard guide
-- `AWS_MSP_PARTNER_GUIDE.md` - Partner deployment guide
-- `AWS_MSP_SECURITY_GUIDE.md` - Security documentation
-- `AWS_MSP_SECURITY_ANALYSIS.md` - Security analysis
-- `aws_msp_demo_data_generator.py` - Demo data generator
+- `observability-stack-installer.sh` - Main installer (Unix)
+- `monitoring_stack_installer.py` - Core installer
+- `security_validator.py` - Security validation
+- `DASHBOARD_WALKTHROUGH.md` - Complete dashboard guide
+- `DEPLOYMENT_GUIDE.md` - Deployment guide
+- `SECURITY_GUIDE.md` - Security documentation
+- `SECURITY_ANALYSIS.md` - Security analysis
+- `demo_data_generator.py` - Demo data generator
 
 ## Support
 
 For issues or questions:
-1. Check the troubleshooting section in `AWS_MSP_DASHBOARD_WALKTHROUGH.md`
+1. Check the troubleshooting section in `DASHBOARD_WALKTHROUGH.md`
 2. Verify Docker is running: `docker --version`
 3. Check Python version: `python --version` (Windows) or `python3 --version` (Unix)
 
@@ -434,7 +434,7 @@ For issues or questions:
     
     def run_installation(self):
         """Run the complete installation process"""
-        print("AWS MSP Monitoring Stack - Universal Installer")
+        print("Operations Observability Stack - Universal Installer")
         print("=" * 50)
         print()
         
@@ -474,8 +474,8 @@ For issues or questions:
         print()
         print("Documentation:")
         print("   • README.md - Quick start guide")
-        print("   • AWS_MSP_DASHBOARD_WALKTHROUGH.md - Complete tutorial")
-        print("   • AWS_MSP_PARTNER_GUIDE.md - Partner information")
+        print("   • DASHBOARD_WALKTHROUGH.md - Complete tutorial")
+        print("   • DEPLOYMENT_GUIDE.md - Deployment guide")
         print()
         
         return True

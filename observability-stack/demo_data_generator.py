@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AWS MSP Demo Data Generator - Fixed Version
+Operations Observability Stack Demo Data Generator
 Generates realistic monitoring data with correct metric names
 """
 import time
@@ -130,7 +130,7 @@ def main():
         api_key = load_api_key()
     except Exception as e:
         print(f"Could not read API key: {e}")
-        print("Run install from aws-msp-monitoring/ or customer-monitoring-stack/ with a generated .env file")
+        print("Run install from observability-stack/ or customer-monitoring-stack/ with a generated .env file")
         return
     
     generator = DemoDataGenerator(api_key)

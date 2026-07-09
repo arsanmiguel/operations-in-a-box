@@ -1,10 +1,8 @@
 ## Overview
 
-Thousands of AWS MSP partners have asked "how do I get started with monitoring and operations tooling?" This repository addresses that common challenge by providing a reference monitoring and observability stack designed to demonstrate a practical baseline aligned with AWS MSP Program expectations.
+The **Operations Observability Stack** is a reference monitoring and observability baseline: Prometheus, Grafana, secure metrics API, Pushgateway, and 49 plugin templates. Use it to learn architecture patterns, run a local lab, or hand off a hardened starting point to a customer environment.
 
-Originally built for AWS MSP partners, this stack is now used by customers, system integrators (SIs), ISVs, and enterprises for production monitoring and operations. The "MSP" name reflects its multi-tenant, production-grade design - not a limitation on who can use it.
-
-**Note:** This is a starting point, not an AWS fully managed or supported production solution. Use this project to understand architecture patterns, accelerate experimentation, and build your own compliant monitoring implementation.
+**Note:** This is a starting point, not an AWS fully managed or supported production solution. Validate your own implementation against your organization's security and compliance requirements.
 
 ---
 
@@ -23,14 +21,14 @@ Originally built for AWS MSP partners, this stack is now used by customers, syst
 =================================================================
 
 
-# AWS MSP Monitoring Stack - Universal Installer
+# Operations Observability Stack - Universal Installer
 
 ## GETTING STARTED (2 minutes)
 
 ### **Step 1: Extract the Package**
-1. Download `AWS_MSP_Monitoring_Stack_Universal_Installer.zip`
+1. Download `Operations_Observability_Stack_Universal_Installer.zip`
 2. Extract to any folder
-3. Open the `aws-msp-monitoring` directory
+3. Open the `observability-stack` directory
 
 
 ### **Step 2: Run the Installer**
@@ -42,7 +40,7 @@ Originally built for AWS MSP partners, this stack is now used by customers, syst
 
 #### **macOS/Linux Users:**
 1. **Open Terminal**
-2. **Navigate** to the extracted folder: `cd path/to/aws-msp-monitoring`
+2. **Navigate** to the extracted folder: `cd path/to/observability-stack`
 3. **Run:** `./install.sh`
 4. **Done!** Grafana opens automatically
 
@@ -72,7 +70,7 @@ The installer writes secrets to `customer-monitoring-stack/.env` (not into git-t
 ## Next Steps After Installation
 
 ### **For Beginners:**
-1. **Read:** `AWS_MSP_DASHBOARD_WALKTHROUGH.md` - Complete tutorial
+1. **Read:** `DASHBOARD_WALKTHROUGH.md` - Complete tutorial
 2. **Create dashboards** following the step-by-step guide
 3. **Generate demo data** using the included generator
 
@@ -81,9 +79,9 @@ The installer writes secrets to `customer-monitoring-stack/.env` (not into git-t
 2. **Connect your applications** using the secure REST API
 3. **Custom metrics** and dashboard creation
 
-### **For MSP Partners:**
-1. **Partner guide:** `AWS_MSP_PARTNER_GUIDE.md`
-2. **Security analysis:** `AWS_MSP_SECURITY_ANALYSIS.md`
+### **For deployment handoff:**
+1. **Deployment guide:** `DEPLOYMENT_GUIDE.md`
+2. **Security analysis:** `SECURITY_ANALYSIS.md`
 3. **Customer handoff** procedures and documentation
 
 ---
@@ -99,11 +97,11 @@ The monitoring stack supports a modular plugin system covering performance, secu
 ./install-plugins.sh
 
 # Option 2: Web-based GUI (recommended)
-python3 aws_msp_plugin_web_gui.py
+python3 plugin_web_gui.py
 # Then open: http://localhost:5000
 
 # Option 3: Direct command-line
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack install aws-cloudwatch
+python3 plugin_manager.py --install-dir customer-monitoring-stack install aws-cloudwatch
 ```
 
 **What you get automatically:**
@@ -150,56 +148,56 @@ python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack instal
 <details>
 <summary><strong>Getting Started Examples</strong></summary>
 
-**Basic AWS MSP Setup:**
+**Basic stack setup:**
 ```bash
 # Install base stack
-./aws-msp-monitoring-installer.sh
+./observability-stack-installer.sh
 
 # Add essential AWS integration
-python3 aws_msp_plugin_manager.py install aws-cloudwatch
-python3 aws_msp_plugin_manager.py install aws-cloudtrail
-python3 aws_msp_plugin_manager.py install aws-config
-python3 aws_msp_plugin_manager.py install montycloud
+python3 plugin_manager.py install aws-cloudwatch
+python3 plugin_manager.py install aws-cloudtrail
+python3 plugin_manager.py install aws-config
+python3 plugin_manager.py install montycloud
 ```
 
-**Security-Focused MSP:**
+**Security-focused profile:**
 ```bash
 # Install base + security partners
-python3 aws_msp_plugin_manager.py install crowdstrike-falcon
-python3 aws_msp_plugin_manager.py install duo-security
-python3 aws_msp_plugin_manager.py install okta
+python3 plugin_manager.py install crowdstrike-falcon
+python3 plugin_manager.py install duo-security
+python3 plugin_manager.py install okta
 ```
 
-**DevOps-Focused MSP:**
+**DevOps-focused profile:**
 ```bash
 # Install infrastructure monitoring
-python3 aws_msp_plugin_manager.py install aws-cloudformation
-python3 aws_msp_plugin_manager.py install terraform
-python3 aws_msp_plugin_manager.py install cicd-monitoring
+python3 plugin_manager.py install aws-cloudformation
+python3 plugin_manager.py install terraform
+python3 plugin_manager.py install cicd-monitoring
 ```
 
-**Data Platform MSP:**
+**Data platform profile:**
 ```bash
 # Install data platform monitoring
-python3 aws_msp_plugin_manager.py install redis
-python3 aws_msp_plugin_manager.py install elasticsearch
-python3 aws_msp_plugin_manager.py install databricks
-python3 aws_msp_plugin_manager.py install snowflake
-python3 aws_msp_plugin_manager.py install mongodb
-python3 aws_msp_plugin_manager.py install confluent
-python3 aws_msp_plugin_manager.py install influxdb
-python3 aws_msp_plugin_manager.py install clickhouse
-python3 aws_msp_plugin_manager.py install neo4j
+python3 plugin_manager.py install redis
+python3 plugin_manager.py install elasticsearch
+python3 plugin_manager.py install databricks
+python3 plugin_manager.py install snowflake
+python3 plugin_manager.py install mongodb
+python3 plugin_manager.py install confluent
+python3 plugin_manager.py install influxdb
+python3 plugin_manager.py install clickhouse
+python3 plugin_manager.py install neo4j
 ```
 
-**Enterprise MSP with Full Stack:**
+**Enterprise full stack:**
 ```bash
 # Install comprehensive monitoring
-python3 aws_msp_plugin_manager.py install aws-cloudwatch
-python3 aws_msp_plugin_manager.py install montycloud
-python3 aws_msp_plugin_manager.py install servicenow
-python3 aws_msp_plugin_manager.py install splunk-enterprise
-python3 aws_msp_plugin_manager.py install anomaly-detection
+python3 plugin_manager.py install aws-cloudwatch
+python3 plugin_manager.py install montycloud
+python3 plugin_manager.py install servicenow
+python3 plugin_manager.py install splunk-enterprise
+python3 plugin_manager.py install anomaly-detection
 ```
 </details>
 
@@ -208,13 +206,13 @@ python3 aws_msp_plugin_manager.py install anomaly-detection
 
 ```bash
 # List all available plugins
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack list
+python3 plugin_manager.py --install-dir customer-monitoring-stack list
 
 # Get plugin information
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack info aws-cloudwatch
+python3 plugin_manager.py --install-dir customer-monitoring-stack info aws-cloudwatch
 
 # View installed plugins
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack list --installed
+python3 plugin_manager.py --install-dir customer-monitoring-stack list --installed
 ```
 </details>
 
@@ -256,12 +254,12 @@ python3 alert_triage_agent.py
 
 ## Package Contents
 
-- `aws-msp-monitoring-installer.sh` - Main installer (Unix)
-- `aws_msp_monitoring_stack.py` - Core installer with PyYAML auto-install
-- `aws_msp_universal_installer.py` - Cross-platform installer (Windows/macOS/Linux)
-- `aws_msp_security_validator.py` - Security validation
-- `aws_msp_plugin_manager.py` - Plugin system (49 plugins across 12 categories)
-- `aws_msp_plugin_web_gui.py` - Web-based plugin management interface
+- `observability-stack-installer.sh` - Main installer (Unix)
+- `monitoring_stack_installer.py` - Core installer with PyYAML auto-install
+- `universal_installer.py` - Cross-platform installer (Windows/macOS/Linux)
+- `security_validator.py` - Security validation
+- `plugin_manager.py` - Plugin system (49 plugins across 12 categories)
+- `plugin_web_gui.py` - Web-based plugin management interface
 - `alert_triage_agent.py` - Bedrock-powered intelligent alert routing (optional)
 - `ALERT_TRIAGE_AGENT.md` - Agentic AI integration documentation
 - `install-plugins.sh` - Interactive plugin installer
@@ -271,12 +269,12 @@ python3 alert_triage_agent.py
 - `uninstall.bat` - Windows uninstaller
 - `enhance-all-plugins.py` - Plugin validation and enhancement system
 - `enhance-all-templates.py` - Comprehensive template generator
-- `AWS_MSP_DASHBOARD_WALKTHROUGH.md` - Complete dashboard guide
-- `AWS_MSP_DASHBOARD_QUERY_REFERENCE.md` - Prometheus query reference
-- `AWS_MSP_PARTNER_GUIDE.md` - Partner deployment guide
-- `AWS_MSP_SECURITY_GUIDE.md` - Security documentation
-- `AWS_MSP_SECURITY_ANALYSIS.md` - Security analysis
-- `aws_msp_demo_data_generator.py` - Demo data generator (fixed metric names)
+- `DASHBOARD_WALKTHROUGH.md` - Complete dashboard guide
+- `DASHBOARD_QUERY_REFERENCE.md` - Prometheus query reference
+- `DEPLOYMENT_GUIDE.md` - Deployment guide
+- `SECURITY_GUIDE.md` - Security documentation
+- `SECURITY_ANALYSIS.md` - Security analysis
+- `demo_data_generator.py` - Demo data generator (fixed metric names)
 
 ## Support
 
@@ -307,7 +305,7 @@ docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
 docker logs prometheus
 docker logs grafana
 docker logs pushgateway
-docker logs msp-api
+docker logs api-server
 
 # Check service health
 curl -f http://localhost:3000/api/health  # Grafana
@@ -320,7 +318,7 @@ curl -f http://localhost:9090/-/healthy  # Prometheus
 netstat -an | grep :3000   # Grafana
 netstat -an | grep :9090   # Prometheus
 netstat -an | grep :9091   # Pushgateway
-netstat -an | grep :8080   # MSP API
+netstat -an | grep :8080   # metrics API
 
 # Test connectivity
 curl -I http://localhost:3000
@@ -342,14 +340,14 @@ wmic cpu get loadpercentage  # Windows
 ### **5. Plugin-Specific Issues**
 ```bash
 # List installed plugins
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack list --installed
+python3 plugin_manager.py --install-dir customer-monitoring-stack list --installed
 
 # Check plugin status
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack status
+python3 plugin_manager.py --install-dir customer-monitoring-stack status
 
 # Reinstall problematic plugin
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack uninstall <plugin-name>
-python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack install <plugin-name>
+python3 plugin_manager.py --install-dir customer-monitoring-stack uninstall <plugin-name>
+python3 plugin_manager.py --install-dir customer-monitoring-stack install <plugin-name>
 ```
 
 ### **6. Log Collection for Support**
@@ -359,7 +357,7 @@ mkdir support-logs
 docker logs prometheus > support-logs/prometheus.log 2>&1
 docker logs grafana > support-logs/grafana.log 2>&1
 docker logs pushgateway > support-logs/pushgateway.log 2>&1
-docker logs msp-api > support-logs/msp-api.log 2>&1
+docker logs api-server > support-logs/api-server.log 2>&1
 
 # System information
 docker info > support-logs/docker-info.log
@@ -421,9 +419,9 @@ pip install -r requirements.txt
 <details>
 <summary><strong>Additional Resources</strong></summary>
 
-1. **Detailed troubleshooting:** `AWS_MSP_DASHBOARD_WALKTHROUGH.md`
-2. **Security issues:** `AWS_MSP_SECURITY_GUIDE.md`
-3. **Partner deployment:** `AWS_MSP_PARTNER_GUIDE.md`
+1. **Detailed troubleshooting:** `DASHBOARD_WALKTHROUGH.md`
+2. **Security issues:** `SECURITY_GUIDE.md`
+3. **Deployment:** `DEPLOYMENT_GUIDE.md`
 </details>
 
 ### **Contact Support**
@@ -439,13 +437,13 @@ pip install -r requirements.txt
 - **Python**: 3.7+ (PyYAML and requests auto-installed during setup)
 
 ### Scaling Guidelines
-- **Small MSP (1-15 plugins)**: 4 CPU, 8GB RAM, 20GB disk
-- **Medium MSP (15-30 plugins)**: 8 CPU, 16GB RAM, 50GB disk  
-- **Enterprise MSP (30+ plugins)**: 16+ CPU, 32GB+ RAM, 100GB+ disk
+- **Small deployment (1-15 plugins)**: 4 CPU, 8GB RAM, 20GB disk
+- **Medium deployment (15-30 plugins)**: 8 CPU, 16GB RAM, 50GB disk  
+- **Enterprise deployment (30+ plugins)**: 16+ CPU, 32GB+ RAM, 100GB+ disk
 
 <div align="center"><em>Disk space recommendations assume maximum logging and retention policies.<br>Actual usage may be lower with optimized retention settings.</em></div>
 
 ---
 
-**Important:** This project is not an official AWS product and does not by itself confer AWS MSP Program compliance. Partners are responsible for validating their own implementations against current AWS MSP Program requirements.
+**Important:** This project is not an official AWS product. You are responsible for validating deployments against your organization's requirements.
 

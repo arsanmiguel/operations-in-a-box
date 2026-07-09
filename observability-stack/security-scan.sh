@@ -46,12 +46,12 @@ docker run --rm \
   zricethezav/gitleaks:v8.30.1 \
   detect --redact --source /repo --config /repo/.gitleaks.toml 2>&1 | tee -a "$OUT/latest-gitleaks.txt" || true
 
-scan_path core-stack aws-msp-monitoring/customer-monitoring-stack/docker-compose.yml
-scan_path api aws-msp-monitoring/customer-monitoring-stack/api
-scan_path installer-py aws-msp-monitoring
+scan_path core-stack observability-stack/customer-monitoring-stack/docker-compose.yml
+scan_path api observability-stack/customer-monitoring-stack/api
+scan_path installer-py observability-stack
 
 if [[ "$SCAN_PLUGINS" == "1" ]]; then
-  scan_path plugin-templates aws-msp-monitoring/customer-monitoring-stack/plugins
+  scan_path plugin-templates observability-stack/customer-monitoring-stack/plugins
 else
   echo "SKIP plugin template scan (set SCAN_PLUGINS=1 to include)" | tee "$OUT/latest-trivy-plugin-templates.txt"
 fi
@@ -75,8 +75,8 @@ if [[ ! -f "${STACK}/.env" ]]; then
   echo "Generating ${STACK}/.env via bootstrap-env.sh ..." | tee -a "$OUT/latest-security-validator.txt"
   "${STACK}/scripts/bootstrap-env.sh" >>"$OUT/latest-security-validator.txt" 2>&1
 fi
-python3 "${ROOT}/aws_msp_security_validator.py" --install-dir "${STACK}" 2>&1 | tee -a "$OUT/latest-security-validator.txt" || true
+python3 "${ROOT}/security_validator.py" --install-dir "${STACK}" 2>&1 | tee -a "$OUT/latest-security-validator.txt" || true
 
 echo ""
 echo "Reports in ${OUT}"
-echo "Documented exceptions: aws-msp-monitoring/SECURITY-EXCEPTIONS.md"
+echo "Documented exceptions: observability-stack/SECURITY-EXCEPTIONS.md"

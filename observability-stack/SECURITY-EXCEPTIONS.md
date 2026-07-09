@@ -1,9 +1,9 @@
 # Security exceptions — Operations in a Box
 
-Intentional security choices for the **reference monitoring stack** (local Docker lab / MSP starting point).  
+Intentional security choices for the **reference monitoring stack** (local Docker lab starting point).  
 These are **by design** for localhost-first deployment — do not “fix” without an explicit architecture change.
 
-**Related:** [README](../README.md) · [AWS_MSP_SECURITY_GUIDE.md](AWS_MSP_SECURITY_GUIDE.md) · [customer-monitoring-stack/README.md](customer-monitoring-stack/README.md)
+**Related:** [README](../README.md) · [SECURITY_GUIDE.md](SECURITY_GUIDE.md) · [customer-monitoring-stack/README.md](customer-monitoring-stack/README.md)
 
 ---
 
@@ -17,13 +17,13 @@ These are **by design** for localhost-first deployment — do not “fix” with
 |------|------|
 | `customer-monitoring-stack/docker-compose.yml` | **Core deploy** — what `install.sh` runs |
 | `customer-monitoring-stack/api/` | Metrics API (Flask) + Dockerfile |
-| `aws-msp-monitoring/*.py`, `*.sh` | Installers and validators |
+| `*.py`, `*.sh` (this directory) | Installers and validators |
 
 **Run automated scans (Docker required; Colima on macOS):**
 
 ```bash
 colima start   # if needed
-cd aws-msp-monitoring
+cd observability-stack
 ./security-scan.sh
 ```
 
@@ -40,7 +40,7 @@ Reports default to `/tmp/operations-in-a-box-security-scan/` (`latest-trivy-*.tx
 ```bash
 cd customer-monitoring-stack
 ./scripts/bootstrap-env.sh    # creates .env (gitignored) if missing
-python3 ../aws_msp_security_validator.py --install-dir .
+python3 ../security_validator.py --install-dir .
 ```
 
 Expect **9/9** checks when `.env` is generated and core files are unchanged.
@@ -90,9 +90,9 @@ Plugin `*-api-keys.json` files in git are **metadata stubs** (name/version/enabl
 
 ## Rate limits and API key auth
 
-**Design:** Metrics API uses `X-API-Key` from `.env`, constant-time compare, Flask-Limiter defaults documented in `AWS_MSP_SECURITY_GUIDE.md`.
+**Design:** Metrics API uses `X-API-Key` from `.env`, constant-time compare, Flask-Limiter defaults documented in `SECURITY_GUIDE.md`.
 
-**Why:** Suitable for lab and single-tenant MSP handoff; production may need OAuth/SAML (see `saml-auth` plugin template).
+**Why:** Suitable for lab and single-tenant deployment handoff; production may need OAuth/SAML (see `saml-auth` plugin template).
 
 ---
 
@@ -105,4 +105,4 @@ Core stack already implements:
 - Cryptographic `.env` generation (`bootstrap-env.sh`)
 - Security headers, input validation, rate limiting on API
 
-See `aws_msp_security_validator.py` for the checklist.
+See `security_validator.py` for the checklist.

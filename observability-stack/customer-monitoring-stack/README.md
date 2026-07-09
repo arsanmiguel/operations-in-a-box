@@ -48,7 +48,7 @@ Grafana dashboards and datasources ship under `grafana/provisioning/`:
 - `datasources/prometheus.yml` — Prometheus at `http://prometheus:9090`
 - `dashboards/default/monitoring-overview.json` — starter dashboard (targets up, API health, install heartbeat)
 
-These load automatically on container start. Edit JSON files to change the default dashboard; use `AWS_MSP_DASHBOARD_WALKTHROUGH.md` in the parent directory for custom panels.
+These load automatically on container start. Edit JSON files to change the default dashboard; use `DASHBOARD_WALKTHROUGH.md` in the parent directory for custom panels.
 
 ## Management
 

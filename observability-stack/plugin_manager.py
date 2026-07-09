@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AWS MSP Plugin Manager - Fixed Version
+Operations Observability Stack Plugin Manager
 =====================================
 
 Modular plugin system for extending the base monitoring stack.
@@ -156,7 +156,7 @@ class PluginManager:
             "montycloud": {
                 "name": "MontyCloud Governance",
                 "category": "Cloud Integration",
-                "description": "MontyCloud multi-cloud governance, compliance, and cost optimization (AWS MSP Program benefit)",
+                "description": "MontyCloud multi-cloud governance, compliance, and cost optimization (multi-cloud governance integration)",
                 "dependencies": ["base"],
                 "docker_services": ["montycloud-connector"],
                 "config_files": ["montycloud-config.yml", "montycloud-api-keys.json"],
@@ -1010,7 +1010,7 @@ services:
         return sorted(categories)
 
 def main():
-    parser = argparse.ArgumentParser(description='AWS MSP Plugin Manager')
+    parser = argparse.ArgumentParser(description='Operations Observability Stack Plugin Manager')
     parser.add_argument('--install-dir', default='secure-monitoring-stack',
                        help='Installation directory')
     

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-AWS MSP Monitoring Stack Installer
+Operations Observability Stack Installer
 ==================================
 
-Enterprise-style monitoring stack installer for AWS Managed Service Providers.
+Enterprise-style monitoring stack installer for operations and observability workflows.
 Complete installer with security hardening, progress tracking, and 
 real-time validation for customer deployments.
 """

@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "AWS MSP Monitoring Stack Installer"
+echo "Operations Observability Stack Installer"
 echo "==================================="
 echo ""
 
@@ -49,7 +49,7 @@ echo "Python 3 found"
 echo "Starting installation (Docker will be installed automatically if needed)..."
 
 # Run the installer
-python3 aws_msp_monitoring_stack.py --install-dir customer-monitoring-stack
+python3 monitoring_stack_installer.py --install-dir customer-monitoring-stack
 if [ $? -ne 0 ]; then
     echo ""
     echo "Installation failed. Check the error messages above."

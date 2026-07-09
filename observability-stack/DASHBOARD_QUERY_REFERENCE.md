@@ -1,6 +1,6 @@
-# AWS MSP Dashboard Query Reference
+# Dashboard Query Reference
 
-## Standard Prometheus Queries for AWS MSP Monitoring Stack
+## Standard Prometheus Queries for Operations Observability Stack
 
 ### System Metrics (Always Available)
 ```
@@ -335,7 +335,7 @@ neo4j_memory_usage
 4. Check if data source is Prometheus at http://prometheus:9090
 
 ### Metrics Not Available
-1. Verify plugin is installed: `python3 aws_msp_plugin_manager.py list --installed`
+1. Verify plugin is installed: `python3 plugin_manager.py list --installed`
 2. Check plugin services running: `docker compose ps`
 3. Restart monitoring stack: `docker compose restart`
 

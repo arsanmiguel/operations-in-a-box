@@ -1,4 +1,4 @@
-# AWS MSP Enterprise Security Documentation
+# Operations Observability Stack Security Guide
 # Monitoring Stack - Security Implementation Guide
 
 ## Executive Summary

@@ -1,5 +1,5 @@
 @echo off
-echo AWS MSP Monitoring Stack Installer
+echo Operations Observability Stack Installer
 echo ===================================
 echo.
 
@@ -54,7 +54,7 @@ echo Starting installation (Docker will be installed automatically if needed)...
 echo.
 
 REM Run the installer
-python aws_msp_monitoring_stack.py --install-dir customer-monitoring-stack
+python monitoring_stack_installer.py --install-dir customer-monitoring-stack
 if errorlevel 1 (
     echo.
     echo Installation failed. Check the error messages above.

@@ -45,7 +45,7 @@ echo "Step 1: Creating Secure Deployment"
 echo "====================================="
 echo ""
 
-if python3 aws_msp_monitoring_stack.py --install-dir "$INSTALL_DIR"; then
+if python3 monitoring_stack_installer.py --install-dir "$INSTALL_DIR"; then
     echo ""
     echo "Secure deployment created successfully!"
     echo ""
@@ -60,7 +60,7 @@ echo "Step 2: Validating Security Controls"
 echo "======================================"
 echo ""
 
-if python3 aws_msp_security_validator.py --install-dir "$INSTALL_DIR"; then
+if python3 security_validator.py --install-dir "$INSTALL_DIR"; then
     echo ""
     echo "DEPLOYMENT COMPLETED SUCCESSFULLY!"
     echo "====================================="

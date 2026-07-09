@@ -1,5 +1,5 @@
 @echo off
-echo Removing AWS MSP Monitoring Stack...
+echo Removing Operations Observability Stack...
 echo.
 
 REM Stop and remove all containers, networks, and volumes
@@ -21,7 +21,7 @@ echo Cleaning up Docker images and volumes...
 docker system prune -f --volumes >nul 2>&1
 
 echo.
-echo AWS MSP Monitoring Stack removed successfully!
+echo Operations Observability Stack removed successfully!
 echo You can now safely delete this folder if desired.
 echo.
 pause

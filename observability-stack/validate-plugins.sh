@@ -7,7 +7,7 @@ echo "Plugin Installation and Configuration Validator"
 echo "=================================================="
 
 # Get list of all available plugins
-PLUGINS=$(python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack list | grep "Available" | grep -v "Installed" | awk '{print $1}')
+PLUGINS=$(python3 plugin_manager.py --install-dir customer-monitoring-stack list | grep "Available" | grep -v "Installed" | awk '{print $1}')
 
 # Port assignment tracker (starting from 9109 since we used 9106-9108)
 PORT=9109
@@ -21,7 +21,7 @@ for plugin in $PLUGINS; do
     echo "----------------------------------------"
     
     # Try to install the plugin
-    if python3 aws_msp_plugin_manager.py --install-dir customer-monitoring-stack install $plugin; then
+    if python3 plugin_manager.py --install-dir customer-monitoring-stack install $plugin; then
         echo "Installation successful: $plugin"
         
         # Check if docker-compose.yml was created

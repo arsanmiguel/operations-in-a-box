@@ -1,6 +1,6 @@
-# Managed Services Operations in a Box
+# Operations in a Box
 
-Reference **Operations Observability Stack** for monitoring and observability: Prometheus, Grafana, secure metrics API, and 49 plugin templates. (MSP-style operations context in [Overview](#overview).)
+Reference **Operations Observability Stack** — monitoring and observability with Prometheus, Grafana, secure metrics API, and 49 plugin templates.
 
 **Quick links:** [Prerequisites](#prerequisites) · [Getting Started](#getting-started) · [Installation & Credentials](#installation--credentials) · [Plugin System](#plugin-system) · [Support](#support)
 

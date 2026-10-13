@@ -513,4 +513,4 @@ Contact: [adrianr.sanmiguel@gmail.com](mailto:adrianr.sanmiguel@gmail.com) for b
 
 ---
 
-Important: This project is not an official AWS product and does not by itself confer AWS MSP Program compliance. Partners are responsible for validating their own implementations against current AWS MSP Program requirements.
+Important: This project is not an official AWS product and does not by itself confer compliance with any AWS program (including the AWS MSP Program). Whatever your context — Enterprise, strategic customer, SI, ISV, or MSP partner — you are responsible for validating your own implementation against the standards and program requirements that apply to you. The stack is a reference baseline and is intentionally extensible: adopt what fits, extend what doesn't, and build toward your own AIOps target.

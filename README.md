@@ -15,11 +15,13 @@ Links jump to the section heading; expand the block under it to read.
 <details>
 <summary>About this project and what you get</summary>
 
-Thousands of AWS MSP partners have asked "how do I get started with monitoring and operations tooling?" This repository addresses that common challenge by providing a reference monitoring and observability stack designed to demonstrate a practical baseline aligned with AWS MSP Program expectations.
+Enterprise and strategic customers running operations at scale repeatedly hit the same question: as **AIOps** matures, where do I build, what do I already have, where do I bolt on, and where do I adopt something new? This repository is a reference monitoring and observability stack that gives teams a concrete, production-grade baseline to reason about that decision — somewhere to stand before committing to a direction.
 
-Originally built for AWS MSP partners, this stack is now used by customers, system integrators (SIs), independent software vendors (ISVs), and various customers ranging from startup to enterprises for production monitoring and operations. The "MSP" name reflects its multi-tenant, production-grade design, not a limitation on who can use it.
+> **AIOps** (Artificial Intelligence for IT Operations) is the application of machine learning and generative AI to operational telemetry — correlating signals, detecting anomalies, predicting failures, and triaging or auto-remediating incidents instead of relying on static thresholds and manual runbooks. Its impact was significant enough to redraw the market: it drove the creation of a net-new Gartner Magic Quadrant that cleanly separates the organizations actually *doing* AIOps from those who are not — a line this stack is built to help you land on the right side of.
 
-Note: This is a starting point, not an AWS fully managed or supported production solution. Use this project to understand architecture patterns, accelerate experimentation, and build your own compliant monitoring implementation -- based off what *your* specific needs are.
+It began as an answer for AWS MSP partners asking "how do I get started with monitoring and operations tooling?" — and that heritage is why it's multi-tenant and production-shaped by default. But as AIOps evolved, customers of every size arrived at the same crossroads, and the center of gravity shifted: today it's Enterprise and larger strategic customers who lean on it most, alongside the MSP partners, system integrators (SIs), and ISVs who've used it from the start. The "MSP" in its lineage reflects that origin and its multi-tenant design — not a limit on who it's for.
+
+Note: This is a starting point, not an AWS fully managed or supported production solution. Use it to understand architecture patterns, accelerate experimentation, and decide — per your own environment — what to build, keep, bolt on, or adopt as you evolve toward AIOps.
 
 What you get:
 - Fill-in-the-blanks templates (no coding required for plugins)

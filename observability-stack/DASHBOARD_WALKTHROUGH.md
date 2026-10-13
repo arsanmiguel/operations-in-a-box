@@ -11,7 +11,7 @@ This guide assumes **zero prior experience** with monitoring or dashboards. Foll
 - **Monitoring stack deployed** using `./install.sh` or `./observability-stack-installer.sh`
 - **Grafana running** at http://localhost:3000
 - **Login credentials** from `customer-monitoring-stack/.env` (`GRAFANA_ADMIN_PASSWORD`)
-- **Default dashboard** — **Operations in a Box - Overview** is provisioned automatically; use this walkthrough to add custom panels
+- **Default dashboard**: **Operations in a Box - Overview** is provisioned automatically; use this walkthrough to add custom panels
 - **Optional: Plugins installed** for enhanced functionality (see Plugin Guide below)
 - **Python dependencies** auto-installed (PyYAML, requests) during setup  
 

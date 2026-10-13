@@ -1,7 +1,7 @@
-# Security design notes — Operations in a Box
+# Security design notes: Operations in a Box
 
 Intentional security choices for the **reference monitoring stack** (local Docker lab starting point).  
-These are **by design** for localhost-first deployment — adjust deliberately if you change the architecture.
+These are **by design** for localhost-first deployment; adjust deliberately if you change the architecture.
 
 **Related:** [README](../README.md) · [SECURITY_GUIDE.md](SECURITY_GUIDE.md) · [customer-monitoring-stack/README.md](customer-monitoring-stack/README.md)
 

@@ -30,23 +30,23 @@ Default home dashboard: **Operations in a Box - Overview** (under folder *Operat
 
 Docker Compose reads secrets from a **local `.env` file**, not from files in git:
 
-- **Grafana admin password and secret key** — unique per deployment; never shared in the repo
-- **API key** — required for authenticated metric ingestion; the API refuses to start without `API_KEY` set
+- **Grafana admin password and secret key**: unique per deployment; never shared in the repo
+- **API key**: required for authenticated metric ingestion; the API refuses to start without `API_KEY` set
 
 `.env.template` shows required variable names. Copy it to `.env` only if you need to set values manually; otherwise `install.sh` generates them for you.
 
 Files that must stay local (gitignored):
 
-- `.env` — deployment secrets
-- `data/` — Prometheus TSDB and Grafana SQLite state
-- `installation_report_*.json` — legacy install artifacts that may contain credentials
+- `.env`: deployment secrets
+- `data/`: Prometheus TSDB and Grafana SQLite state
+- `installation_report_*.json`: legacy install artifacts that may contain credentials
 
 ## Provisioned Grafana assets
 
 Grafana dashboards and datasources ship under `grafana/provisioning/`:
 
-- `datasources/prometheus.yml` — Prometheus at `http://prometheus:9090`
-- `dashboards/default/monitoring-overview.json` — starter dashboard (targets up, API health, install heartbeat)
+- `datasources/prometheus.yml`: Prometheus at `http://prometheus:9090`
+- `dashboards/default/monitoring-overview.json`: starter dashboard (targets up, API health, install heartbeat)
 
 These load automatically on container start. Edit JSON files to change the default dashboard; use `DASHBOARD_WALKTHROUGH.md` in the parent directory for custom panels.
 

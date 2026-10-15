@@ -44,6 +44,7 @@ def health():
     return jsonify({'status': 'healthy', 'timestamp': time.time()})
 
 @app.route('/metrics')
+@limiter.exempt
 def metrics():
     body = "# HELP api_up API server health status\napi_up 1\n"
     return Response(body, mimetype='text/plain; version=0.0.4; charset=utf-8')

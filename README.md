@@ -324,6 +324,31 @@ Documentation: See `ALERT_TRIAGE_AGENT.md` for full setup, configuration example
 
 </details>
 
+<details>
+<summary>Operator Copilot: context-aware root-cause diagnosis (agent-agnostic)</summary>
+
+The triage agent reacts to alerts. The Operator Copilot answers a different question an operator actually asks mid-incident: "this looks wrong, what did I break, and how do I fix it?" It is a context-aware diagnosis layer that reads **live** state before reasoning, so its answers are grounded in what the environment is actually doing rather than in a generic model guess.
+
+How it works: on a plain-language symptom, the copilot gathers live context (Prometheus target health and the `up` series, EC2 instance state including IMDS hop limit and attached security groups, security-group ingress rules, and recent Auto Scaling activity), hands that context plus the symptom to Claude via Bedrock, and returns a blunt root cause, the specific evidence that proves it, a concrete fix, and a one-line plain-spoken summary. Because it inspects real state, it catches the operator-error class of problem directly: a metadata hop limit too low for a container to pull instance credentials, a security group that never allowed the scrape port, a node whose exporter is not listening yet, a target that is down for an unrelated reason. It will tell you the fleet is fine and your other service is the thing that is actually dead, with the evidence to back it up.
+
+This stack is deliberately **agent-agnostic**. The copilot is a reference implementation of a simple contract: gather live context, reason over it, return a fix. The same contract is open to any agent you prefer. The surfaces the stack exposes for this are already here:
+- the metrics API and Prometheus query API for live signal,
+- the AlertManager webhook for push-style events,
+- a `gather_context()` entry point in the copilot you can call from your own reasoning loop.
+
+Point whatever you run at those surfaces: an AWS Bedrock Agent, an IDE or CLI coding agent, or your own orchestration. The stack supplies the context and the fix surface; the agent supplies the judgment. Swap the agent without touching the stack. This is the practical shape of the AIOps crossroads from the Overview: keep what you have, bolt the copilot onto the signals you already emit, and adopt whichever reasoning engine fits your environment.
+
+Quick start:
+```bash
+pip install boto3 requests
+# Diagnose a symptom against live state:
+python3 diagnose.py "a fleet node shows up=0 in Prometheus and is not being scraped"
+```
+
+Cost is the same order as the triage agent: a few cents per diagnosis, since each call is one bounded prompt plus live context.
+
+</details>
+
 ## Package Contents
 
 <details>

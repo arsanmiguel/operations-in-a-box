@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="Perry the Agent logo">
+  <title>Perry the Agent</title>
+  <!-- Original homage mark: teal platypus-style operative with fedora + deadpan cold stare.
+       Not a copy of any studio asset; built from primitives. -->
+  <defs>
+    <radialGradient id="bodyG" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#3fb6a8"/>
+      <stop offset="100%" stop-color="#2a8d84"/>
+    </radialGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0b2b2b" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- head/body -->
+  <g filter="url(#soft)">
+    <ellipse cx="120" cy="132" rx="78" ry="66" fill="url(#bodyG)"/>
+
+    <!-- fedora -->
+    <g>
+      <ellipse cx="120" cy="70" rx="86" ry="16" fill="#6b4a2b"/>
+      <path d="M70 70 Q70 30 120 30 Q170 30 170 70 Z" fill="#7d5631"/>
+      <rect x="70" y="62" width="100" height="10" rx="5" fill="#5a3d22"/>
+    </g>
+
+    <!-- the cold stare: two flat white ovals, close-set, tiny pupils, flat brow -->
+    <g>
+      <ellipse cx="104" cy="112" rx="17" ry="20" fill="#fdfdfd"/>
+      <ellipse cx="136" cy="112" rx="17" ry="20" fill="#fdfdfd"/>
+      <!-- pupils: small, centered, dead-ahead = deadpan -->
+      <circle cx="104" cy="114" r="4.5" fill="#101418"/>
+      <circle cx="136" cy="114" r="4.5" fill="#101418"/>
+      <!-- flat heavy brow line = the unimpressed glare -->
+      <rect x="86" y="92" width="68" height="6" rx="3" fill="#1e6f68"/>
+    </g>
+
+    <!-- orange bill -->
+    <ellipse cx="120" cy="150" rx="40" ry="18" fill="#e8842b"/>
+    <ellipse cx="120" cy="146" rx="40" ry="12" fill="#f0a24e"/>
+    <line x1="80" y1="150" x2="160" y2="150" stroke="#c76f1f" stroke-width="2"/>
+
+    <!-- tail hint -->
+    <path d="M188 150 q28 6 24 30 q-18 -6 -30 -14 Z" fill="#2a8d84"/>
+  </g>
+</svg>

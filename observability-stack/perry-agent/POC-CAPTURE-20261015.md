@@ -1,4 +1,4 @@
-# Tiered Remediation Planner — live PoC capture (2026-10-15)
+# Tiered Remediation Planner - live PoC capture (2026-10-15)
 
 **What this is:** the capability the director described back to us, built and proven live against the work Isengard account (442056872435). An agent that takes a business directive, enumerates issues from real account signals, tiers them easy/medium/advanced with dollar savings, asks for scoped permission, and self-remediates the easy tier reversibly, leaving a project plan for the rest.
 
@@ -22,7 +22,7 @@
 | ADVANCED | eks:prod-cluster (sample) | upgrade EKS 1.27 → standard-support, validate workloads | ~$180/mo |
 
 **4. Scoped-autonomy ask (the goldmine moment):**
-> "I request permission to terminate the stopped instance... here's exactly what I'd do: snapshot for audit, detach, terminate, delete, log to CloudTrail. Scope: that instance only. ~$1.50/mo if approved. I will NOT touch the RDS or EKS items — those are reserved for your platform team."
+> "I request permission to terminate the stopped instance... here's exactly what I'd do: snapshot for audit, detach, terminate, delete, log to CloudTrail. Scope: that instance only. ~$1.50/mo if approved. I will NOT touch the RDS or EKS items - those are reserved for your platform team."
 
 **5. Self-remediation (executed live, safely):**
 - Target: a throwaway `Project=oiab-demo` unattached volume (`vol-00cbd969e13cd14bf`) created as a safe stand-in so we never touch resources we don't own.
@@ -32,7 +32,7 @@
 ---
 
 ## Safety design (why it's trustworthy, not reckless)
-- **Hard scope:** executor re-verifies the `Project=oiab-demo` tag at execution time; refuses anything else even if the plan named it. It deliberately did NOT touch the real pre-existing stopped instance it discovered (`i-0c9f9f87f93e028f6`) — that is not ours.
+- **Hard scope:** executor re-verifies the `Project=oiab-demo` tag at execution time; refuses anything else even if the plan named it. It deliberately did NOT touch the real pre-existing stopped instance it discovered (`i-0c9f9f87f93e028f6`) - that is not ours.
 - **Approval gate:** no action without explicit `APPROVE=yes`.
 - **Reversible-first:** snapshot before any delete.
 - **Least privilege:** the role has read-everything, but delete-volume is tag-conditioned; it earned write access one scoped action at a time.

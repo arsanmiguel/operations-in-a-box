@@ -1,0 +1,32 @@
+networks:
+  default:
+    external: false
+services:
+  crowdstrike_falcon:
+    container_name: crowdstrike_falcon
+    environment:
+    - FALCON_CLIENT_ID=${FALCON_CLIENT_ID}
+    - FALCON_CLIENT_SECRET=${FALCON_CLIENT_SECRET}
+    - FALCON_CLOUD=${FALCON_CLOUD}
+    - FALCON_CID=${FALCON_CID}
+    healthcheck:
+      interval: 60s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - wget
+      - --no-verbose
+      - --tries=1
+      - --spider
+      - http://localhost:9135/health
+      timeout: 10s
+    image: crowdstrike/falcon-sensor:latest
+    networks:
+    - default
+    ports:
+    - 9135:9135
+    restart: unless-stopped
+    volumes:
+    - ./crowdstrike-falcon-config.yml:/config/config.yml:ro
+    - ./logs:/var/log:rw

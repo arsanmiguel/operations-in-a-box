@@ -1,0 +1,12 @@
+title = "operations-in-a-box gitleaks config"
+
+[allowlist]
+description = "Documentation placeholders and install-time generated secret patterns"
+paths = [
+  '''observability-stack/SECURITY_GUIDE.md''',
+  '''observability-stack/DASHBOARD_WALKTHROUGH.md''',
+]
+regexes = [
+  '''YOUR_API_KEY''',
+  '''your-api-key-from-credentials-file''',
+]

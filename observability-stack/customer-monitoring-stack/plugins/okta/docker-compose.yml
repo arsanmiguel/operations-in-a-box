@@ -1,0 +1,8 @@
+services:
+  okta-connector:
+    container_name: okta-connector
+    image: okta/identity-connector:latest
+    networks:
+    - default
+    restart: unless-stopped
+version: '3.8'

@@ -1,0 +1,30 @@
+networks:
+  default:
+    external: false
+services:
+  business_intelligence:
+    container_name: business_intelligence
+    environment:
+    - SERVICE_NAME=${SERVICE_NAME}
+    - SERVICE_ENABLED=${SERVICE_ENABLED}
+    healthcheck:
+      interval: 60s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - wget
+      - --no-verbose
+      - --tries=1
+      - --spider
+      - http://localhost:9221/health
+      timeout: 10s
+    image: alpine:latest
+    networks:
+    - default
+    ports:
+    - 9221:9221
+    restart: unless-stopped
+    volumes:
+    - ./business-intelligence-config.yml:/config/config.yml:ro
+    - ./logs:/var/log:rw

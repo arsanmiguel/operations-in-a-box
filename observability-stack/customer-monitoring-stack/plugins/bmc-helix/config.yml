@@ -1,0 +1,4 @@
+description: Configuration for bmc-helix plugin
+enabled: true
+name: Bmc Helix
+version: 1.0.0

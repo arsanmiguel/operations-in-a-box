@@ -1,0 +1,4 @@
+description: Configuration for okta plugin
+enabled: true
+name: Okta
+version: 1.0.0

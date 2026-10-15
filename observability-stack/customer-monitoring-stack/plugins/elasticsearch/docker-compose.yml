@@ -1,0 +1,32 @@
+networks:
+  default:
+    external: false
+services:
+  elasticsearch:
+    container_name: elasticsearch
+    environment:
+    - ELASTICSEARCH_URL=${ELASTICSEARCH_URL}
+    - ELASTICSEARCH_USERNAME=${ELASTICSEARCH_USERNAME}
+    - ELASTICSEARCH_PASSWORD=${ELASTICSEARCH_PASSWORD}
+    - ELASTICSEARCH_INDEX_PREFIX=${ELASTICSEARCH_INDEX_PREFIX}
+    healthcheck:
+      interval: 60s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - wget
+      - --no-verbose
+      - --tries=1
+      - --spider
+      - http://localhost:9127/health
+      timeout: 10s
+    image: elasticsearch:8.11.0
+    networks:
+    - default
+    ports:
+    - 9127:9127
+    restart: unless-stopped
+    volumes:
+    - ./elasticsearch-config.yml:/config/config.yml:ro
+    - ./logs:/var/log:rw

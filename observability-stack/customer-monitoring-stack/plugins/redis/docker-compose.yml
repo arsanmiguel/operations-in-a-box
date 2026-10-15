@@ -1,0 +1,33 @@
+networks:
+  default:
+    external: false
+services:
+  redis:
+    container_name: redis
+    environment:
+    - REDIS_HOST=${REDIS_HOST}
+    - REDIS_PORT=${REDIS_PORT}
+    - REDIS_PASSWORD=${REDIS_PASSWORD}
+    - REDIS_DB=${REDIS_DB}
+    - REDIS_TIMEOUT=${REDIS_TIMEOUT}
+    healthcheck:
+      interval: 60s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - wget
+      - --no-verbose
+      - --tries=1
+      - --spider
+      - http://localhost:9151/health
+      timeout: 10s
+    image: redis:alpine
+    networks:
+    - default
+    ports:
+    - 9151:9151
+    restart: unless-stopped
+    volumes:
+    - ./redis-config.yml:/config/config.yml:ro
+    - ./logs:/var/log:rw

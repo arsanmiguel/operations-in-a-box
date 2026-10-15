@@ -1,0 +1,4 @@
+description: Configuration for aws-discovery plugin
+enabled: true
+name: Aws Discovery
+version: 1.0.0

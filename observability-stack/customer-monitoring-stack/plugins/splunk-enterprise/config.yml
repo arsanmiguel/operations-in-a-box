@@ -1,0 +1,4 @@
+description: Configuration for splunk-enterprise plugin
+enabled: true
+name: Splunk Enterprise
+version: 1.0.0

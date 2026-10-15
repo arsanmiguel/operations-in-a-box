@@ -1,0 +1,4 @@
+description: Configuration for sumologic plugin
+enabled: true
+name: Sumologic
+version: 1.0.0

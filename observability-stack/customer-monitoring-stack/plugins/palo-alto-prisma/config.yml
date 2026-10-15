@@ -1,0 +1,4 @@
+description: Configuration for palo-alto-prisma plugin
+enabled: true
+name: Palo Alto Prisma
+version: 1.0.0

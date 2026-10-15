@@ -1,0 +1,32 @@
+networks:
+  default:
+    external: false
+services:
+  montycloud:
+    container_name: montycloud
+    environment:
+    - MONTYCLOUD_API_KEY=${MONTYCLOUD_API_KEY}
+    - MONTYCLOUD_TENANT_ID=${MONTYCLOUD_TENANT_ID}
+    - MONTYCLOUD_REGION=${MONTYCLOUD_REGION}
+    - GOVERNANCE_POLICIES=${GOVERNANCE_POLICIES}
+    healthcheck:
+      interval: 60s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - wget
+      - --no-verbose
+      - --tries=1
+      - --spider
+      - http://localhost:9120/health
+      timeout: 10s
+    image: montycloud/governance-connector:latest
+    networks:
+    - default
+    ports:
+    - 9120:9120
+    restart: unless-stopped
+    volumes:
+    - ./montycloud-config.yml:/config/config.yml:ro
+    - ./logs:/var/log:rw

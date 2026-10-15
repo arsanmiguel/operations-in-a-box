@@ -1,0 +1,32 @@
+networks:
+  default:
+    external: false
+services:
+  servicenow:
+    container_name: servicenow
+    environment:
+    - SERVICENOW_INSTANCE_URL=${SERVICENOW_INSTANCE_URL}
+    - SERVICENOW_USERNAME=${SERVICENOW_USERNAME}
+    - SERVICENOW_PASSWORD=${SERVICENOW_PASSWORD}
+    - SERVICENOW_POLL_INTERVAL=${SERVICENOW_POLL_INTERVAL}
+    healthcheck:
+      interval: 60s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - wget
+      - --no-verbose
+      - --tries=1
+      - --spider
+      - http://localhost:9142/health
+      timeout: 10s
+    image: alpine:latest
+    networks:
+    - default
+    ports:
+    - 9142:9142
+    restart: unless-stopped
+    volumes:
+    - ./servicenow-config.yml:/config/config.yml:ro
+    - ./logs:/var/log:rw

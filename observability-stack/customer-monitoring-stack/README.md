@@ -24,6 +24,15 @@ Enterprise-style monitoring solution with Prometheus, Grafana, and secure API.
 | Prometheus | http://localhost:9090 | Bound to localhost only |
 | Metrics API | http://localhost:8080 | Requires `X-API-Key` header |
 
+## Perry the Agent (optional)
+
+An agent-agnostic Operator Copilot and tiered remediation planner ships in `../perry-agent/`:
+- `agent.py diagnose "<symptom>"` - context-aware root-cause diagnosis from live state
+- `agent.py plan "<directive>"` - easy/medium/advanced remediation plan with savings, a scoped-permission ask, and reversible easy-tier self-remediation
+- `perry_web.py` - browser plan view (private, served over an SSM tunnel), plus a provisioned Grafana savings dashboard
+
+All agent discovery is tag-based; no instance IDs or IPs are hardcoded. See the top-level README's Agentic AI section.
+
 Default home dashboard: **Operations in a Box - Overview** (under folder *Operations in a Box*).
 
 ## Why credentials live in `.env`

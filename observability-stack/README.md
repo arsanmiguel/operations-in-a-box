@@ -17,6 +17,7 @@ The **Operations Observability Stack** is a reference monitoring and observabili
 - Security patterns and hardening examples (authentication and encryption)
 - Demo data generator (realistic metrics for testing)
 - Comprehensive documentation (6 detailed guides)
+- **Perry the Agent** - an agent-agnostic Operator Copilot and tiered remediation planner (context-aware root-cause diagnosis, plus directive-driven easy/medium/advanced plans with savings and reversible, approval-gated easy-tier self-remediation). See `perry-agent/` and the Agentic AI section of the top-level README.
 
 =================================================================
 

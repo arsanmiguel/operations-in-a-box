@@ -21,6 +21,11 @@ This secure monitoring stack installer is designed for teams deploying enterpris
 - **Advanced Analytics** - Business intelligence, ELK stack, APM monitoring
 - **DevOps Automation** - Infrastructure as code, CI/CD monitoring, GitOps deployment
 
+### Agentic AI (Perry the Agent)
+- **Operator Copilot** - context-aware root-cause diagnosis that reads live state before reasoning; agent-agnostic (Bedrock Agents, CLI/IDE agents, or your own orchestration)
+- **Tiered remediation planner** - turns a business directive into easy/medium/advanced findings with estimated savings, a scoped-permission ask, and reversible easy-tier self-remediation
+- Deploy artifacts are tag-based with no hardcoded instance IDs or IPs; see `perry-agent/deploy/`
+
 ## Quick Start
 
 ### Prerequisites

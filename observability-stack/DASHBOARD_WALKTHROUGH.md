@@ -12,6 +12,7 @@ This guide assumes **zero prior experience** with monitoring or dashboards. Foll
 - **Grafana running** at http://localhost:3000
 - **Login credentials** from `customer-monitoring-stack/.env` (`GRAFANA_ADMIN_PASSWORD`)
 - **Default dashboard**: **Operations in a Box - Overview** is provisioned automatically; use this walkthrough to add custom panels
+- **Perry the Agent dashboard**: **Perry the Agent - Remediation Savings** is also provisioned (monthly savings identified, by-tier breakdown, and a link to the plan page). Perry is the agent-agnostic Operator Copilot and tiered remediation planner; see `perry-agent/` and the top-level README.
 - **Optional: Plugins installed** for enhanced functionality (see Plugin Guide below)
 - **Python dependencies** auto-installed (PyYAML, requests) during setup  
 

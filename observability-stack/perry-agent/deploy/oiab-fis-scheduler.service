@@ -1,0 +1,6 @@
+[Unit]
+Description=Fire a random Tier-1 FIS experiment then reschedule
+[Service]
+Type=oneshot
+Environment=AWS_REGION=us-east-1
+ExecStart=/opt/oiab/fis-scheduler.sh

@@ -149,7 +149,7 @@ To remove the monitoring stack and free ~6GB: Windows: double-click `uninstall.b
 ## Next Steps After Installation
 
 <details>
-<summary>Dashboards, API integration, and partner guides</summary>
+<summary>Dashboards, API integration, and deployment guides</summary>
 
 The install provisions a starter Grafana dashboard (**Operations in a Box - Overview**). Open http://localhost:3000 after `./install.sh` to confirm Prometheus targets and sample metrics before building custom views.
 
@@ -338,11 +338,15 @@ This stack is deliberately **agent-agnostic**. The copilot is a reference implem
 
 Point whatever you run at those surfaces: an AWS Bedrock Agent, an IDE or CLI coding agent, or your own orchestration. The stack supplies the context and the fix surface; the agent supplies the judgment. Swap the agent without touching the stack. This is the practical shape of the AIOps crossroads from the Overview: keep what you have, bolt the copilot onto the signals you already emit, and adopt whichever reasoning engine fits your environment.
 
+Beyond point-in-time diagnosis, the same agent runs a tiered remediation planner. Give it a plain business directive (for example, "build me a plan for my extended-support exposure and cost") and it enumerates findings from live signals (Cost Explorer, EC2/EBS inventory, end-of-life and extended-support risk, idle and orphaned waste, plus AWS Health where the account supports it), classifies each finding easy, medium, or advanced, attaches an estimated monthly saving, and returns a project plan. For the easy tier it makes a scoped-permission request naming exactly what it would do, and on approval it self-remediates reversibly (snapshot before delete, hard-scoped to a resource tag, nothing else touched), leaving the medium and advanced work as a plan for humans. Live state is labeled live; where the account cannot provide a signal it is labeled sample, never faked. All of this is visible in a browser: a Grafana savings dashboard and a plan page.
+
 Quick start:
 ```bash
-pip install boto3 requests
+pip install boto3 requests flask
 # Diagnose a symptom against live state:
-python3 diagnose.py "a fleet node shows up=0 in Prometheus and is not being scraped"
+python3 perry-agent/agent.py diagnose "a fleet node shows up=0 in Prometheus and is not being scraped"
+# Or produce a tiered remediation plan with savings and a scoped autonomy ask:
+python3 perry-agent/agent.py plan "build a remediation plan for extended support and cost"
 ```
 
 Cost is the same order as the triage agent: a few cents per diagnosis, since each call is one bounded prompt plus live context.
@@ -376,6 +380,14 @@ Cost is the same order as the triage agent: a few cents per diagnosis, since eac
 - `SECURITY_GUIDE.md` - Security documentation
 - `SECURITY_ANALYSIS.md` - Security analysis
 - `demo_data_generator.py` - Demo data generator (reads API key from `.env`)
+- `perry-agent/` - Operator Copilot and tiered remediation planner (agent-agnostic reference implementation)
+  - `agent.py` - unified entrypoint: `diagnose <symptom>` and `plan <directive>`
+  - `remediation_planner.py` - enumerate findings from live signals (Cost Explorer, EC2/EBS, EOL, waste, AWS Health or labeled sample)
+  - `plan.py` - Bedrock tiering (easy/medium/advanced) with savings and a scoped autonomy ask
+  - `execute_easy.py` - approval-gated, tag-scoped, reversible easy-tier self-remediation
+  - `perry_web.py` - browser plan view (private, served over an SSM tunnel)
+  - `perry-logo.svg` - original mascot mark
+  - `deploy/` - tag-based deploy artifacts (launch-template user-data, systemd units, FIS template); no hardcoded instance IDs or IPs
 
 </details>
 

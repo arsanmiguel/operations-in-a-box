@@ -29,7 +29,8 @@ What you get:
 - 49 production-ready plugins with configuration templates
 - Interactive setup scripts and web-based plugin GUI
 - Dashboard tutorial, API examples, security patterns, demo data generator
-- Six detailed guides (dashboard, partner, security, etc.)
+- Perry the Agent: an agent-agnostic Operator Copilot (context-aware root-cause diagnosis) and tiered remediation planner (easy/medium/advanced findings with savings, a scoped-permission ask, and reversible easy-tier self-remediation), surfaced natively in a Grafana dashboard
+- Detailed guides (dashboard, deployment, security, agentic AI, and more)
 
 </details>
 

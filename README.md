@@ -300,57 +300,51 @@ python3 plugin_manager.py --install-dir customer-monitoring-stack list --install
 
 ## Agentic AI Integration
 
+The stack ships two complementary agents, both using Claude via Bedrock, both agent-agnostic in design. Perry the Agent (Operator Copilot + tiered remediation planner) is the primary, context-aware agent; the alert triage agent is the original alert-driven router, still included.
+
 <details>
-<summary>Bedrock-powered alert triage (optional)</summary>
+<summary>Perry the Agent: Operator Copilot + tiered remediation planner (primary)</summary>
 
-Optional Bedrock-powered alert triage agent for intelligent routing and analysis. No plugin changes required.
+Perry answers the question an operator actually asks mid-incident ("this looks wrong, what did I break, and how do I fix it?") and the question a leader asks ("what is my exposure, what can you fix yourself, and how much does it save?"). It reads **live** state before reasoning, so answers are grounded in what the environment is actually doing rather than a generic model guess.
 
-What it does: receives Prometheus alerts, analyzes context with Claude (Bedrock), determines root cause and severity, routes to multiple systems (AWS Support, ServiceNow, Jira, etc.), triggers auto-remediation when appropriate. Uses your existing plugin APIs.
+Diagnosis: on a plain-language symptom, Perry gathers live context (Prometheus target health and the `up` series, EC2 instance state including IMDS hop limit and attached security groups, security-group ingress rules, and recent Auto Scaling activity), then returns a blunt root cause, the specific evidence that proves it, a concrete fix, and a one-line summary. It catches the operator-error class directly: a metadata hop limit too low for a container to pull instance credentials, a security group that never allowed the scrape port, a node whose exporter is not listening yet, a target down for an unrelated reason.
 
-Key features: ~200 lines of Python between AlertManager and your plugins; multi-system routing; auto-remediation for known issues. Approximately $3/month for 1,000 alerts.
+Remediation planning: give Perry a business directive (for example, "build me a plan for my extended-support exposure and cost") and it enumerates findings from live signals (Cost Explorer, EC2/EBS inventory, end-of-life and extended-support risk, idle and orphaned waste, plus AWS Health where the account supports it), classifies each finding easy, medium, or advanced, attaches an estimated monthly saving, and returns a project plan. For the easy tier it makes a scoped-permission request naming exactly what it would do, and on approval it self-remediates reversibly (snapshot before delete, hard-scoped to a resource tag, nothing else touched), leaving medium and advanced work as a plan for humans. Live state is labeled live; where the account cannot provide a signal it is labeled sample, never faked.
+
+Surfaced natively in Grafana: a **Perry the Agent - Remediation Savings** dashboard shows the mascot, total monthly savings, a by-tier breakdown, the tiered plan, the scoped-autonomy ask, and the one-liner, plus an annotation banner when findings exist. No separate UI required.
+
+Agent-agnostic by design: Perry is a reference implementation of a simple contract (gather live context, reason over it, return a fix or plan). The surfaces the stack exposes are open to any agent you prefer, an AWS Bedrock Agent, an IDE or CLI coding agent, or your own orchestration:
+- the metrics API and Prometheus query API for live signal,
+- the AlertManager webhook for push-style events,
+- a `gather_context()` entry point you can call from your own reasoning loop.
 
 Quick start:
 ```bash
-# Install dependencies
 pip install boto3 requests flask
-
-# Configure AlertManager webhook
-# See ALERT_TRIAGE_AGENT.md for details
-
-# Run the agent
-python3 alert_triage_agent.py
+# Run from observability-stack/.
+# Diagnose a symptom against live state:
+python3 perry-agent/agent.py diagnose "a fleet node shows up=0 in Prometheus and is not being scraped"
+# Produce a tiered remediation plan with savings and a scoped autonomy ask:
+python3 perry-agent/agent.py plan "build a remediation plan for extended support and cost"
 ```
 
-Documentation: See `ALERT_TRIAGE_AGENT.md` for full setup, configuration examples, and deployment options.
+Cost: a few cents per diagnosis or plan, since each call is one bounded prompt plus live context.
 
 </details>
 
 <details>
-<summary>Operator Copilot: context-aware root-cause diagnosis (agent-agnostic)</summary>
+<summary>Alert triage agent: alert-driven routing (also included)</summary>
 
-The triage agent reacts to alerts. The Operator Copilot answers a different question an operator actually asks mid-incident: "this looks wrong, what did I break, and how do I fix it?" It is a context-aware diagnosis layer that reads **live** state before reasoning, so its answers are grounded in what the environment is actually doing rather than in a generic model guess.
-
-How it works: on a plain-language symptom, the copilot gathers live context (Prometheus target health and the `up` series, EC2 instance state including IMDS hop limit and attached security groups, security-group ingress rules, and recent Auto Scaling activity), hands that context plus the symptom to Claude via Bedrock, and returns a blunt root cause, the specific evidence that proves it, a concrete fix, and a one-line plain-spoken summary. Because it inspects real state, it catches the operator-error class of problem directly: a metadata hop limit too low for a container to pull instance credentials, a security group that never allowed the scrape port, a node whose exporter is not listening yet, a target that is down for an unrelated reason. It will tell you the fleet is fine and your other service is the thing that is actually dead, with the evidence to back it up.
-
-This stack is deliberately **agent-agnostic**. The copilot is a reference implementation of a simple contract: gather live context, reason over it, return a fix. The same contract is open to any agent you prefer. The surfaces the stack exposes for this are already here:
-- the metrics API and Prometheus query API for live signal,
-- the AlertManager webhook for push-style events,
-- a `gather_context()` entry point in the copilot you can call from your own reasoning loop.
-
-Point whatever you run at those surfaces: an AWS Bedrock Agent, an IDE or CLI coding agent, or your own orchestration. The stack supplies the context and the fix surface; the agent supplies the judgment. Swap the agent without touching the stack. This is the practical shape of the AIOps crossroads from the Overview: keep what you have, bolt the copilot onto the signals you already emit, and adopt whichever reasoning engine fits your environment.
-
-Beyond point-in-time diagnosis, the same agent runs a tiered remediation planner. Give it a plain business directive (for example, "build me a plan for my extended-support exposure and cost") and it enumerates findings from live signals (Cost Explorer, EC2/EBS inventory, end-of-life and extended-support risk, idle and orphaned waste, plus AWS Health where the account supports it), classifies each finding easy, medium, or advanced, attaches an estimated monthly saving, and returns a project plan. For the easy tier it makes a scoped-permission request naming exactly what it would do, and on approval it self-remediates reversibly (snapshot before delete, hard-scoped to a resource tag, nothing else touched), leaving the medium and advanced work as a plan for humans. Live state is labeled live; where the account cannot provide a signal it is labeled sample, never faked. All of this is visible in a browser: a Grafana savings dashboard and a plan page.
+The original, alert-driven agent. It receives Prometheus alerts, analyzes context with Claude (Bedrock), determines root cause and severity, routes to multiple systems (AWS Support, ServiceNow, Jira, etc.), and triggers auto-remediation for known issues using your existing plugin APIs. No plugin changes required. Roughly $3/month for 1,000 alerts.
 
 Quick start:
 ```bash
 pip install boto3 requests flask
-# Diagnose a symptom against live state:
-python3 perry-agent/agent.py diagnose "a fleet node shows up=0 in Prometheus and is not being scraped"
-# Or produce a tiered remediation plan with savings and a scoped autonomy ask:
-python3 perry-agent/agent.py plan "build a remediation plan for extended support and cost"
+# Configure your AlertManager webhook (see ALERT_TRIAGE_AGENT.md), then run from observability-stack/:
+python3 alert_triage_agent.py
 ```
 
-Cost is the same order as the triage agent: a few cents per diagnosis, since each call is one bounded prompt plus live context.
+Documentation: `ALERT_TRIAGE_AGENT.md` for full setup, configuration examples, and deployment options.
 
 </details>
 

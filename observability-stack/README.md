@@ -221,35 +221,33 @@ python3 plugin_manager.py --install-dir customer-monitoring-stack list --install
 
 ## Agentic AI Integration
 
-The monitoring stack includes an optional Bedrock-powered alert triage agent that adds intelligent routing and analysis to your existing infrastructure. No changes to your plugins required.
+The stack ships two complementary Bedrock-powered agents. **Perry the Agent** (Operator Copilot + tiered remediation planner) is the primary, context-aware agent; the alert triage agent is the original alert-driven router, still included. Both are agent-agnostic in design.
 
-**What it does:**
-- Receives Prometheus alerts and analyzes context using Claude (Bedrock)
-- Determines root cause, severity, and optimal routing strategy
-- Routes to multiple systems simultaneously (AWS Support + ServiceNow + Jira, etc.)
-- Triggers auto-remediation when appropriate
-- Uses your existing plugin APIs - zero modifications needed
+### Perry the Agent (primary)
 
-**Key features:**
-- ~200 lines of Python that sits between AlertManager and your plugins
-- Multi-system routing based on alert context and severity
-- Intelligent decisions (e.g., AWS resource issues -> AWS Support + ServiceNow)
-- Auto-remediation for known issues with high confidence
-- <h3><u><i><b>~$3/month for 1,000 alerts</b></i></u></h3>
+- **Operator Copilot** - context-aware root-cause diagnosis. On a plain-language symptom it reads live state (Prometheus target health, EC2 instance state including IMDS hop limit and security groups, SG ingress, recent Auto Scaling activity) and returns a blunt root cause, the evidence, a concrete fix, and a one-liner.
+- **Tiered remediation planner** - turns a business directive into easy/medium/advanced findings with estimated monthly savings, a scoped-permission ask, and reversible, approval-gated easy-tier self-remediation (snapshot before delete, hard-scoped to a resource tag). Live signals are labeled live; signals the account cannot provide are labeled sample, never faked.
+- **Surfaced natively in Grafana** - a *Perry the Agent - Remediation Savings* dashboard (mascot, total savings, by-tier breakdown, plan, autonomy ask) plus an annotation banner when findings exist.
+- Agent-agnostic: a reference implementation of a gather-context / reason / act contract, open to a Bedrock Agent, a CLI/IDE agent, or your own orchestration. Deploy artifacts are tag-based with no hardcoded instance IDs or IPs (`perry-agent/deploy/`).
 
-**Quick start:**
 ```bash
-# Install dependencies
 pip install boto3 requests flask
+# Run from observability-stack/.
+python3 perry-agent/agent.py diagnose "a fleet node shows up=0 in Prometheus and is not being scraped"
+python3 perry-agent/agent.py plan "build a remediation plan for extended support and cost"
+```
 
-# Configure AlertManager webhook
-# See ALERT_TRIAGE_AGENT.md for details
+### Alert triage agent (also included)
 
-# Run the agent
+The original, alert-driven agent: receives Prometheus alerts, analyzes context with Claude (Bedrock), determines root cause and severity, routes to multiple systems (AWS Support, ServiceNow, Jira, etc.), and triggers auto-remediation for known issues using your existing plugin APIs. No plugin changes required. Roughly $3/month for 1,000 alerts.
+
+```bash
+pip install boto3 requests flask
+# Configure your AlertManager webhook (see ALERT_TRIAGE_AGENT.md), then run from observability-stack/:
 python3 alert_triage_agent.py
 ```
 
-**Documentation:** See `ALERT_TRIAGE_AGENT.md` for complete setup instructions, configuration examples, and deployment options.
+**Documentation:** `ALERT_TRIAGE_AGENT.md` for the triage agent; the top-level README's Agentic AI section and `perry-agent/` for Perry.
 
 ---
 

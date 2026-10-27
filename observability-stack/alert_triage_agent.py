@@ -141,8 +141,7 @@ Respond in JSON format:
                     'severity': analysis['severity'],
                     'category': 'technical',
                     'alert_data': alert_data
-                }
-            )
+                }, timeout=10)
             return {
                 'target': 'aws-support',
                 'status': 'success',
@@ -161,8 +160,7 @@ Respond in JSON format:
                     'description': analysis['ticket_description'],
                     'urgency': self._map_severity_to_urgency(analysis['severity']),
                     'alert_data': alert_data
-                }
-            )
+                }, timeout=10)
             return {
                 'target': 'servicenow',
                 'status': 'success',
@@ -181,8 +179,7 @@ Respond in JSON format:
                     'details': analysis['ticket_description'],
                     'priority': analysis['severity'],
                     'alert_data': alert_data
-                }
-            )
+                }, timeout=10)
             return {
                 'target': 'bmc-helix',
                 'status': 'success',
@@ -201,8 +198,7 @@ Respond in JSON format:
                     'description': analysis['ticket_description'],
                     'priority': analysis['severity'],
                     'alert_data': alert_data
-                }
-            )
+                }, timeout=10)
             return {
                 'target': 'jira-service-mgmt',
                 'status': 'success',
@@ -221,8 +217,7 @@ Respond in JSON format:
                     'description': analysis['ticket_description'],
                     'priority': analysis['severity'],
                     'alert_data': alert_data
-                }
-            )
+                }, timeout=10)
             return {
                 'target': 'zendesk',
                 'status': 'success',
@@ -241,8 +236,7 @@ Respond in JSON format:
                     'description': analysis['ticket_description'],
                     'priority': self._map_severity_to_priority(analysis['severity']),
                     'alert_data': alert_data
-                }
-            )
+                }, timeout=10)
             return {
                 'target': 'freshworks',
                 'status': 'success',
@@ -261,8 +255,7 @@ Respond in JSON format:
                     'description': analysis['ticket_description'],
                     'priority': self._map_severity_to_linear_priority(analysis['severity']),
                     'alert_data': alert_data
-                }
-            )
+                }, timeout=10)
             return {
                 'target': 'linear',
                 'status': 'success',
@@ -281,8 +274,7 @@ Respond in JSON format:
                     'compliance_type': 'NON_COMPLIANT',
                     'annotation': analysis['ticket_description'],
                     'alert_data': alert_data
-                }
-            )
+                }, timeout=10)
             return {
                 'target': 'aws-config',
                 'status': 'success',
@@ -301,8 +293,7 @@ Respond in JSON format:
                     'resource_id': alert_data.get('resource_id'),
                     'remediation_steps': analysis['remediation_steps'],
                     'alert_data': alert_data
-                }
-            )
+                }, timeout=10)
             return {
                 'target': 'auto-remediation',
                 'status': 'success',

@@ -1,0 +1,33 @@
+networks:
+  default:
+    external: false
+services:
+  aws_reachability_analyzer:
+    container_name: aws_reachability_analyzer
+    environment:
+    - SERVICE_NAME=${SERVICE_NAME}
+    - SERVICE_ENABLED=${SERVICE_ENABLED}
+    - AWS_REGION=${AWS_REGION}
+    - CHECK_INTERVAL=${CHECK_INTERVAL}
+    - ALERT_ON_FAILURE=${ALERT_ON_FAILURE}
+    healthcheck:
+      interval: 60s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - wget
+      - --no-verbose
+      - --tries=1
+      - --spider
+      - http://localhost:9216/health
+      timeout: 10s
+    image: alpine:latest
+    networks:
+    - default
+    ports:
+    - 9216:9216
+    restart: unless-stopped
+    volumes:
+    - ./reachability-analyzer-config.yml:/config/config.yml:ro
+    - ./logs:/var/log:rw

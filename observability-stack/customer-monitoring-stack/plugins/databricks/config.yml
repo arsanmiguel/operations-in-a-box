@@ -1,0 +1,4 @@
+description: Configuration for databricks plugin
+enabled: true
+name: Databricks
+version: 1.0.0

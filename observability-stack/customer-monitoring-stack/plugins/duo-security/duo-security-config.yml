@@ -1,0 +1,20 @@
+description: Comprehensive configuration for duo-security
+enabled: true
+integration:
+  authentication:
+    password: ${SERVICE_PASSWORD}
+    type: basic
+    username: ${SERVICE_USERNAME}
+  endpoints:
+  - http://localhost:8080
+monitoring:
+  health_checks: true
+  log_level: INFO
+  metrics_enabled: true
+name: Duo Security
+service:
+  host: 0.0.0.0
+  max_connections: 100
+  port: 9212
+  timeout: 30
+version: 1.0.0

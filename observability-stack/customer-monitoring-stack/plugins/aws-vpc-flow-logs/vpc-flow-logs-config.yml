@@ -1,0 +1,22 @@
+# VPC Flow Logs Configuration
+service:
+  name: aws-vpc-flow-logs
+  port: 9215
+  enabled: true
+
+aws:
+  region: us-east-1
+  log_group_name: /aws/vpc/flowlogs
+  
+analysis:
+  top_talkers_limit: 10
+  aggregation_interval: 300
+  
+metrics:
+  enabled: true
+  port: 9215
+  path: /metrics
+  
+logging:
+  level: INFO
+  format: json

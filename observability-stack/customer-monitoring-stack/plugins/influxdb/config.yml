@@ -1,0 +1,4 @@
+description: Configuration for influxdb plugin
+enabled: true
+name: Influxdb
+version: 1.0.0

@@ -1,0 +1,4 @@
+description: Configuration for business-intelligence plugin
+enabled: true
+name: Business Intelligence
+version: 1.0.0

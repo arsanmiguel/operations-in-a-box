@@ -1,0 +1,4 @@
+description: Configuration for aws-support plugin
+enabled: true
+name: Aws Support
+version: 1.0.0

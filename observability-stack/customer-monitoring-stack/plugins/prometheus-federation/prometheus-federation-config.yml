@@ -1,0 +1,28 @@
+description: Comprehensive configuration for prometheus-federation
+enabled: true
+integration:
+  global:
+    evaluation_interval: 15s
+    scrape_interval: 15s
+  scrape_configs:
+  - honor_labels: true
+    job_name: federated
+    metrics_path: /federate
+    params:
+      match[]:
+      - '{job=~".*"}'
+    scrape_interval: 15s
+    static_configs:
+    - targets:
+      - ${PROMETHEUS_FEDERATION_TARGETS}
+monitoring:
+  health_checks: true
+  log_level: INFO
+  metrics_enabled: true
+name: Prometheus Federation
+service:
+  host: 0.0.0.0
+  max_connections: 100
+  port: 9109
+  timeout: 30
+version: 1.0.0

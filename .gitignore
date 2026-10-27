@@ -1,0 +1,7 @@
+# Local secrets and generated install artifacts
+observability-stack/customer-monitoring-stack/.env
+observability-stack/customer-monitoring-stack/CREDENTIALS.md
+observability-stack/customer-monitoring-stack/installation_report_*.json
+observability-stack/customer-monitoring-stack/data/
+observability-stack/__pycache__/
+**/__pycache__/

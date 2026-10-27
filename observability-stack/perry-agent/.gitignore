@@ -1,0 +1,7 @@
+# Never commit the internal mascot image or generated binaries to the public repo
+perry-b64.txt
+*.webp
+*.png
+*.img
+__pycache__/
+latest_plan.json

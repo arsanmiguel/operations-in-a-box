@@ -1,0 +1,13 @@
+[Unit]
+Description=Perry the Agent web view
+After=network.target docker.service
+[Service]
+Type=simple
+WorkingDirectory=/opt/planner
+Environment=AWS_REGION=us-east-1
+Environment=PUSHGATEWAY_URL=http://localhost:9091
+ExecStart=/usr/bin/python3 /opt/planner/perry_web.py
+Restart=always
+RestartSec=5
+[Install]
+WantedBy=multi-user.target

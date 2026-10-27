@@ -1,0 +1,4 @@
+description: Configuration for anomaly-detection plugin
+enabled: true
+name: Anomaly Detection
+version: 1.0.0

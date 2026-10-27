@@ -1,0 +1,4 @@
+description: Configuration for cert-auth plugin
+enabled: true
+name: Cert Auth
+version: 1.0.0

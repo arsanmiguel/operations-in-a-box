@@ -1,0 +1,4 @@
+description: Configuration for terraform plugin
+enabled: true
+name: Terraform
+version: 1.0.0

@@ -1,0 +1,448 @@
+## Overview
+
+The **Operations Observability Stack** is a reference monitoring and observability baseline: Prometheus, Grafana, secure metrics API, Pushgateway, and 49 plugin templates. Use it to learn architecture patterns, run a local lab, or hand off a hardened starting point to a customer environment.
+
+**Note:** This is a starting point, not an AWS fully managed or supported production solution. Validate your own implementation against your organization's security and compliance requirements.
+
+---
+
+## What You Get
+
+- **Fill-in-the-blanks templates** - no coding required for any plugin
+- Enterprise-style monitoring stack (Prometheus, Grafana, API, Pushgateway)
+- 49 production-ready plugins with comprehensive configuration templates
+- Interactive setup scripts for guided plugin configuration
+- Complete dashboard tutorial (step-by-step beginner to advanced)
+- API integration examples (Python, JavaScript, curl)
+- Security patterns and hardening examples (authentication and encryption)
+- Demo data generator (realistic metrics for testing)
+- Comprehensive documentation (6 detailed guides)
+- **Perry the Agent** - an agent-agnostic Operator Copilot and tiered remediation planner (context-aware root-cause diagnosis, plus directive-driven easy/medium/advanced plans with savings and reversible, approval-gated easy-tier self-remediation). See `perry-agent/` and the Agentic AI section of the top-level README.
+
+=================================================================
+
+
+# Operations Observability Stack - Universal Installer
+
+## GETTING STARTED (2 minutes)
+
+### **Step 1: Extract the Package**
+1. Download `Operations_Observability_Stack_Universal_Installer.zip`
+2. Extract to any folder
+3. Open the `observability-stack` directory
+
+
+### **Step 2: Run the Installer**
+
+#### **Windows Users:**
+1. **Double-click** `install.bat`
+2. **Wait** for installation to complete
+3. **Done!** Grafana opens automatically
+
+#### **macOS/Linux Users:**
+1. **Open Terminal**
+2. **Navigate** to the extracted folder: `cd path/to/observability-stack`
+3. **Run:** `./install.sh`
+4. **Done!** Grafana opens automatically
+
+### **Step 3: Access Your Monitoring**
+- **Grafana Dashboard:** http://localhost:3000
+- **Login:** `admin` / `GRAFANA_ADMIN_PASSWORD` in `customer-monitoring-stack/.env`
+- **Default dashboard:** Operations in a Box - Overview (provisioned on install)
+
+### **Credentials and install layout**
+
+The installer writes secrets to `customer-monitoring-stack/.env` (not into git-tracked config). Docker Compose injects those values into Grafana and the metrics API at runtime. See [Installation & Credentials](../README.md#installation--credentials) in the root README for the full variable list and API usage examples.
+
+---
+
+## What You Get (continued)
+
+- Enterprise-style monitoring stack (Prometheus, Grafana, API, Pushgateway)
+- Security patterns and hardening examples (authentication and encryption)
+- **49 plugins across 12 categories** (complete ecosystem coverage)
+- **Complete dashboard tutorial** (step-by-step beginner to advanced)
+- **API integration examples** (Python, JavaScript, curl)
+- **Demo data generator** (realistic metrics for testing)
+- **Comprehensive documentation** (6 detailed guides)
+
+---
+
+## Next Steps After Installation
+
+### **For Beginners:**
+1. **Read:** `DASHBOARD_WALKTHROUGH.md` - Complete tutorial
+2. **Create dashboards** following the step-by-step guide
+3. **Generate demo data** using the included generator
+
+### **For Developers:**
+1. **API integration** examples in the dashboard walkthrough
+2. **Connect your applications** using the secure REST API
+3. **Custom metrics** and dashboard creation
+
+### **For deployment handoff:**
+1. **Deployment guide:** `DEPLOYMENT_GUIDE.md`
+2. **Security analysis:** `SECURITY_ANALYSIS.md`
+3. **Customer handoff** procedures and documentation
+
+---
+
+## Plugin System (Extensible by Design)
+The monitoring stack supports a modular plugin system covering performance, security, cloud integration, ITSM, data platforms, and AI/ML use cases. **All 49 plugins come with production-ready configuration templates** - just fill in your credentials and start monitoring!
+
+<details>
+<summary><strong>Quick Plugin Installation</strong></summary>
+
+```bash
+# Option 1: Interactive command-line installer
+./install-plugins.sh
+
+# Option 2: Web-based GUI (recommended)
+python3 plugin_web_gui.py
+# Then open: http://localhost:5000
+
+# Option 3: Direct command-line
+python3 plugin_manager.py --install-dir customer-monitoring-stack install aws-cloudwatch
+```
+
+**What you get automatically:**
+- **Comprehensive `.env.template`** with all required variables
+- **Production-ready `docker-compose.yml`** with health checks
+- **Service-specific configuration files** with advanced options
+- **Interactive setup script** for guided configuration
+- **Complete documentation** with examples and troubleshooting
+</details>
+
+<details>
+<summary><strong>Available Plugin Categories (49 plugins across 12 categories)</strong></summary>
+
+- **Performance & Scale** - Federation, HA, Auto-scaling (3 plugins)
+- **Advanced Security** - SAML/OAuth, Certificates, Network segmentation (3 plugins)
+- **Cloud Integration** - AWS CloudWatch, AWS CloudTrail, AWS Config, AWS VPC Flow Logs, AWS Reachability Analyzer, Auto-Discovery, Cost optimization, MontyCloud (8 plugins)
+- **Security Partner Integration** - CrowdStrike, Palo Alto, Alert Logic (3 plugins)
+- **Monitoring Partner Integration** - Splunk, Sumo Logic, Datadog (3 plugins)
+- **CMDB/ITSM Integration** - ServiceNow, BMC Helix, Jira Service Management (3 plugins)
+- **Ticketing Platform Integration** - AWS Support, Zendesk, Freshworks, Linear (4 plugins)
+- **Identity Management Integration** - Duo Security, Okta (2 plugins)
+- **Data Platform Integration** - Redis, Elasticsearch, Databricks, Snowflake, MongoDB, Confluent, InfluxDB, ClickHouse, Neo4j (9 plugins)
+- **AI/ML Features** - Anomaly detection, Predictive alerts, Auto-remediation (3 plugins)
+- **Advanced Analytics** - Business intelligence, ELK stack, APM monitoring (3 plugins)
+- **DevOps Automation** - AWS CloudFormation, Terraform, Infrastructure as Code, CI/CD, GitOps (5 plugins)
+</details>
+
+<details>
+<summary><strong>Popular Plugin Packs</strong></summary>
+
+- **AWS Integration Pack** - AWS CloudWatch + AWS CloudTrail + AWS Config + AWS VPC Flow Logs + AWS Reachability Analyzer + Auto-Discovery + Cost Optimization + MontyCloud
+- **Security Enhancement Pack** - SAML Auth + Certificate Auth
+- **Security Partner Pack** - CrowdStrike + Palo Alto + Alert Logic
+- **Monitoring Partner Pack** - Splunk + Sumo Logic + Datadog
+- **CMDB/ITSM Pack** - ServiceNow + BMC Helix + Jira Service Management
+- **Ticketing Platform Pack** - AWS Support + Zendesk + Freshworks + Linear
+- **Identity Management Pack** - Duo Security + Okta
+- **Data Platform Pack** - Redis + Elasticsearch + Databricks + Snowflake + MongoDB + Confluent + InfluxDB + ClickHouse + Neo4j
+- **Analytics Pack** - BI + Log Aggregation + APM
+- **AI/ML Pack** - Anomaly Detection + Predictive Alerts
+- **Enterprise Scale Pack** - Federation + HA + Auto-Scaling
+</details>
+
+<details>
+<summary><strong>Getting Started Examples</strong></summary>
+
+**Basic stack setup:**
+```bash
+# Install base stack
+./observability-stack-installer.sh
+
+# Add essential AWS integration
+python3 plugin_manager.py install aws-cloudwatch
+python3 plugin_manager.py install aws-cloudtrail
+python3 plugin_manager.py install aws-config
+python3 plugin_manager.py install montycloud
+```
+
+**Security-focused profile:**
+```bash
+# Install base + security partners
+python3 plugin_manager.py install crowdstrike-falcon
+python3 plugin_manager.py install duo-security
+python3 plugin_manager.py install okta
+```
+
+**DevOps-focused profile:**
+```bash
+# Install infrastructure monitoring
+python3 plugin_manager.py install aws-cloudformation
+python3 plugin_manager.py install terraform
+python3 plugin_manager.py install cicd-monitoring
+```
+
+**Data platform profile:**
+```bash
+# Install data platform monitoring
+python3 plugin_manager.py install redis
+python3 plugin_manager.py install elasticsearch
+python3 plugin_manager.py install databricks
+python3 plugin_manager.py install snowflake
+python3 plugin_manager.py install mongodb
+python3 plugin_manager.py install confluent
+python3 plugin_manager.py install influxdb
+python3 plugin_manager.py install clickhouse
+python3 plugin_manager.py install neo4j
+```
+
+**Enterprise full stack:**
+```bash
+# Install comprehensive monitoring
+python3 plugin_manager.py install aws-cloudwatch
+python3 plugin_manager.py install montycloud
+python3 plugin_manager.py install servicenow
+python3 plugin_manager.py install splunk-enterprise
+python3 plugin_manager.py install anomaly-detection
+```
+</details>
+
+<details>
+<summary><strong>Plugin Management Commands</strong></summary>
+
+```bash
+# List all available plugins
+python3 plugin_manager.py --install-dir customer-monitoring-stack list
+
+# Get plugin information
+python3 plugin_manager.py --install-dir customer-monitoring-stack info aws-cloudwatch
+
+# View installed plugins
+python3 plugin_manager.py --install-dir customer-monitoring-stack list --installed
+```
+</details>
+
+---
+
+## Agentic AI Integration
+
+The stack ships two complementary Bedrock-powered agents. **Perry the Agent** (Operator Copilot + tiered remediation planner) is the primary, context-aware agent; the alert triage agent is the original alert-driven router, still included. Both are agent-agnostic in design.
+
+### Perry the Agent (primary)
+
+- **Operator Copilot** - context-aware root-cause diagnosis. On a plain-language symptom it reads live state (Prometheus target health, EC2 instance state including IMDS hop limit and security groups, SG ingress, recent Auto Scaling activity) and returns a blunt root cause, the evidence, a concrete fix, and a one-liner.
+- **Tiered remediation planner** - turns a business directive into easy/medium/advanced findings with estimated monthly savings, a scoped-permission ask, and reversible, approval-gated easy-tier self-remediation (snapshot before delete, hard-scoped to a resource tag). Live signals are labeled live; signals the account cannot provide are labeled sample, never faked.
+- **Surfaced natively in Grafana** - a *Perry the Agent - Remediation Savings* dashboard (mascot, total savings, by-tier breakdown, plan, autonomy ask) plus an annotation banner when findings exist.
+- Agent-agnostic: a reference implementation of a gather-context / reason / act contract, open to a Bedrock Agent, a CLI/IDE agent, or your own orchestration. Deploy artifacts are tag-based with no hardcoded instance IDs or IPs (`perry-agent/deploy/`).
+
+```bash
+pip install boto3 requests flask
+# Run from observability-stack/.
+python3 perry-agent/agent.py diagnose "a fleet node shows up=0 in Prometheus and is not being scraped"
+python3 perry-agent/agent.py plan "build a remediation plan for extended support and cost"
+```
+
+### Alert triage agent (also included)
+
+The original, alert-driven agent: receives Prometheus alerts, analyzes context with Claude (Bedrock), determines root cause and severity, routes to multiple systems (AWS Support, ServiceNow, Jira, etc.), and triggers auto-remediation for known issues using your existing plugin APIs. No plugin changes required. Roughly $3/month for 1,000 alerts.
+
+```bash
+pip install boto3 requests flask
+# Configure your AlertManager webhook (see ALERT_TRIAGE_AGENT.md), then run from observability-stack/:
+python3 alert_triage_agent.py
+```
+
+**Documentation:** `ALERT_TRIAGE_AGENT.md` for the triage agent; the top-level README's Agentic AI section and `perry-agent/` for Perry.
+
+---
+
+## Package Contents
+
+- `observability-stack-installer.sh` - Main installer (Unix)
+- `monitoring_stack_installer.py` - Core installer with PyYAML auto-install
+- `universal_installer.py` - Cross-platform installer (Windows/macOS/Linux)
+- `security_validator.py` - Security validation
+- `plugin_manager.py` - Plugin system (49 plugins across 12 categories)
+- `plugin_web_gui.py` - Web-based plugin management interface
+- `alert_triage_agent.py` - Bedrock-powered intelligent alert routing (optional)
+- `ALERT_TRIAGE_AGENT.md` - Agentic AI integration documentation
+- `install-plugins.sh` - Interactive plugin installer
+- `install.sh` - Unix installer
+- `install.bat` - Windows installer
+- `uninstall.sh` - Unix uninstaller
+- `uninstall.bat` - Windows uninstaller
+- `enhance-all-plugins.py` - Plugin validation and enhancement system
+- `enhance-all-templates.py` - Comprehensive template generator
+- `DASHBOARD_WALKTHROUGH.md` - Complete dashboard guide
+- `DASHBOARD_QUERY_REFERENCE.md` - Prometheus query reference
+- `DEPLOYMENT_GUIDE.md` - Deployment guide
+- `SECURITY_GUIDE.md` - Security documentation
+- `SECURITY_ANALYSIS.md` - Security analysis
+- `demo_data_generator.py` - Demo data generator (fixed metric names)
+
+## Support
+
+<details>
+<summary><strong>Quick Troubleshooting Steps</strong></summary>
+
+### **1. Verify Prerequisites**
+```bash
+# Check Docker is running
+docker --version
+docker ps
+
+# Check Python version
+python3 --version  # macOS/Linux
+python --version   # Windows
+
+# Check available disk space (need 20GB+)
+df -h .            # macOS/Linux
+dir               # Windows
+```
+
+### **2. Service Status Checks**
+```bash
+# Check all containers are running
+docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+
+# Check container logs for errors
+docker logs prometheus
+docker logs grafana
+docker logs pushgateway
+docker logs api-server
+
+# Check service health
+curl -f http://localhost:3000/api/health  # Grafana
+curl -f http://localhost:9090/-/healthy  # Prometheus
+```
+
+### **3. Network & Port Troubleshooting**
+```bash
+# Verify ports are accessible
+netstat -an | grep :3000   # Grafana
+netstat -an | grep :9090   # Prometheus
+netstat -an | grep :9091   # Pushgateway
+netstat -an | grep :8080   # metrics API
+
+# Test connectivity
+curl -I http://localhost:3000
+curl -I http://localhost:9090
+```
+
+### **4. System Resource Checks**
+```bash
+# Check memory usage (need 8GB+ available)
+free -h           # Linux
+vm_stat           # macOS
+wmic OS get TotalVisibleMemorySize,FreePhysicalMemory  # Windows
+
+# Check CPU usage
+top -n 1          # Linux/macOS
+wmic cpu get loadpercentage  # Windows
+```
+
+### **5. Plugin-Specific Issues**
+```bash
+# List installed plugins
+python3 plugin_manager.py --install-dir customer-monitoring-stack list --installed
+
+# Check plugin status
+python3 plugin_manager.py --install-dir customer-monitoring-stack status
+
+# Reinstall problematic plugin
+python3 plugin_manager.py --install-dir customer-monitoring-stack uninstall <plugin-name>
+python3 plugin_manager.py --install-dir customer-monitoring-stack install <plugin-name>
+```
+
+### **6. Log Collection for Support**
+```bash
+# Collect all container logs
+mkdir support-logs
+docker logs prometheus > support-logs/prometheus.log 2>&1
+docker logs grafana > support-logs/grafana.log 2>&1
+docker logs pushgateway > support-logs/pushgateway.log 2>&1
+docker logs api-server > support-logs/api-server.log 2>&1
+
+# System information
+docker info > support-logs/docker-info.log
+python3 --version > support-logs/python-version.log
+uname -a > support-logs/system-info.log  # Unix
+systeminfo > support-logs/system-info.log  # Windows
+```
+
+### **7. Common Error Solutions**
+
+**"Port already in use" errors:**
+```bash
+# Find and stop conflicting processes
+lsof -i :3000     # macOS/Linux
+netstat -ano | findstr :3000  # Windows
+
+# Kill process using port
+kill -9 <PID>     # macOS/Linux
+taskkill /PID <PID> /F  # Windows
+```
+
+**"Permission denied" errors:**
+```bash
+# Fix file permissions (Unix)
+chmod +x install.sh
+chmod +x install-plugins.sh
+sudo chown -R $USER:$USER customer-monitoring-stack/
+
+# Run as administrator (Windows)
+# Right-click install.bat -> "Run as administrator"
+```
+
+**"Docker not found" errors:**
+```bash
+# Install Docker Desktop
+# macOS: https://docs.docker.com/desktop/mac/install/
+# Windows: https://docs.docker.com/desktop/windows/install/
+# Linux: https://docs.docker.com/engine/install/
+
+# Start Docker service
+sudo systemctl start docker  # Linux
+# Or start Docker Desktop application
+```
+
+**"Module not found" Python errors:**
+```bash
+# Reinstall dependencies
+pip3 install --upgrade pip
+pip3 install pyyaml requests docker
+
+# Use virtual environment
+python3 -m venv monitoring-env
+source monitoring-env/bin/activate  # Unix
+monitoring-env\Scripts\activate     # Windows
+pip install -r requirements.txt
+```
+</details>
+
+<details>
+<summary><strong>Additional Resources</strong></summary>
+
+1. **Detailed troubleshooting:** `DASHBOARD_WALKTHROUGH.md`
+2. **Security issues:** `SECURITY_GUIDE.md`
+3. **Deployment:** `DEPLOYMENT_GUIDE.md`
+</details>
+
+### **Contact Support**
+- **Report bugs and feature requests:** [adrianr.sanmiguel@gmail.com](mailto:adrianr.sanmiguel@gmail.com)
+
+## Prerequisites
+
+- **OS**: Windows 10+, macOS 10.14+, or Linux (Ubuntu 18.04+, CentOS 7+)
+- **CPU**: 4 cores minimum, 8 cores recommended (16+ cores for enterprise deployments)
+- **RAM**: 8GB minimum, 16GB recommended (32GB+ for 30+ plugins)
+- **Disk**: 20GB free space (base stack: 5GB, plugins: ~100MB each, data retention: 10-15GB)
+- **Network**: Internet connection for initial setup
+- **Python**: 3.7+ (PyYAML and requests auto-installed during setup)
+
+### Scaling Guidelines
+- **Small deployment (1-15 plugins)**: 4 CPU, 8GB RAM, 20GB disk
+- **Medium deployment (15-30 plugins)**: 8 CPU, 16GB RAM, 50GB disk  
+- **Enterprise deployment (30+ plugins)**: 16+ CPU, 32GB+ RAM, 100GB+ disk
+
+<div align="center"><em>Disk space recommendations assume maximum logging and retention policies.<br>Actual usage may be lower with optimized retention settings.</em></div>
+
+---
+
+**Important:** This project is not an official AWS product. You are responsible for validating deployments against your organization's requirements.
+

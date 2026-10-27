@@ -1,0 +1,32 @@
+networks:
+  default:
+    external: false
+services:
+  saml_auth:
+    container_name: saml_auth
+    environment:
+    - SAML_IDP_URL=${SAML_IDP_URL}
+    - SAML_ENTITY_ID=${SAML_ENTITY_ID}
+    - SAML_CERT_PATH=${SAML_CERT_PATH}
+    - SAML_KEY_PATH=${SAML_KEY_PATH}
+    healthcheck:
+      interval: 60s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - wget
+      - --no-verbose
+      - --tries=1
+      - --spider
+      - http://localhost:9114/health
+      timeout: 10s
+    image: nginx:alpine
+    networks:
+    - default
+    ports:
+    - 9114:9114
+    restart: unless-stopped
+    volumes:
+    - ./saml-auth-config.yml:/config/config.yml:ro
+    - ./logs:/var/log:rw

@@ -1,0 +1,35 @@
+networks:
+  default:
+    external: false
+services:
+  grafana_ha:
+    container_name: grafana_ha
+    environment:
+    - GF_DATABASE_TYPE=${GF_DATABASE_TYPE}
+    - GF_DATABASE_HOST=${GF_DATABASE_HOST}
+    - GF_DATABASE_NAME=${GF_DATABASE_NAME}
+    - GF_DATABASE_USER=${GF_DATABASE_USER}
+    - GF_DATABASE_PASSWORD=${GF_DATABASE_PASSWORD}
+    - GF_SESSION_PROVIDER=${GF_SESSION_PROVIDER}
+    - GF_SESSION_PROVIDER_CONFIG=${GF_SESSION_PROVIDER_CONFIG}
+    healthcheck:
+      interval: 60s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - wget
+      - --no-verbose
+      - --tries=1
+      - --spider
+      - http://localhost:9110/health
+      timeout: 10s
+    image: grafana/grafana:latest
+    networks:
+    - default
+    ports:
+    - 9110:9110
+    restart: unless-stopped
+    volumes:
+    - ./grafana-ha-config.yml:/config/config.yml:ro
+    - ./logs:/var/log:rw
